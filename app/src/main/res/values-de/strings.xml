@@ -8,6 +8,8 @@
     <string name="settings">Einstellungen</string>
 
     <!-- Overview -->
-    <string name="add_account">Neu</string>
+    <string name="account_type">Typ</string>
+    <string name="account_name">Name</string>
+    <string name="account_balance">Startsaldo</string>
 
 </resources>

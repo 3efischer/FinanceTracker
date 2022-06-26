@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceTracker">
         <activity
-            android:name=".activities.AddAccount"
+            android:name=".activities.AddAccountActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
