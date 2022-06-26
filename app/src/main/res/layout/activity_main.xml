@@ -6,78 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="de.efischer.financetracker.fragments.TopBarFragment"
+        tools:layout="@layout/fragment_top_bar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/btn_overview"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_wallet"
-                android:text="@string/overview"
-                android:textSize="4pt" />
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/add_account"
+            android:onClick="addAccount"
+            app:srcCompat="@android:drawable/ic_input_add"
+            tools:ignore="ImageContrastCheck" />
 
-            <Button
-                android:id="@+id/btn_transactions"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="109dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_transaction"
-                android:text="@string/transactions"
-                android:textSize="4pt" />
-
-            <Button
-                android:id="@+id/btn_budgets"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_budget"
-                android:text="@string/budgets"
-                android:textSize="4pt" />
-
-            <Button
-                android:id="@+id/btn_stats"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autoSizeTextType="uniform"
-                android:drawableTop="@drawable/ic_statistics"
-                android:text="@string/stats"
-                android:textSize="4pt" />
-
-            <Button
-                android:id="@+id/btn_settings"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_settings"
-                android:text="@string/settings"
-                android:textSize="4pt" />
-
-
-        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
