@@ -1,8 +1,10 @@
-package de.efischer.financetracker;
+package de.efischer.financetracker.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import de.efischer.financetracker.R;
 
 public class MainActivity extends AppCompatActivity {
 

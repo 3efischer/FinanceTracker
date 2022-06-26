@@ -18,54 +18,55 @@
 
             <Button
                 android:id="@+id/btn_overview"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/ic_wallet"
                 android:text="@string/overview"
-                android:textSize="4pt" />
+                android:textSize="4pt"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/btn_transactions"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="109dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/ic_transaction"
+                android:maxLines="1"
                 android:text="@string/transactions"
                 android:textSize="4pt" />
 
             <Button
                 android:id="@+id/btn_budgets"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/ic_budget"
                 android:text="@string/budgets"
-                android:textSize="4pt" />
+                android:textSize="4pt"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/btn_stats"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:autoSizeTextType="uniform"
                 android:drawableTop="@drawable/ic_statistics"
                 android:text="@string/stats"
-                android:textSize="4pt" />
+                android:textSize="4pt"
+                android:autoSizeTextType="uniform"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/btn_settings"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/ic_settings"
                 android:text="@string/settings"
-                android:textSize="4pt" />
+                android:textSize="4pt"
+                style="?android:attr/buttonBarButtonStyle" />
 
 
         </LinearLayout>
