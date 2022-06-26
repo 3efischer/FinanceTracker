@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+        <TextView
+            android:id="@+id/btn_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3pt"
+            android:paddingBottom="3pt"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTopCompat="@drawable/ic_wallet"
+            android:text="@string/accounts"
+            android:layout_weight="0.2"
+            />
+
+        <TextView
+            android:id="@+id/btn_transactions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3pt"
+            android:paddingBottom="3pt"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTopCompat="@drawable/ic_transaction"
+            android:text="@string/transactions"
+            android:layout_weight="0.2" />
+
+        <TextView
+            android:id="@+id/btn_budgets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3pt"
+            android:paddingBottom="3pt"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTopCompat="@drawable/ic_budget"
+            android:text="@string/budgets"
+            android:layout_weight="0.2"/>
+
+        <TextView
+            android:id="@+id/btn_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3pt"
+            android:paddingBottom="3pt"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTopCompat="@drawable/ic_statistics"
+            android:text="@string/stats"
+            android:layout_weight="0.2"/>
+
+        <TextView
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3pt"
+            android:paddingBottom="3pt"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTopCompat="@drawable/ic_settings"
+            android:text="@string/settings"
+            android:layout_weight="0.2"/>
+
+</LinearLayout>

@@ -1,7 +1,7 @@
 <resources>
-    <!-- Top Bar -->
+    <!-- Menu Bar -->
     <string name="app_name">FinanceTracker</string>
-    <string name="overview">Overview</string>
+    <string name="accounts">Accounts</string>
     <string name="transactions">Transactions</string>
     <string name="budgets">Budgets</string>
     <string name="stats">Stats</string>

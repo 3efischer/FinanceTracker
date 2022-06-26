@@ -13,6 +13,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            getSupportActionBar().hide();
+        } catch(NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addAccount(View view) {

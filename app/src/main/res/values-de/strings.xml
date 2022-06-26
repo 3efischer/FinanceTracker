@@ -1,8 +1,8 @@
 <resources>
     <!-- Top Bar -->
     <string name="app_name">FinanceTracker</string>
-    <string name="overview">Konten</string>
-    <string name="transactions">Transaktionen</string>
+    <string name="accounts">Konten</string>
+    <string name="transactions">Umsätze</string>
     <string name="budgets">Budgets</string>
     <string name="stats">Statistik</string>
     <string name="settings">Einstellungen</string>

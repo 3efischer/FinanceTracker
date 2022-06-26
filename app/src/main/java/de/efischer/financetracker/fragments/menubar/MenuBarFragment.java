@@ -1,4 +1,4 @@
-package de.efischer.financetracker.fragments;
+package de.efischer.financetracker.fragments.menubar;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import de.efischer.financetracker.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TopBarFragment#newInstance} factory method to
+ * Use the {@link MenuBarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TopBarFragment extends Fragment {
+public class MenuBarFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class TopBarFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TopBarFragment() {
+    public MenuBarFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class TopBarFragment extends Fragment {
      * @return A new instance of fragment TopBarFrament.
      */
     // TODO: Rename and change types and number of parameters
-    public static TopBarFragment newInstance(String param1, String param2) {
-        TopBarFragment fragment = new TopBarFragment();
+    public static MenuBarFragment newInstance(String param1, String param2) {
+        MenuBarFragment fragment = new MenuBarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class TopBarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_bar, container, false);
+        return inflater.inflate(R.layout.fragment_menu_bar, container, false);
     }
 }
