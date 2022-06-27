@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_menu_bar"
-        android:name="de.efischer.financetracker.fragments.menubar.MenuBarFragment"
+        android:name="de.efischer.financetracker.fragments.MenuBarFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"

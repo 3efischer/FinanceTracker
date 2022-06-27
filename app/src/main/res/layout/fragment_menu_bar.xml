@@ -71,5 +71,4 @@
             app:drawableTopCompat="@drawable/ic_settings"
             android:text="@string/settings"
             android:layout_weight="0.2"/>
-
 </LinearLayout>
