@@ -1,8 +1,14 @@
-package de.efischer.financetracker.fragments;
+package de.efischer.financetracker.common;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import de.efischer.financetracker.accounts.fragments.AccountOverviewFragment;
+import de.efischer.financetracker.budgets.BudgetOverviewFragment;
+import de.efischer.financetracker.menu.MenuFragment;
+import de.efischer.financetracker.statistics.StatisticsFragment;
+import de.efischer.financetracker.transactions.TransactionOverviewFragment;
 
 public class FragmentSwipeAdapter extends FragmentStateAdapter {
 

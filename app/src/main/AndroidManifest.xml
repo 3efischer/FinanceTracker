@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".activities.AddAccountActivity"
+            android:name=".accounts.activities.AddAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".common.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

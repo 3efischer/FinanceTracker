@@ -1,4 +1,4 @@
-package de.efischer.financetracker.fragments.util;
+package de.efischer.financetracker.common.inputs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

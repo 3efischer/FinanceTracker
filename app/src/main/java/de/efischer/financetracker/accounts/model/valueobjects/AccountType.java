@@ -1,4 +1,4 @@
-package de.efischer.financetracker.model.valueobjects;
+package de.efischer.financetracker.accounts.model.valueobjects;
 
 public enum AccountType{
 

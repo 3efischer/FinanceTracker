@@ -1,8 +1,8 @@
-package de.efischer.financetracker.activities;
-
-import androidx.appcompat.app.AppCompatActivity;
+package de.efischer.financetracker.accounts.activities;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import de.efischer.financetracker.R;
 

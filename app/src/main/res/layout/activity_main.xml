@@ -6,11 +6,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="fill"
-        tools:context=".activities.MainActivity">
+        tools:context=".common.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_menu_bar"
-            android:name="de.efischer.financetracker.fragments.TopBarFragment"
+            android:name="de.efischer.financetracker.common.TopBarFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

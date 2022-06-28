@@ -11,7 +11,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_amount_input"
-        android:name="de.efischer.financetracker.fragments.util.AmountInputFragment"
+        android:name="de.efischer.financetracker.common.inputs.AmountInputFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"

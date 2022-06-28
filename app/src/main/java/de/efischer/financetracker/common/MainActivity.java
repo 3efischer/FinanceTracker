@@ -1,4 +1,4 @@
-package de.efischer.financetracker.activities;
+package de.efischer.financetracker.common;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.accounts.activities.AddAccountActivity;
 
 public class MainActivity extends AppCompatActivity {
 
