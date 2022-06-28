@@ -1,27 +1,25 @@
-package de.efischer.financetracker.fragments;
+package de.efischer.financetracker.fragments.topbar;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import de.efischer.financetracker.R;
 
 /**
- * Fragment that represents the overview over all budgets.
+ * Fragment that represents a list of all accounts.
  * @author Evelyn Fischer
- * @date 2022-06-27
  */
 
-public class BudgetOverviewFragment extends Fragment {
+public class AccountOverviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_budget_overview, container, false);
+        return inflater.inflate(R.layout.fragment_account_overview, container, false);
     }
 }

@@ -9,12 +9,12 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_menu_bar"
-            android:name="de.efischer.financetracker.fragments.MenuBarFragment"
+            android:name="de.efischer.financetracker.fragments.topbar.TopBarFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout="@layout/fragment_menu_bar" />
+            tools:layout="@layout/fragment_top_bar" />
 
             <FrameLayout
                 android:id="@+id/fragment_content"
