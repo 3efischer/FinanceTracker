@@ -13,7 +13,6 @@ import de.efischer.financetracker.R;
 
 public class AmountInputFragment extends Fragment {
 
-
     public AmountInputFragment() {
         // Required empty public constructor
     }

@@ -24,12 +24,12 @@ public class MenuBarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View menuBarView = inflater.inflate(R.layout.fragment_menu_bar, container, false);
 
-        accountOverviewButton = menuBarView.findViewById(R.id.btn_overview);
-        transactionOverviewButton = menuBarView.findViewById(R.id.btn_transactions);
-        budgetOverviewButton = menuBarView.findViewById(R.id.btn_budgets);
-        settingsButton = menuBarView.findViewById(R.id.btn_settings);
+        //accountOverviewButton = menuBarView.findViewById(R.id.btn_overview);
+        //transactionOverviewButton = menuBarView.findViewById(R.id.btn_transactions);
+        //budgetOverviewButton = menuBarView.findViewById(R.id.btn_budgets);
+        //settingsButton = menuBarView.findViewById(R.id.btn_settings);
 
-        setListeners();
+        //setListeners();
 
         return menuBarView;
     }

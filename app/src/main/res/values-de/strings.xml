@@ -5,7 +5,7 @@
     <string name="transactions">Umsätze</string>
     <string name="budgets">Budgets</string>
     <string name="stats">Statistik</string>
-    <string name="settings">Einstellungen</string>
+    <string name="menu">Menü</string>
 
     <!-- Overview -->
     <string name="account_type">Typ</string>
