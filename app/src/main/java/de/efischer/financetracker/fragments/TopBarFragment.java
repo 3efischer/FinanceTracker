@@ -1,4 +1,4 @@
-package de.efischer.financetracker.fragments.topbar;
+package de.efischer.financetracker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package de.efischer.financetracker.fragments.topbar;
+package de.efischer.financetracker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +10,15 @@ import androidx.fragment.app.Fragment;
 import de.efischer.financetracker.R;
 
 /**
- * Fragment that shows all settings for the app.
+ * Fragment that displays statistics for all available transaction data.
  * @author Evelyn Fischer
  */
-public class MenuFragment extends Fragment {
+public class StatisticsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 }

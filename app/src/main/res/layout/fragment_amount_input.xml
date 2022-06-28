@@ -5,15 +5,12 @@
     android:layout_height="wrap_content"
     android:layout_width="wrap_content">
 
-    <ToggleButton
+    <Button
         android:id="@+id/toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@drawable/pos_neg_checkbox"
         android:background="@null"
-        android:layout_margin="10dp"
-        android:textOn=""
-        android:textOff=""
         android:textAlignment="center"
         android:focusable="false"
         android:focusableInTouchMode="false"

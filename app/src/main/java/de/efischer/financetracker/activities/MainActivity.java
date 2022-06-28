@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.fragments.topbar.AccountOverviewFragment;
-import de.efischer.financetracker.fragments.topbar.BudgetOverviewFragment;
-import de.efischer.financetracker.fragments.topbar.MenuFragment;
-import de.efischer.financetracker.fragments.topbar.StatisticsFragment;
-import de.efischer.financetracker.fragments.topbar.TopBarFragment;
-import de.efischer.financetracker.fragments.topbar.TransactionOverviewFragment;
+import de.efischer.financetracker.fragments.AccountOverviewFragment;
+import de.efischer.financetracker.fragments.BudgetOverviewFragment;
+import de.efischer.financetracker.fragments.MenuFragment;
+import de.efischer.financetracker.fragments.StatisticsFragment;
+import de.efischer.financetracker.fragments.TopBarFragment;
+import de.efischer.financetracker.fragments.TransactionOverviewFragment;
 
 public class MainActivity extends AppCompatActivity {
 

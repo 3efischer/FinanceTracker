@@ -1,4 +1,4 @@
-package de.efischer.financetracker.fragments.topbar;
+package de.efischer.financetracker.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,15 +10,16 @@ import androidx.fragment.app.Fragment;
 import de.efischer.financetracker.R;
 
 /**
- * Fragment that represents an overview over all transactions.
+ * Fragment that represents a list of all accounts.
  * @author Evelyn Fischer
  */
-public class TransactionOverviewFragment extends Fragment {
+
+public class AccountOverviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction_overview, container, false);
+        return inflater.inflate(R.layout.fragment_account_overview, container, false);
     }
 }
