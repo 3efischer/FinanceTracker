@@ -5,15 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.fragments.AccountOverviewFragment;
-import de.efischer.financetracker.fragments.BudgetOverviewFragment;
-import de.efischer.financetracker.fragments.MenuFragment;
-import de.efischer.financetracker.fragments.StatisticsFragment;
-import de.efischer.financetracker.fragments.TopBarFragment;
-import de.efischer.financetracker.fragments.TransactionOverviewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,58 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setTopBarListener();
-
-        // Set initial view
-        setAccountOverviewFragment();
-    }
-
-    private void setTopBarListener() {
-        getSupportFragmentManager().setFragmentResultListener(TopBarFragment.REQUEST_KEY, this, (requestKey, result) -> {
-
-            switch(result.getString(TopBarFragment.RESULT_KEY)) {
-                case TopBarFragment.ACCOUNT_TAB:
-                    setAccountOverviewFragment();
-                    break;
-                case TopBarFragment.TRANSACTION_TAB:
-                    setTransactionOverviewFragment();
-                    break;
-                case TopBarFragment.BUDGET_TAB:
-                    setBudgetOverviewFragment();
-                    break;
-                case TopBarFragment.STATS_TAB:
-                    setStatisticsFragment();
-                    break;
-                case TopBarFragment.MENU_TAB:
-                    setMenuFragment();
-            }
-        });
-    }
-
-    private void setAccountOverviewFragment() {
-        Fragment accountOverview = new AccountOverviewFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, accountOverview).commit();
-    }
-
-    private void setTransactionOverviewFragment() {
-        Fragment transactionOverview = new TransactionOverviewFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, transactionOverview).commit();
-    }
-
-    private void setBudgetOverviewFragment() {
-        Fragment budgetOverview = new BudgetOverviewFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, budgetOverview).commit();
-    }
-
-    private void setStatisticsFragment() {
-        Fragment statisticsFragment = new StatisticsFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, statisticsFragment).commit();
-    }
-
-    private void setMenuFragment() {
-        Fragment menuFragment = new MenuFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, menuFragment).commit();
     }
 
     public void addAccount(View view) {
