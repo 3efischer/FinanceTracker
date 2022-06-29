@@ -8,6 +8,7 @@
     <string name="menu">Menü</string>
 
     <!-- Overview -->
+    <string name="add_account">Account anlegen</string>
     <string name="account_type">Typ</string>
     <string name="account_name">Name</string>
     <string name="account_balance">Startsaldo</string>
