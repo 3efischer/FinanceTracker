@@ -9,7 +9,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
+
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
+import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 
 /**
  * Fragment that represents a list of all accounts.
@@ -18,60 +26,41 @@ import de.efischer.financetracker.R;
 
 public class AccountOverviewFragment extends Fragment {
 
-    private enum LayoutManagerType {
-        GRID_LAYOUT_MANAGER,
-        LINEAR_LAYOUT_MANAGER
-    }
-
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
-    private static final String TAG = "RecyclerViewFragment";
-    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
-    private static final int SPAN_COUNT = 1;
-    private static final int DATASET_COUNT = 60;
-    private String[] dataset;
+    private List<Account> accounts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
         initDataset();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_account_overview, container, false);
-        view.setTag(TAG);
-        // BEGIN_INCLUDE(initializeRecyclerView)
+
+        // Set layout for recycler view
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
-        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
-        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
-        // elements are laid out.
         layoutManager = new LinearLayoutManager(getActivity());
-
         recyclerView.setLayoutManager(layoutManager);
-        AccountListAdapter adapter = new AccountListAdapter(dataset);
-        // Set CustomAdapter as the adapter for RecyclerView.
+
+        // Set custom adapter for recycler view
+        AccountListItemAdapter adapter = new AccountListItemAdapter(accounts);
         recyclerView.setAdapter(adapter);
 
         return view;
     }
 
-        /**
-         * Generates Strings for RecyclerView's adapter. This data would usually come
-         * from a local content provider or remote server.
-         */
-        private void initDataset() {
-            dataset = new String[DATASET_COUNT];
-            for (int i = 0; i < DATASET_COUNT; i++) {
-                dataset[i] = "This is element #" + i;
-            }
+    private void initDataset() {
+
+        this.accounts = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            accounts.add(new Account("Account " + (i+1), AccountType.CASH, Amount.createAmount(BigDecimal.valueOf(50 + i), Currency.getInstance("EUR"))));
         }
     }
+}
 

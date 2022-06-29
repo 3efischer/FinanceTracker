@@ -1,4 +1,4 @@
-package de.efischer.financetracker.common;
+package de.efischer.financetracker.common.topbar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import de.efischer.financetracker.R;
 
 public class TopBarFragment extends Fragment {
 
-    private FragmentSwipeAdapter fragmentSwipeAdapter;
+    private TopBarSwipeAdapter topBarSwipeAdapter;
     private ViewPager2 viewPager;
 
     @Override
@@ -29,9 +29,9 @@ public class TopBarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        fragmentSwipeAdapter = new FragmentSwipeAdapter(this);
+        topBarSwipeAdapter = new TopBarSwipeAdapter(this);
         viewPager = view.findViewById(R.id.pager);
-        viewPager.setAdapter(fragmentSwipeAdapter);
+        viewPager.setAdapter(topBarSwipeAdapter);
 
         TabLayout tabLayout = view.findViewById(R.id.contentTabs);
 
@@ -59,7 +59,6 @@ public class TopBarFragment extends Fragment {
                     tab.setText(R.string.menu);
                     break;
             }
-
         }).attach();
     }
 }

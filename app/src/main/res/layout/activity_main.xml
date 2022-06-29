@@ -9,8 +9,8 @@
         tools:context=".common.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_menu_bar"
-            android:name="de.efischer.financetracker.common.TopBarFragment"
+            android:id="@+id/top_bar_fragment"
+            android:name="de.efischer.financetracker.common.topbar.TopBarFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -25,7 +25,6 @@
                 android:onClick="addAccount"
                 app:srcCompat="@android:drawable/ic_input_add"
                 tools:ignore="ImageContrastCheck" />
-
     </LinearLayout>
 
 
