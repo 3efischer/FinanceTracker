@@ -10,11 +10,10 @@
     android:orientation="horizontal">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_amount_input"
-        android:name="de.efischer.financetracker.common.inputs.AmountInputFragment"
+        android:id="@+id/title_input_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_amount_input" />
+        app:layout_constraintTop_toTopOf="parent"/>
     </LinearLayout>
+
