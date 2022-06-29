@@ -71,10 +71,17 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         viewHolder.getAccountName().setText(account.getName());
     }
 
-
     @Override
     public int getItemCount() {
-        return accounts.size();
+        return this.accounts.size();
+    }
+
+    public void moveItem(int oldPosition, int newPosition) {
+        Account accountToMove = accounts.get(oldPosition);
+        accounts.remove(oldPosition);
+        accounts.add(newPosition, accountToMove);
+
+        notifyItemMoved(oldPosition, newPosition);
     }
 
 }
