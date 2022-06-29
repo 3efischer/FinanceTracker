@@ -9,6 +9,7 @@
     <string name="menu">Menu</string>
 
     <!-- Create new account -->
+    <string name="add_account">Create new account</string>
     <string name="account_type">Type</string>
     <string name="account_name">Title</string>
     <string name="account_balance">Initial balance</string>
