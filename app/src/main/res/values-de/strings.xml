@@ -1,21 +1,27 @@
 <resources>
-    <!-- Top Bar -->
     <string name="app_name">FinanceTracker</string>
+
+    <!-- Top Bar -->
     <string name="accounts">Konten</string>
     <string name="transactions">Umsätze</string>
     <string name="budgets">Budgets</string>
     <string name="stats">Statistik</string>
     <string name="menu">Menü</string>
 
-    <!-- Overview -->
+    <!-- Create new account -->
     <string name="add_account">Account anlegen</string>
     <string name="account_type">Typ</string>
     <string name="account_name">Name</string>
     <string name="account_balance">Startsaldo</string>
 
+    <!-- Account Types -->
     <string name="cash">Bar</string>
     <string name="bank_account">Girokonto</string>
     <string name="savings">Tagesgeld</string>
     <string name="credit_card">Kreditkarte</string>
+
+    <!-- Credit card types -->
+    <string name="visa">Visa</string>
+    <string name="mastercard">MasterCard</string>
 
 </resources>
