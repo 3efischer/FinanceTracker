@@ -5,5 +5,5 @@
     android:layout_height="match_parent"
     tools:context=".budgets.BudgetOverviewFragment"
     android:orientation="vertical"
-    android:background="@color/custom_grey">
+    android:background="@color/custom_light_grey">
 </LinearLayout>

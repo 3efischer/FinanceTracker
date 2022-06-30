@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="custom_grey">#E3E3E3</color>
+    <color name="custom_light_grey">#E3E3E3</color>
+    <color name="custom_dark_grey">#505050</color>
+    <color name="status_bar_grey">#8f8f8f</color>
     <color name="dark_blue">#284962</color>
     <color name="pos_green">#0A820A</color>
     <color name="neg_red">#DC0A0A</color>

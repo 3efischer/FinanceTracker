@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@android:id/empty"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:gravity="center"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:background="@color/custom_grey"
+        android:background="@color/custom_light_grey"
         android:text="@string/account_list_empty"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,6 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:background="@color/custom_grey"
+        android:background="@color/custom_light_grey"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>

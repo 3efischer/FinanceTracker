@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".statistics.StatisticsFragment"
-    android:background="@color/custom_grey">
+    android:background="@color/custom_light_grey">
 </LinearLayout>
