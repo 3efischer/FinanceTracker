@@ -2,6 +2,8 @@ package de.efischer.financetracker.accounts.model.valueobjects;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import androidx.annotation.NonNull;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
@@ -18,7 +20,7 @@ public class Amount {
         this.currency = currency;
     }
 
-    public static Amount createAmount(BigDecimal amount, Currency currency) {
+    public static Amount of(BigDecimal amount, Currency currency) {
         checkArgument(isValidAmount(amount, currency));
         return new Amount(amount, currency);
     }
@@ -36,6 +38,11 @@ public class Amount {
         return currency;
     }
 
+    public boolean isPositive() {
+        return amount.signum() >= 0;
+    }
+
+    @NonNull
     @Override
     public String toString() {
         return amount + " " + currency.getSymbol();

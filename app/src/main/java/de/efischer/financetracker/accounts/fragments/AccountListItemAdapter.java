@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,20 +25,17 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         private final TextView accountName;
         private final TextView lastChangedDate;
         private final TextView amount;
+        private final ImageView icon;
 
         public ViewHolder(View v) {
             super(v);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                }
-            });
-            firstLine = (TextView) v.findViewById(R.id.first_row_text);
-            accountName = (TextView) v.findViewById(R.id.account_title);
-            lastChangedDate = (TextView) v.findViewById(R.id.last_account_changed_date);
-            amount = (TextView) v.findViewById(R.id.total_amount);
+            v.setOnClickListener(v1 -> Log.d(TAG, "Element " + getAdapterPosition() + " clicked."));
+            firstLine = v.findViewById(R.id.first_row_text);
+            accountName = v.findViewById(R.id.account_title);
+            lastChangedDate = v.findViewById(R.id.last_account_changed_date);
+            amount = v.findViewById(R.id.total_amount);
+            icon = v.findViewById(R.id.account_icon);
         }
 
         public TextView getFirstLine() {
@@ -46,6 +44,7 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         public TextView getAccountName() { return accountName; }
         public TextView getLastChangedDate() { return lastChangedDate; }
         public TextView getAmount() { return amount; }
+        public ImageView getIcon() { return icon; }
     }
 
     public AccountListItemAdapter(List<Account> accounts) { this.accounts = accounts; }
@@ -65,9 +64,18 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
 
         // Replace textview texts with data
         Account account = accounts.get(position);
-        viewHolder.getFirstLine().setText(account.getType().toString());
+        viewHolder.getIcon().setBackgroundResource(account.getType().iconId);
+        viewHolder.getFirstLine().setText(account.getType().name);
+
         viewHolder.getAmount().setText(account.getBalance().toString());
-        viewHolder.getLastChangedDate().setText(account.getLastChanged().toString());
+
+        int green = viewHolder.getAmount().getContext().getResources().getColor(R.color.pos_green, null);
+        int red = viewHolder.getAmount().getContext().getResources().getColor(R.color.neg_red, null);
+
+        viewHolder.getAmount().setTextColor(account.getBalance().isPositive() ? green : red);
+
+
+        viewHolder.getLastChangedDate().setText(account.getLastDayChanged());
         viewHolder.getAccountName().setText(account.getName());
     }
 

@@ -1,5 +1,6 @@
 package de.efischer.financetracker.accounts.model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
@@ -40,8 +41,18 @@ public class Account {
         this.type = type;
     }
 
-    public Date getLastChanged() {
-        return lastChanged;
+    public String getLastDayChanged() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("dd.MM.yy");
+
+        return simpleDateFormat.format(lastChanged);
+    }
+
+    public String getLastTimeChanged() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("HH:mm");
+
+        return simpleDateFormat.format(lastChanged);
     }
 
     public void setLastChanged(Date lastChanged) {
