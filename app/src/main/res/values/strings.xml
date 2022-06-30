@@ -9,6 +9,7 @@
     <string name="menu">Menu</string>
 
     <!-- Create new account -->
+    <string name="account_list_empty">No accounts available. Add a new account by clicking the plus sign on the bottom.</string>
     <string name="add_account">Create new account</string>
     <string name="account_type">Type</string>
     <string name="account_name">Title</string>

@@ -14,6 +14,10 @@ import java.util.List;
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
 
+/**
+ * Defines a ViewHolder for Accounts and sets the visual for individual items.
+ * @author Evelyn Fischer
+ */
 public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItemAdapter.ViewHolder>{
 
     private static final String TAG = "AccountListAdapter";

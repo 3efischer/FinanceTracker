@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
-import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 
 /**
  * Fragment that represents a list of all accounts.
@@ -34,7 +30,6 @@ public class AccountOverviewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initDataset();
     }
 
@@ -46,10 +41,11 @@ public class AccountOverviewFragment extends Fragment {
         // Set layout for recycler view
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        // Create and attach custom adapter to recycler view
+        // Create and attach list item adapter to recycler view
         AccountListItemAdapter adapter = new AccountListItemAdapter(accounts);
         recyclerView.setAdapter(adapter);
 
+        // Set divider between items
         DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         divider.setDrawable(ContextCompat.getDrawable(recyclerView.getContext(), R.drawable.horizontal_divider));
         recyclerView.addItemDecoration(divider);
@@ -59,16 +55,44 @@ public class AccountOverviewFragment extends Fragment {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
 
+        // Handle changes on recyclerview
+        if(accounts.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+        }
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkIfEmpty();
+            }
+
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                checkIfEmpty();
+            }
+
+            @Override
+            public void onItemRangeRemoved(int positionStart, int itemCount) {
+                super.onItemRangeRemoved(positionStart, itemCount);
+                checkIfEmpty();
+            }
+
+            public void checkIfEmpty() {
+                recyclerView.setVisibility(adapter.getItemCount() > 0 ? View.VISIBLE : View.GONE);
+            }
+        });
+
         return view;
     }
 
     private void initDataset() {
 
         this.accounts = new ArrayList<>();
-        this.accounts.add(new Account("Bargeld", AccountType.CASH, Amount.of(new BigDecimal(25), Currency.getInstance("EUR"))));
-        this.accounts.add(new Account("Girokonto", AccountType.BANK, Amount.of(new BigDecimal(2000), Currency.getInstance("EUR"))));
-        this.accounts.add(new Account("Sparbuch", AccountType.SAVINGS, Amount.of(new BigDecimal(-125), Currency.getInstance("EUR"))));
-        this.accounts.add(new Account("Kreditkarte", AccountType.CREDIT_CARD, Amount.of(new BigDecimal(5000), Currency.getInstance("EUR"))));
+        //this.accounts.add(new Account("Bargeld", AccountType.CASH, Amount.of(new BigDecimal(25), Currency.getInstance("EUR"))));
+//        this.accounts.add(new Account("Girokonto", AccountType.BANK, Amount.of(new BigDecimal(2000), Currency.getInstance("EUR"))));
+//        this.accounts.add(new Account("Sparbuch", AccountType.SAVINGS, Amount.of(new BigDecimal(-125), Currency.getInstance("EUR"))));
+//        this.accounts.add(new Account("Kreditkarte", AccountType.CREDIT_CARD, Amount.of(new BigDecimal(5000), Currency.getInstance("EUR"))));
     }
 }
 

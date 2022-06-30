@@ -21,7 +21,7 @@ public class AddAccountActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.title_input_fragment, TextInputFragment.class, args)
+                    .add(R.id.account_name_input_fragment, TextInputFragment.class, args)
                     .commit();
         }
     }
