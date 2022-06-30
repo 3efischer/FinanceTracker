@@ -14,8 +14,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:paddingEnd="5dp"
-        android:contentDescription="@string/account_type"
-        />
+        android:contentDescription="@string/account_type"/>
 
     <View
         android:id="@+id/divider"

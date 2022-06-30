@@ -16,5 +16,16 @@ public enum AccountType{
         this.name = nameId;
         this.iconId = iconId;
     }
+
+    public int[] getAccountTypeNameIds() {
+        AccountType[] accountTypes = AccountType.values();
+        int[] nameIds = new int[accountTypes.length];
+
+        for(int i = 0; i < accountTypes.length; i++) {
+            nameIds[i] = accountTypes[i].name;
+        }
+
+        return nameIds;
+    }
 }
 
