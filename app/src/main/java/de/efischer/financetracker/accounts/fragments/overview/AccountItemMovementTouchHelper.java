@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.fragments;
+package de.efischer.financetracker.accounts.fragments.overview;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_DRAG;
 import static androidx.recyclerview.widget.ItemTouchHelper.UP;

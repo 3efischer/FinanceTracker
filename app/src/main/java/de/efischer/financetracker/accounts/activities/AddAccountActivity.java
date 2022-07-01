@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.fragments.AccountDropdownAdapter;
+import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
-import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
-import de.efischer.financetracker.common.inputs.NumberInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
 
 public class AddAccountActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -24,9 +22,6 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
         if (savedInstanceState == null) {
             setupAccountDropdown();
-            setupCreditCardDropdown();
-            setupCreditCardIssuerField();
-            setupCreditCardNumberField();
             setupNameField();
         }
     }
@@ -57,60 +52,16 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
         spinner.setOnItemSelectedListener(this);
     }
 
-    private void setupCreditCardDropdown() {
-        CreditCardType[] creditCardTypes = CreditCardType.values();
-        String[] creditCardTypesAsStrings = new String[creditCardTypes.length];
-        Integer[] imageIdArray = new Integer[creditCardTypes.length];
-
-        for(int i = 0; i < creditCardTypes.length; i++) {
-            creditCardTypesAsStrings[i] = getResources().getString(creditCardTypes[i].nameId);
-            imageIdArray[i] = creditCardTypes[i].iconId;
-        }
-
-        Spinner spinner = findViewById(R.id.credit_card_type_dropdown);
-        spinner.setAdapter(new AccountDropdownAdapter(this, R.layout.account_type_dropdown_item, creditCardTypesAsStrings, imageIdArray));
-    }
-
-    private void setupCreditCardIssuerField() {
-        Bundle args = new Bundle();
-        args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.credit_card_issuer);
-        args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.credit_card_issuer_description);
-
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.credit_card_issuer_input_fragment, TextInputFragment.class, args)
-                .commit();
-    }
-
-
-    private void setupCreditCardNumberField() {
-        Bundle args = new Bundle();
-        args.putInt(NumberInputFragment.DESCRIPTION_TEXT_KEY, R.string.credit_card_number);
-        args.putInt(NumberInputFragment.TEXTFIELD_HINT_KEY, R.string.credit_card_number_description);
-        args.putInt(NumberInputFragment.MAX_LENGTH_KEY, 4);
-
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.credit_card_number_input_fragment, NumberInputFragment.class, args)
-                .commit();
-    }
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             AccountType[] accountTypes = AccountType.values();
 
-            Spinner creditCardTypeSpinner = findViewById(R.id.credit_card_type_dropdown);
-            Fragment creditCardIssuerFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_issuer_input_fragment);
-            Fragment creditCardNumberFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_number_input_fragment);
+            Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
 
             if(accountTypes[position] == AccountType.CREDIT_CARD) {
-                creditCardTypeSpinner.setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().show(creditCardIssuerFragment).commit();
-                getSupportFragmentManager().beginTransaction().show(creditCardNumberFragment).commit();
+                getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
             } else {
-                creditCardTypeSpinner.setVisibility(View.GONE);
-                getSupportFragmentManager().beginTransaction().hide(creditCardIssuerFragment).commit();
-                getSupportFragmentManager().beginTransaction().hide(creditCardNumberFragment).commit();
+                getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
             }
     }
 
