@@ -42,6 +42,12 @@
         android:layout_gravity="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/credit_card_number_input_fragment"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <!-- End of credit card block -->
 
     <androidx.fragment.app.FragmentContainerView

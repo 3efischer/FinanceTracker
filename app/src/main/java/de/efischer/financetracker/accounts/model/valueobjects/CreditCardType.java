@@ -14,5 +14,4 @@ public enum CreditCardType {
         this.nameId = nameId;
         this.iconId = iconId;
     }
-
 }

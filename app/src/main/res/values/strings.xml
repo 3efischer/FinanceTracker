@@ -15,6 +15,8 @@
     <string name="credit_card_type">Credit card type</string>
     <string name="credit_card_issuer">Issuer</string>
     <string name="credit_card_issuer_description">Issuer of your credit card</string>
+    <string name="credit_card_number">Credit card number</string>
+    <string name="credit_card_number_description">Last 4 digits of the card</string>
     <string name="account_name">Name</string>
     <string name="account_name_description">Name of your account</string>
     <string name="account_balance">Initial balance</string>
@@ -27,5 +29,7 @@
     <!-- Credit card types -->
     <string name="visa">Visa</string>
     <string name="mastercard">MasterCard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
