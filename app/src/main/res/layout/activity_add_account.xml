@@ -27,6 +27,7 @@
         android:minHeight="48dp"
         android:spinnerMode="dropdown"/>
 
+    <!-- This block is only visible if the selected account type is credit card -->
     <Spinner
         android:id="@+id/credit_card_type_dropdown"
         android:layout_width="match_parent"
@@ -35,6 +36,13 @@
         android:dropDownWidth="match_parent"
         android:minHeight="48dp"
         android:spinnerMode="dropdown"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/credit_card_issuer_input_fragment"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!-- End of credit card block -->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/account_name_input_fragment"

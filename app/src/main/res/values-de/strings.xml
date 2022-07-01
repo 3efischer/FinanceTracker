@@ -9,11 +9,14 @@
     <string name="menu">Menü</string>
 
     <!-- Create new account -->
-    <string name="account_list_empty">Keine Konten verfügbar. Legen Sie eines an, indem Sie unten den Plus-Knopf drücken.</string>
+    <string name="account_list_empty">Keine Konten verfügbar. Legen Sie eines an, indem Sie auf den Plus-Knopf unten links drücken.</string>
     <string name="add_account">Konto anlegen</string>
     <string name="account_type">Typ</string>
     <string name="credit_card_type">Art der Karte</string>
+    <string name="credit_card_issuer">Herausgeber</string>
+    <string name="credit_card_issuer_description">Herausgebende Bank</string>
     <string name="account_name">Name</string>
+    <string name="account_name_description">Name des Kontos</string>
     <string name="account_balance">Startsaldo</string>
 
     <!-- Account Types -->

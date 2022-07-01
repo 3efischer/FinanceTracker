@@ -4,7 +4,7 @@ import de.efischer.financetracker.R;
 
 public enum CreditCardType {
 
-    VISA(R.string.visa, R.drawable.ic_visa),
+    VISA(R.string.visa, R.drawable.ic_visa2),
     MASTERCARD(R.string.mastercard, R.drawable.ic_mastercard);
 
     public final int nameId;

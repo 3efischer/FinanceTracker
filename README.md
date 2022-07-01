@@ -11,4 +11,4 @@ FinanceTracker is an open source personal finance tracking application for andro
 
 ## Icon References
 
-* [App Logo by Aranagraphics](https://www.flaticon.com/de/premium-icon/mobiles-banking_3956555?term=mobile%20banking&page=1&position=16&page=1&position=16&related_id=3956555&origin=tag)
+All svg graphics used for this app are taken from SVG Repo (svgrepo.com) and World Vector Logo (worldvectorlogo.com).
