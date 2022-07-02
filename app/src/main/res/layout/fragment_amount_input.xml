@@ -9,7 +9,7 @@
 
     <!-- Title -->
     <TextView
-        android:id="@+id/amount_input_type"
+        android:id="@+id/amount_input_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20sp"
@@ -21,15 +21,15 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <ImageView
+        <ToggleButton
             android:id="@+id/toggleImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="20sp"
             android:layout_marginEnd="5dp"
-            android:background="@drawable/ic_plus"
-            android:clickable="true"
             android:contentDescription="@null"
+            android:textOn=""
+            android:textOff=""
             android:focusable="true"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -46,7 +46,7 @@
             android:ems="3"
             android:gravity="end"
             android:hint="@null"
-            android:inputType="number"
+            android:inputType="number|phone"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
