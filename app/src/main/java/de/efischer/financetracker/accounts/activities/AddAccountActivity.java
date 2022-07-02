@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
+import de.efischer.financetracker.common.inputs.AmountInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
 
 public class AddAccountActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -22,6 +23,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
         if (savedInstanceState == null) {
             setupAccountDropdown();
+            setupAmountField();
             setupNameField();
         }
     }
@@ -58,6 +60,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
             Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
 
+            assert(creditCardDetailsFragment != null);
             if(accountTypes[position] == AccountType.CREDIT_CARD) {
                 getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
             } else {
@@ -67,6 +70,17 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+        // do nothing
+    }
 
+    private void setupAmountField() {
+        Bundle args = new Bundle();
+        args.putBoolean(AmountInputFragment.IS_STARTING_POSITIVE, true);
+        args.putInt(AmountInputFragment.AMOUNT_TYPE_TITLE, R.string.initial_account_balance);
+
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.amount_input_fragment, AmountInputFragment.class, args)
+                .commit();
     }
 }

@@ -2,40 +2,90 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:button="@drawable/pos_neg_checkbox"
-        android:background="@null"
-        android:textAlignment="center"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:layout_centerVertical="true"/>
-
-    <EditText
-        android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="number" />
-
+    <!-- Title -->
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/amount_input_type"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="10sp"/>
 
-    <EditText
-        android:id="@+id/editTextNumber2"
-        android:layout_width="wrap_content"
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="number" />
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/toggleImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/ic_plus"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:focusable="true"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/integralPartInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="0sp"
+            android:imeOptions="actionNext"
+            android:layout_weight="1"
+            android:autofillHints="@null"
+            android:ems="3"
+            android:gravity="end"
+            android:hint="@null"
+            android:inputType="number"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:minHeight="5dp"
+            android:text="@string/point_separator"
+            android:textSize="10pt"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/decimalPartInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:autofillHints="@null"
+            android:gravity="end"
+            android:inputType="number"
+            android:minWidth="30dp"
+            android:maxWidth="5dp"
+            android:maxLength="2"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/toggleImage2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="125sp"-->
+<!--            android:layout_marginEnd="35dp"-->
+<!--            android:background="@drawable/ic_plus"-->
+<!--            android:clickable="true"-->
+<!--            android:contentDescription="@null"-->
+<!--            android:focusable="true"-->
+<!--            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />-->
+    </LinearLayout>
 </LinearLayout>
+
+
+

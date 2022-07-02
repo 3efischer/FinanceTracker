@@ -13,18 +13,22 @@
         android:layout_gravity="start"
         android:dropDownWidth="match_parent"
         android:minHeight="48dp"
-        android:spinnerMode="dropdown"/>
+        android:spinnerMode="dropdown"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/credit_card_issuer_input_fragment"
         android:layout_gravity="end"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:paddingBottom="5dp"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/credit_card_number_input_fragment"
         android:layout_gravity="end"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 </LinearLayout>

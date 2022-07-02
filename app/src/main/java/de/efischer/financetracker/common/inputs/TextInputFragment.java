@@ -15,8 +15,8 @@ import de.efischer.financetracker.R;
 
 public class TextInputFragment extends Fragment {
 
-    public static String DESCRIPTION_TEXT_KEY = "DESCRIPTION_TEXT";
-    public static String TEXTFIELD_HINT_KEY = "TEXTFIELD_HINT";
+    public static final String DESCRIPTION_TEXT_KEY = "DESCRIPTION_TEXT";
+    public static final String TEXTFIELD_HINT_KEY = "TEXTFIELD_HINT";
 
     private String userInput;
 
@@ -28,8 +28,7 @@ public class TextInputFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View textInputFragment = inflater.inflate(R.layout.fragment_text_input, container, false);
-        return textInputFragment;
+        return inflater.inflate(R.layout.fragment_text_input, container, false);
     }
 
     @Override

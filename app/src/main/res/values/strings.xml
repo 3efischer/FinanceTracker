@@ -19,7 +19,7 @@
     <string name="credit_card_number_description">Last 4 digits of the card</string>
     <string name="account_name">Name</string>
     <string name="account_name_description">Name of your account</string>
-    <string name="account_balance">Initial balance</string>
+    <string name="initial_account_balance">Initial balance</string>
 
     <string name="cash">Cash</string>
     <string name="bank_account">Bank account</string>
@@ -29,7 +29,8 @@
     <!-- Credit card types -->
     <string name="visa">Visa</string>
     <string name="mastercard">MasterCard</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="point_separator">.</string>
+    <string name="comma_separator">,</string>
 
 </resources>
