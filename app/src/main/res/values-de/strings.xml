@@ -27,6 +27,7 @@
     <string name="savings">Tagesgeld</string>
     <string name="credit_card">Kreditkarte</string>
     <string name="credit_card_limit">Kreditrahmen</string>
+    <string name="bank_name">Name der Bank</string>
 
     <!-- Credit card types -->
     <string name="visa">Visa</string>

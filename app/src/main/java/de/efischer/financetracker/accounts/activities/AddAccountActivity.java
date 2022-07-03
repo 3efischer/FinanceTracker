@@ -25,6 +25,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             setupAccountDropdown();
             setupAmountField();
             setupNameField();
+            setupBankNameField();
             setupCreditCardLimitField();
         }
     }
@@ -61,9 +62,11 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
             Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
             Fragment creditCardLimitFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_limit_fragment);
+            Fragment bankNameFragment = getSupportFragmentManager().findFragmentById(R.id.bank_name_input_fragment);
 
             assert(creditCardDetailsFragment != null);
             assert(creditCardLimitFragment != null);
+            assert(bankNameFragment != null);
 
             if(accountTypes[position] == AccountType.CREDIT_CARD) {
                 getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
@@ -71,6 +74,12 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             } else {
                 getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
                 getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
+            }
+
+            if(accountTypes[position] == AccountType.BANK || accountTypes[position] == AccountType.SAVINGS) {
+                getSupportFragmentManager().beginTransaction().show(bankNameFragment).commit();
+            } else {
+                getSupportFragmentManager().beginTransaction().hide(bankNameFragment).commit();
             }
     }
 
@@ -98,6 +107,17 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .add(R.id.credit_card_limit_fragment, AmountInputFragment.class, args)
+                .commit();
+    }
+
+    private void setupBankNameField() {
+        Bundle args = new Bundle();
+        args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.bank_name);
+        args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.bank_name);
+
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.bank_name_input_fragment, TextInputFragment.class, args)
                 .commit();
     }
 }
