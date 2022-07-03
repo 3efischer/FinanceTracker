@@ -25,6 +25,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             setupAccountDropdown();
             setupAmountField();
             setupNameField();
+            setupCreditCardLimitField();
         }
     }
 
@@ -59,12 +60,17 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             AccountType[] accountTypes = AccountType.values();
 
             Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
+            Fragment creditCardLimitFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_limit_fragment);
 
             assert(creditCardDetailsFragment != null);
+            assert(creditCardLimitFragment != null);
+
             if(accountTypes[position] == AccountType.CREDIT_CARD) {
                 getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
+                getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
             } else {
                 getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
+                getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
             }
     }
 
@@ -81,6 +87,17 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .add(R.id.amount_input_fragment, AmountInputFragment.class, args)
+                .commit();
+    }
+
+    private void setupCreditCardLimitField() {
+        Bundle args = new Bundle();
+        args.putInt(AmountInputFragment.AMOUNT_TYPE_TITLE, R.string.credit_card_limit);
+        args.putBoolean(AmountInputFragment.IS_STARTING_POSITIVE, false);
+
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.credit_card_limit_fragment, AmountInputFragment.class, args)
                 .commit();
     }
 }

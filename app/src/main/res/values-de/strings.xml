@@ -26,6 +26,7 @@
     <string name="bank_account">Girokonto</string>
     <string name="savings">Tagesgeld</string>
     <string name="credit_card">Kreditkarte</string>
+    <string name="credit_card_limit">Kreditrahmen</string>
 
     <!-- Credit card types -->
     <string name="visa">Visa</string>
