@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.math.BigInteger;
+import java.util.regex.Pattern;
 
 import de.efischer.financetracker.R;
 
@@ -68,28 +69,27 @@ public class AmountInputFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String regExSpecialChars = "[()+;*#]";
-                String regExSeparators = "[,.]";
                 String inputString = s.toString();
 
-                boolean containsSpecialChars = inputString.matches(regExSpecialChars);
-                boolean containsSeparator = inputString.matches(regExSeparators);
-                boolean containsWhitespace = inputString.contains(" ");
-
-                if(containsSpecialChars) {
-                    inputString = inputString.replaceAll(regExSpecialChars, "");
-                }
+                boolean containsSeparator = inputString.contains(".") || inputString.contains(",");
 
                 if(containsSeparator) {
-                    inputString = inputString.replaceAll(regExSeparators, "");
+                    inputString = inputString.replaceAll("\\.", "");
+                    inputString = inputString.replaceAll(",", "");
                     decimalTextField.requestFocus();
                 }
 
-                if(containsWhitespace) {
-                    inputString = inputString.trim();
+                boolean isNumber = true;
+                if(!inputString.isEmpty()) {
+                    Pattern isNumberPattern = Pattern.compile("[1-9][0-9]*$");
+                    isNumber = isNumberPattern.matcher(inputString).matches();
                 }
 
-                if(containsSeparator || containsSpecialChars || containsWhitespace) {
+                if(!isNumber) {
+                    inputString = inputString.replaceAll("[^0-9]+","");
+                }
+
+                if(!isNumber || containsSeparator) {
                     integralTextField.setText(inputString);
                     integralTextField.setSelection(inputString.length());
                 }
