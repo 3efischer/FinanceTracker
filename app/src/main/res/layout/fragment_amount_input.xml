@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- Title -->
@@ -26,7 +26,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="20sp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="15dp"
             android:contentDescription="@null"
             android:textOn=""
             android:textOff=""
@@ -36,14 +36,13 @@
         <EditText
             android:id="@+id/integralPartInput"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="0sp"
+            android:layout_marginStart="0sp"
+            android:layout_marginEnd="2sp"
             android:imeOptions="actionNext"
-            android:layout_weight="1"
+            android:minEms="4"
             android:autofillHints="@null"
-            android:ems="3"
             android:gravity="end"
             android:hint="@null"
             android:inputType="number|phone"
@@ -53,7 +52,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="bottom"
             android:minHeight="5dp"
             android:text="@string/point_separator"
             android:textSize="10pt"
@@ -61,15 +60,13 @@
 
         <EditText
             android:id="@+id/decimalPartInput"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="1"
             android:autofillHints="@null"
-            android:gravity="end"
+            android:gravity="start"
+            android:layout_gravity="top"
+            android:ems="2"
             android:inputType="number"
-            android:minWidth="30dp"
-            android:maxWidth="5dp"
             android:maxLength="2"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -85,6 +82,23 @@
 <!--            android:focusable="true"-->
 <!--            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />-->
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="73dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chain2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.Material3.Light"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
+            app:errorContentDescription="@string/error_amount_necessary"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"></com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
 </LinearLayout>
 
 

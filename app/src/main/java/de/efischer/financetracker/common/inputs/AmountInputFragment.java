@@ -61,6 +61,7 @@ public class AmountInputFragment extends Fragment {
 
         EditText integralTextField = view.findViewById(R.id.integralPartInput);
         EditText decimalTextField = view.findViewById(R.id.decimalPartInput);
+
         integralTextField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
