@@ -68,9 +68,30 @@ public class AmountInputFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.charAt(start) == '.' || s.charAt(start) == ',') {
-                    integralTextField.setText(s.subSequence(0, start));
+                String regExSpecialChars = "[()+;*#]";
+                String regExSeparators = "[,.]";
+                String inputString = s.toString();
+
+                boolean containsSpecialChars = inputString.matches(regExSpecialChars);
+                boolean containsSeparator = inputString.matches(regExSeparators);
+                boolean containsWhitespace = inputString.contains(" ");
+
+                if(containsSpecialChars) {
+                    inputString = inputString.replaceAll(regExSpecialChars, "");
+                }
+
+                if(containsSeparator) {
+                    inputString = inputString.replaceAll(regExSeparators, "");
                     decimalTextField.requestFocus();
+                }
+
+                if(containsWhitespace) {
+                    inputString = inputString.trim();
+                }
+
+                if(containsSeparator || containsSpecialChars || containsWhitespace) {
+                    integralTextField.setText(inputString);
+                    integralTextField.setSelection(inputString.length());
                 }
             }
 
