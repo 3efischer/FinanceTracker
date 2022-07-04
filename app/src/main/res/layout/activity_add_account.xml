@@ -54,6 +54,23 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:paddingTop="10dp"
+        android:text="@string/currency"/>
+
+    <Spinner
+        android:id="@+id/currency_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:dropDownWidth="match_parent"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/amount_input_fragment"
         android:layout_gravity="end"

@@ -30,6 +30,7 @@
     <string name="credit_card">Credit card</string>
     <string name="credit_card_limit">Credit card limit</string>
     <string name="bank_name">Bank name</string>
+    <string name="currency">Currency</string>
 
     <!-- Credit card types -->
     <string name="visa">Visa</string>

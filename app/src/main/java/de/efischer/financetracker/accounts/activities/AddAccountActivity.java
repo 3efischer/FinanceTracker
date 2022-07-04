@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
+import de.efischer.financetracker.accounts.fragments.creation.CurrencyDropdownAdapter;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.common.inputs.AmountInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
@@ -26,9 +27,11 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             setupAmountField();
             setupNameField();
             setupBankNameField();
+            setupCurrencyChooser();
             setupCreditCardLimitField();
         }
     }
+
 
     private void setupNameField() {
         Bundle args = new Bundle();
@@ -108,6 +111,11 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
                 .setReorderingAllowed(true)
                 .add(R.id.credit_card_limit_fragment, AmountInputFragment.class, args)
                 .commit();
+    }
+
+    private void setupCurrencyChooser() {
+        Spinner spinner = findViewById(R.id.currency_dropdown);
+        spinner.setAdapter(new CurrencyDropdownAdapter(this, R.layout.currency_list_item));
     }
 
     private void setupBankNameField() {

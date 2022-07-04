@@ -31,6 +31,7 @@
     <string name="credit_card">Kreditkarte</string>
     <string name="credit_card_limit">Kreditrahmen</string>
     <string name="bank_name">Name der Bank</string>
+    <string name="currency">Währung</string>
 
     <!-- Credit card types -->
     <string name="visa">Visa</string>
