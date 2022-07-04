@@ -31,8 +31,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             setupCreditCardLimitField();
         }
     }
-
-
+    
     private void setupNameField() {
         Bundle args = new Bundle();
         args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.account_name);
@@ -49,7 +48,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
         String[] accountTypesAsStrings = new String[accountTypes.length];
         Integer[] imageIdArray = new Integer[accountTypes.length];
 
-        for(int i = 0; i < accountTypes.length; i++) {
+        for (int i = 0; i < accountTypes.length; i++) {
             accountTypesAsStrings[i] = getResources().getString(accountTypes[i].name);
             imageIdArray[i] = accountTypes[i].iconId;
         }
@@ -61,29 +60,29 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            AccountType[] accountTypes = AccountType.values();
+        AccountType[] accountTypes = AccountType.values();
 
-            Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
-            Fragment creditCardLimitFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_limit_fragment);
-            Fragment bankNameFragment = getSupportFragmentManager().findFragmentById(R.id.bank_name_input_fragment);
+        Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
+        Fragment creditCardLimitFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_limit_fragment);
+        Fragment bankNameFragment = getSupportFragmentManager().findFragmentById(R.id.bank_name_input_fragment);
 
-            assert(creditCardDetailsFragment != null);
-            assert(creditCardLimitFragment != null);
-            assert(bankNameFragment != null);
+        assert (creditCardDetailsFragment != null);
+        assert (creditCardLimitFragment != null);
+        assert (bankNameFragment != null);
 
-            if(accountTypes[position] == AccountType.CREDIT_CARD) {
-                getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
-                getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
-            } else {
-                getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
-                getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
-            }
+        if (accountTypes[position] == AccountType.CREDIT_CARD) {
+            getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
+            getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
+        }
 
-            if(accountTypes[position] == AccountType.BANK || accountTypes[position] == AccountType.SAVINGS) {
-                getSupportFragmentManager().beginTransaction().show(bankNameFragment).commit();
-            } else {
-                getSupportFragmentManager().beginTransaction().hide(bankNameFragment).commit();
-            }
+        if (accountTypes[position] == AccountType.BANK || accountTypes[position] == AccountType.SAVINGS) {
+            getSupportFragmentManager().beginTransaction().show(bankNameFragment).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().hide(bankNameFragment).commit();
+        }
     }
 
     @Override

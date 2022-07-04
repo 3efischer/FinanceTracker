@@ -11,19 +11,19 @@
         android:id="@+id/account_type_icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:contentDescription="@string/account_type"/>
+        android:contentDescription="@string/account_type" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="10dp"
-        android:layout_height="65sp"
-        android:layout_marginEnd="5dp"
-        android:minHeight="65sp"/>
+        android:layout_height="55sp"
+        android:layout_marginEnd="15dp"
+        android:minHeight="55sp" />
 
     <TextView
         android:id="@+id/account_type_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end" />
 </LinearLayout>

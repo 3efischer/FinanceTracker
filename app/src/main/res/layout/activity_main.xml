@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="fill"
+    tools:context=".common.MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/top_bar_fragment"
+        android:name="de.efischer.financetracker.common.topbar.TopBarFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="fill"
-        tools:context=".common.MainActivity">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_top_bar" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/top_bar_fragment"
-            android:name="de.efischer.financetracker.common.topbar.TopBarFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout="@layout/fragment_top_bar" />
+    <ImageButton
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addAccount"
+        android:contentDescription="@string/add_account"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="ImageContrastCheck" />
+</LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="addAccount"
-                android:contentDescription="@string/add_account"
-                app:srcCompat="@android:drawable/ic_input_add"
-                tools:ignore="ImageContrastCheck" />
-    </LinearLayout>
 
 

@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">FinanceTracker</string>
 
+    <!-- Buttons -->
+    <string name="save">Speichern</string>
+
     <!-- Top Bar -->
     <string name="accounts">Konten</string>
     <string name="transactions">Umsätze</string>
