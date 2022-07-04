@@ -8,6 +8,9 @@
     <string name="stats">Stats</string>
     <string name="menu">Menu</string>
 
+    <!-- Errors -->
+    <string name="error_amount_necessary">You need to enter an amount.</string>
+
     <!-- Create new account -->
     <string name="account_list_empty">No accounts available. Add a new account by clicking the plus sign on the bottom.</string>
     <string name="add_account">Create new account</string>

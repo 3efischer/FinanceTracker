@@ -39,9 +39,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginStart="0sp"
-            android:layout_marginEnd="2sp"
             android:imeOptions="actionNext"
             android:minEms="4"
+            android:maxEms="4"
             android:autofillHints="@null"
             android:gravity="end"
             android:hint="@null"
@@ -65,6 +65,7 @@
             android:autofillHints="@null"
             android:gravity="start"
             android:layout_gravity="top"
+            android:selectAllOnFocus="true"
             android:ems="2"
             android:inputType="number"
             android:maxLength="2"
@@ -86,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="73dp">
+        android:layout_marginStart="73dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/chain2"
@@ -96,7 +97,7 @@
             app:errorEnabled="true"
             app:errorIconDrawable="@null"
             app:errorContentDescription="@string/error_amount_necessary"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"></com.google.android.material.textfield.TextInputLayout>
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"/>
     </LinearLayout>
 
 </LinearLayout>
