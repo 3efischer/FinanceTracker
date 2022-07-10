@@ -6,9 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +15,7 @@ import java.math.BigInteger;
 import java.util.regex.Pattern;
 
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.databinding.FragmentAmountInputBinding;
 
 
 public class AmountInputFragment extends Fragment {
@@ -29,40 +27,36 @@ public class AmountInputFragment extends Fragment {
     private int decimal;
     private BigInteger amount;
 
+    private FragmentAmountInputBinding binding;
+
     public AmountInputFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_amount_input, container, false);
+        binding = FragmentAmountInputBinding.inflate(inflater, container, false);
 
         int titleId = requireArguments().getInt(AMOUNT_TYPE_TITLE);
-        TextView amountTitle = view.findViewById(R.id.amount_input_title);
-        amountTitle.setText(titleId);
+        binding.amountInputTitle.setText(titleId);
 
         boolean isPositive = requireArguments().getBoolean(IS_STARTING_POSITIVE);
-        ToggleButton toggleButton = view.findViewById(R.id.toggleImage);
-        toggleButton.setChecked(isPositive);
-        toggleButton.setBackgroundResource(isPositive ? R.drawable.ic_plus : R.drawable.ic_minus);
+        binding.toggleImage.setChecked(isPositive);
+        binding.toggleImage.setBackgroundResource(isPositive ? R.drawable.ic_plus : R.drawable.ic_minus);
 
-        return view;
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ToggleButton toggleButton = view.findViewById(R.id.toggleImage);
-        toggleButton.setOnClickListener(v ->
-                toggleButton.setBackgroundResource(toggleButton.isChecked() ? R.drawable.ic_plus : R.drawable.ic_minus));
+        binding.toggleImage.setOnClickListener(v ->
+                binding.toggleImage.setBackgroundResource(
+                        binding.toggleImage.isChecked() ? R.drawable.ic_plus : R.drawable.ic_minus));
 
-        EditText integralTextField = view.findViewById(R.id.integralPartInput);
-        EditText decimalTextField = view.findViewById(R.id.decimalPartInput);
-
-        integralTextField.addTextChangedListener(new TextWatcher() {
+        binding.integralPartInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -72,27 +66,21 @@ public class AmountInputFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String inputString = s.toString();
 
-                boolean containsSeparator = inputString.contains(".") || inputString.contains(",");
+                Pattern containsSeparatorPattern = Pattern.compile("^\\d*[\\\\.,]+\\d*$");
+                boolean containsSeparator = containsSeparatorPattern.matcher(inputString).matches();
 
-                if(containsSeparator) {
-                    inputString = inputString.replaceAll("\\.", "");
-                    inputString = inputString.replaceAll(",", "");
-                    decimalTextField.requestFocus();
+                if (containsSeparator) {
+                    binding.decimalPartInput.requestFocus();
                 }
 
-                boolean isNumber = true;
-                if(!inputString.isEmpty()) {
-                    Pattern isNumberPattern = Pattern.compile("[1-9][0-9]*$");
-                    isNumber = isNumberPattern.matcher(inputString).matches();
-                }
+                Pattern isNumberPattern = Pattern.compile("^$|^0$|^[1-9][0-9]*$");
+                boolean isNumber = isNumberPattern.matcher(inputString).matches();
 
-                if(!isNumber) {
-                    inputString = inputString.replaceAll("[^0-9]+","");
-                }
-
-                if(!isNumber || containsSeparator) {
-                    integralTextField.setText(inputString);
-                    integralTextField.setSelection(inputString.length());
+                if (!isNumber || containsSeparator) {
+                    inputString = inputString.replaceAll("[^0-9]+", "");
+                    inputString = Integer.toString(Integer.parseInt(inputString));
+                    binding.integralPartInput.setText(inputString);
+                    binding.integralPartInput.setSelection(inputString.length());
                 }
             }
 

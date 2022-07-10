@@ -14,13 +14,17 @@ import de.efischer.financetracker.accounts.fragments.creation.CurrencyDropdownAd
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.common.inputs.AmountInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
+import de.efischer.financetracker.databinding.ActivityAddAccountBinding;
 
 public class AddAccountActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private ActivityAddAccountBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_account);
+        binding = ActivityAddAccountBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         if (savedInstanceState == null) {
             setupAccountDropdown();
@@ -31,7 +35,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             setupCreditCardLimitField();
         }
     }
-    
+
     private void setupNameField() {
         Bundle args = new Bundle();
         args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.account_name);
@@ -113,7 +117,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
     }
 
     private void setupCurrencyChooser() {
-        Spinner spinner = findViewById(R.id.currency_dropdown);
+        Spinner spinner = binding.currencyDropdown;
         spinner.setAdapter(new CurrencyDropdownAdapter(this, R.layout.currency_list_item));
     }
 
