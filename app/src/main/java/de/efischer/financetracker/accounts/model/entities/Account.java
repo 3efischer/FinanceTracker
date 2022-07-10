@@ -8,6 +8,7 @@ import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 
 /**
  * Model for accounts of all types
+ *
  * @author Evelyn Fischer
  */
 
@@ -29,16 +30,8 @@ public class Account {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public AccountType getType() {
         return type;
-    }
-
-    public void setType(AccountType type) {
-        this.type = type;
     }
 
     public String getLastDayChanged() {

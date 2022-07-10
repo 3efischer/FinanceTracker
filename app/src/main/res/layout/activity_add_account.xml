@@ -6,6 +6,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_account"
+            android:textSize="@dimen/mini_action_bar_size"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+            android:background="@color/custom_dark_grey" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -15,18 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/add_account"
-                    android:textSize="@dimen/mini_action_bar_size"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/white"
-                    android:background="@color/custom_dark_grey" />
 
                 <Spinner
                     android:id="@+id/account_type_dropdown"

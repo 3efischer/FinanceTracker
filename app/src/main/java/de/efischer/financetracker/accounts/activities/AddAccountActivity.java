@@ -57,7 +57,7 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
             imageIdArray[i] = accountTypes[i].iconId;
         }
 
-        Spinner spinner = findViewById(R.id.account_type_dropdown);
+        Spinner spinner = binding.accountTypeDropdown;
         spinner.setAdapter(new AccountDropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray));
         spinner.setOnItemSelectedListener(this);
     }
@@ -66,13 +66,14 @@ public class AddAccountActivity extends AppCompatActivity implements AdapterView
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         AccountType[] accountTypes = AccountType.values();
 
-        Fragment creditCardDetailsFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_details_fragment);
-        Fragment creditCardLimitFragment = getSupportFragmentManager().findFragmentById(R.id.credit_card_limit_fragment);
-        Fragment bankNameFragment = getSupportFragmentManager().findFragmentById(R.id.bank_name_input_fragment);
+        Fragment creditCardDetailsFragment = binding.creditCardDetailsFragment.getFragment();
+        Fragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
+        Fragment bankNameFragment = binding.bankNameInputFragment.getFragment();
 
         assert (creditCardDetailsFragment != null);
         assert (creditCardLimitFragment != null);
         assert (bankNameFragment != null);
+
 
         if (accountTypes[position] == AccountType.CREDIT_CARD) {
             getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
