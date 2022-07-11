@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".accounts.fragments.creation.CreditCardDetailsInputFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Spinner
-        android:id="@+id/credit_card_type_dropdown"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:dropDownWidth="match_parent"
-        android:minHeight="48dp"
-        android:spinnerMode="dropdown"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".accounts.fragments.creation.CreditCardDetailsInputFragment">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/credit_card_issuer_input_fragment"
-        android:layout_gravity="end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="0dp"
-        android:paddingBottom="5dp"/>
+        <Spinner
+            android:id="@+id/credit_card_type_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:dropDownWidth="match_parent"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/credit_card_number_input_fragment"
-        android:layout_gravity="end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"/>
-</LinearLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/credit_card_issuer_input_fragment"
+            android:layout_gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="0dp"
+            android:paddingBottom="5dp" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/credit_card_number_input_fragment"
+            android:layout_gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+    </LinearLayout>
+</layout>

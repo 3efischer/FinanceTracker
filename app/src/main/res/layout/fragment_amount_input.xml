@@ -7,6 +7,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/currency_description_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="0dp"
+            android:paddingTop="10dp"
+            android:text="@string/currency" />
+
+        <Spinner
+            android:id="@+id/currency_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:dropDownWidth="match_parent"
+            android:minHeight="48dp"
+            android:spinnerMode="dropdown" />
+
         <!-- Title -->
         <TextView
             android:id="@+id/amount_input_title"

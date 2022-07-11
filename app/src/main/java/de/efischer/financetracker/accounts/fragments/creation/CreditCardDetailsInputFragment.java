@@ -11,17 +11,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 import de.efischer.financetracker.common.inputs.NumberInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
+import de.efischer.financetracker.databinding.FragmentCreditCardDetailsInputBinding;
 
 public class CreditCardDetailsInputFragment extends Fragment {
 
+    private CreditCardDetails creditCardDetails;
+    private FragmentCreditCardDetailsInputBinding binding;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_credit_card_details_input, container, false);
+
+        this.creditCardDetails = new CreditCardDetails();
+        binding = FragmentCreditCardDetailsInputBinding.inflate(inflater, container, false);
+
+        return binding.getRoot();
     }
 
     @Override
@@ -38,7 +46,7 @@ public class CreditCardDetailsInputFragment extends Fragment {
         String[] creditCardTypesAsStrings = new String[creditCardTypes.length];
         Integer[] imageIdArray = new Integer[creditCardTypes.length];
 
-        for(int i = 0; i < creditCardTypes.length; i++) {
+        for (int i = 0; i < creditCardTypes.length; i++) {
             creditCardTypesAsStrings[i] = getResources().getString(creditCardTypes[i].nameId);
             imageIdArray[i] = creditCardTypes[i].iconId;
         }
@@ -58,7 +66,6 @@ public class CreditCardDetailsInputFragment extends Fragment {
                 .commit();
     }
 
-
     private void setupCreditCardNumberField() {
         Bundle args = new Bundle();
         args.putInt(NumberInputFragment.DESCRIPTION_TEXT_KEY, R.string.credit_card_number);
@@ -70,4 +77,19 @@ public class CreditCardDetailsInputFragment extends Fragment {
                 .add(R.id.credit_card_number_input_fragment, NumberInputFragment.class, args)
                 .commit();
     }
+
+    public CreditCardDetails getCreditCardDetails() {
+        CreditCardType creditCardType = CreditCardType.values()[this.binding.creditCardTypeDropdown.getSelectedItemPosition()];
+        this.creditCardDetails.setCreditCardType(creditCardType);
+
+        NumberInputFragment creditCardNumberFragment = this.binding.creditCardNumberInputFragment.getFragment();
+        this.creditCardDetails.setCreditCardNumber(creditCardNumberFragment.getUserInput());
+
+        TextInputFragment creditCardIssuerFragment = this.binding.creditCardIssuerInputFragment.getFragment();
+        this.creditCardDetails.setIssuer(creditCardIssuerFragment.getUserInput());
+
+        return this.creditCardDetails;
+    }
+
+
 }

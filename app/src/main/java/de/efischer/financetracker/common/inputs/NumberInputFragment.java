@@ -28,6 +28,13 @@ public class NumberInputFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentNumberInputBinding.inflate(inflater, container, false);
+
+        binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                userInput = String.valueOf(binding.userInput.getText());
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -38,9 +45,13 @@ public class NumberInputFragment extends Fragment {
 
         binding.descriptionField.setText(textId);
         binding.userInput.setHint(hintId);
-        
+
         binding.userInput.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(requireArguments().getInt(MAX_LENGTH_KEY)) {
                 }});
+    }
+
+    public String getUserInput() {
+        return this.userInput;
     }
 }

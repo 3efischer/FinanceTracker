@@ -27,6 +27,13 @@ public class TextInputFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentTextInputBinding.inflate(inflater, container, false);
+
+        binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                userInput = String.valueOf(binding.userInput.getText());
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -37,6 +44,10 @@ public class TextInputFragment extends Fragment {
 
         binding.userInput.setText(textId);
         binding.descriptionField.setHint(textFieldHint);
+    }
+
+    public String getUserInput() {
+        return this.userInput;
     }
 
     @Override
