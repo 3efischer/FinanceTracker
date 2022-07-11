@@ -5,7 +5,6 @@ import java.util.Date;
 
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
-import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
 
 /**
  * Model for accounts of all types
@@ -19,9 +18,7 @@ public class Account {
     private AccountType type;
     private Amount balance;
     private Date lastChanged;
-
-    private String bankName;
-    private CreditCardDetails creditCardDetails;
+    private int sortOrder;
 
     public Account(String name, AccountType type, Amount initialBalance) {
         this.name = name;
@@ -34,8 +31,32 @@ public class Account {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public AccountType getType() {
         return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
+    }
+
+    public Amount getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Amount balance) {
+        this.balance = balance;
+    }
+
+    public Date getLastChanged() {
+        return lastChanged;
+    }
+
+    public void setLastChanged(Date lastChanged) {
+        this.lastChanged = lastChanged;
     }
 
     public String getLastDayChanged() {
@@ -46,11 +67,11 @@ public class Account {
         return SimpleDateFormat.getTimeInstance().format(lastChanged);
     }
 
-    public void setLastChanged(Date lastChanged) {
-        this.lastChanged = lastChanged;
+    public int getSortOrder() {
+        return sortOrder;
     }
 
-    public Amount getBalance() {
-        return balance;
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
     }
 }

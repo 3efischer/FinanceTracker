@@ -46,6 +46,7 @@ public class AddAccountActivity extends AppCompatActivity {
         Bundle args = new Bundle();
         args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.account_name);
         args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.account_name_description);
+        args.putBoolean(TextInputFragment.INPUT_IS_MANDATORY, true);
 
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)

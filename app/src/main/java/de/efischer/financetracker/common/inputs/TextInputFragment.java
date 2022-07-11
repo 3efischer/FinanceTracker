@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import de.efischer.financetracker.R;
 import de.efischer.financetracker.databinding.FragmentTextInputBinding;
 
 
@@ -15,9 +16,11 @@ public class TextInputFragment extends Fragment {
 
     public static final String DESCRIPTION_TEXT_KEY = "DESCRIPTION_TEXT";
     public static final String TEXTFIELD_HINT_KEY = "TEXTFIELD_HINT";
+    public static final String INPUT_IS_MANDATORY = "INPUT_IS_MANDATORY";
 
-    private String userInput;
+    private String userInputString;
     private FragmentTextInputBinding binding;
+    private boolean isMandatory;
 
     public TextInputFragment() {
         // Required empty public constructor
@@ -26,28 +29,40 @@ public class TextInputFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentTextInputBinding.inflate(inflater, container, false);
+        this.binding = FragmentTextInputBinding.inflate(inflater, container, false);
+        this.userInputString = "";
 
-        binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
-                userInput = String.valueOf(binding.userInput.getText());
-            }
-        });
-
-        return binding.getRoot();
+        return this.binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         int textId = requireArguments().getInt(DESCRIPTION_TEXT_KEY);
         int textFieldHint = requireArguments().getInt(TEXTFIELD_HINT_KEY);
+        boolean isMandatory = requireArguments().getBoolean(INPUT_IS_MANDATORY);
 
         binding.userInput.setHint(textId);
         binding.descriptionField.setHint(textFieldHint);
+        this.isMandatory = isMandatory;
+
+        this.binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                    
+                userInputString = String.valueOf(this.binding.userInput.getText());
+
+                if (this.isMandatory && userInputString.isEmpty()) {
+                    this.binding.textinputErrorLayout.setError(
+                            getResources().getString(R.string.field_not_optional));
+                    this.binding.textinputErrorLayout.setErrorEnabled(true);
+                } else {
+                    this.binding.textinputErrorLayout.setErrorEnabled(false);
+                }
+            }
+        });
     }
 
     public String getUserInput() {
-        return this.userInput;
+        return this.userInputString;
     }
 
     @Override
