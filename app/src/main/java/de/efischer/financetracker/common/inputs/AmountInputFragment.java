@@ -63,14 +63,18 @@ public class AmountInputFragment extends Fragment {
         binding.integralPartInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 String inputText = String.valueOf(binding.integralPartInput.getText());
-                integral = Integer.parseInt(inputText);
+                if (!inputText.isEmpty()) {
+                    integral = Integer.parseInt(inputText);
+                }
             }
         });
 
         binding.decimalPartInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 String inputText = String.valueOf(binding.decimalPartInput.getText());
-                decimal = Integer.parseInt(inputText);
+                if (!inputText.isEmpty()) {
+                    decimal = Integer.parseInt(inputText);
+                }
             }
         });
     }
@@ -98,6 +102,7 @@ public class AmountInputFragment extends Fragment {
                         binding.toggleImage.isChecked() ? R.drawable.ic_plus : R.drawable.ic_minus));
 
         binding.integralPartInput.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -153,7 +158,7 @@ public class AmountInputFragment extends Fragment {
         BigDecimal amountAsBigDecimal = new BigDecimal(integral + "." + decimal);
 
 
-        if(!binding.toggleImage.isChecked()) {
+        if (!binding.toggleImage.isChecked()) {
             amountAsBigDecimal = amountAsBigDecimal.negate();
         }
 

@@ -4,7 +4,6 @@
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
         <TextView
@@ -100,23 +99,6 @@
             <!--            android:contentDescription="@null"-->
             <!--            android:focusable="true"-->
             <!--            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />-->
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="73dp">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/chain2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/Theme.Material3.Light"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@null"
-                app:errorContentDescription="@string/error_amount_necessary"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox" />
         </LinearLayout>
     </LinearLayout>
 </layout>
