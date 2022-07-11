@@ -42,7 +42,7 @@ public class TextInputFragment extends Fragment {
         int textId = requireArguments().getInt(DESCRIPTION_TEXT_KEY);
         int textFieldHint = requireArguments().getInt(TEXTFIELD_HINT_KEY);
 
-        binding.userInput.setText(textId);
+        binding.userInput.setHint(textId);
         binding.descriptionField.setHint(textFieldHint);
     }
 

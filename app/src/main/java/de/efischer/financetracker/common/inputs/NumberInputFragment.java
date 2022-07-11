@@ -43,7 +43,7 @@ public class NumberInputFragment extends Fragment {
         int textId = requireArguments().getInt(DESCRIPTION_TEXT_KEY);
         int hintId = requireArguments().getInt(TEXTFIELD_HINT_KEY);
 
-        binding.descriptionField.setText(textId);
+        binding.descriptionField.setHint(textId);
         binding.userInput.setHint(hintId);
 
         binding.userInput.setFilters(new InputFilter[]{

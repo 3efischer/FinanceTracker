@@ -152,6 +152,11 @@ public class AmountInputFragment extends Fragment {
 
         BigDecimal amountAsBigDecimal = new BigDecimal(integral + "." + decimal);
 
+
+        if(!binding.toggleImage.isChecked()) {
+            amountAsBigDecimal = amountAsBigDecimal.negate();
+        }
+
         return Amount.of(amountAsBigDecimal, selectedCurrency);
     }
 }
