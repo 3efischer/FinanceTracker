@@ -1,7 +1,5 @@
 package de.efischer.financetracker.accounts.model.valueobjects;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import androidx.annotation.NonNull;
 
 import java.math.BigDecimal;
@@ -21,13 +19,7 @@ public class Amount {
     }
 
     public static Amount of(BigDecimal amount, Currency currency) {
-        checkArgument(isValidAmount(amount, currency));
         return new Amount(amount, currency);
-    }
-
-    public static boolean isValidAmount(BigDecimal amount, Currency currency) {
-        String decimals = amount.remainder(BigDecimal.ONE).toString();
-        return decimals.length() <= currency.getDefaultFractionDigits();
     }
 
     public BigDecimal getAmount() {
