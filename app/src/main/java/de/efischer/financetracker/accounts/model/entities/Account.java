@@ -1,5 +1,10 @@
 package de.efischer.financetracker.accounts.model.entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,12 +17,29 @@ import de.efischer.financetracker.accounts.model.valueobjects.Amount;
  * @author Evelyn Fischer
  */
 
+@Entity
 public class Account {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "account_type")
     private AccountType type;
+
+    @Embedded
     private Amount balance;
+
+    @ColumnInfo(name = "last_changed")
     private Date lastChanged;
+
+    @ColumnInfo(name = "bank_name")
+    private String bankName;
+
+    @ColumnInfo(name = "sort_order")
     private int sortOrder;
 
     public Account(String name, AccountType type, Amount initialBalance) {
@@ -27,6 +49,16 @@ public class Account {
         this.lastChanged = new Date();
     }
 
+    public Account(String name, AccountType type, Amount initialBalance, String bankName) {
+        this(name, type, initialBalance);
+        this.bankName = bankName;
+    }
+
+    public Account(int id, String name, AccountType type, Amount initialBalance, String bankName) {
+        this(name, type, initialBalance, bankName);
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }

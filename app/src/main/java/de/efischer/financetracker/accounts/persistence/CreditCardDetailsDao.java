@@ -1,0 +1,21 @@
+package de.efischer.financetracker.accounts.persistence;
+
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Update;
+
+import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
+
+@Dao
+public interface CreditCardDetailsDao {
+
+    @Insert
+    void insert(CreditCardDetails creditCardDetails);
+
+    @Update
+    int update(CreditCardDetails creditCardDetails);
+
+    @Delete
+    int delete(CreditCardDetails creditCardDetails);
+}
