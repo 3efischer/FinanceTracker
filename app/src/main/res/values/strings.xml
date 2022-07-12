@@ -14,6 +14,7 @@
     <!-- Errors -->
     <string name="error_amount_necessary">You need to enter an amount.</string>
     <string name="field_not_optional">This field cannot be empty.</string>
+    <string name="form_not_completed">Please fill out all necessary fields.</string>
 
     <!-- Create new account -->
     <string name="account_list_empty">No accounts available. Add a new account by clicking the plus sign on the bottom.</string>

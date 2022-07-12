@@ -14,6 +14,7 @@
     <!-- Errors -->
     <string name="error_amount_necessary">Bitte geben Sie einen Betrag ein.</string>
     <string name="field_not_optional">Dieses Feld darf nicht leer sein.</string>
+    <string name="form_not_completed">Bitte alle Pflichtfelder ausfüllen.</string>
 
     <!-- Create new account -->
     <string name="account_list_empty">Keine Konten verfügbar. Legen Sie eines an, indem Sie auf den Plus-Knopf unten links drücken.</string>

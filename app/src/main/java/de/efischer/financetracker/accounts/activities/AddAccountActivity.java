@@ -8,6 +8,8 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
 import de.efischer.financetracker.accounts.fragments.creation.CreditCardDetailsInputFragment;
@@ -133,21 +135,25 @@ public class AddAccountActivity extends AppCompatActivity {
 
     public void onSaveButtonClicked() {
         TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
-        String accountName = accountNameInputFragment.getUserInput();
-
-        AccountType accountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
-
         TextInputFragment bankNameInputFragment = binding.bankNameInputFragment.getFragment();
-        String bankName = bankNameInputFragment.getUserInput();
-
         AmountInputFragment amountInputFragment = binding.amountInputFragment.getFragment();
+        CreditCardDetailsInputFragment creditCardDetailsInputFragment = binding.creditCardDetailsFragment.getFragment();
+        AmountInputFragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
+
+        String accountName = accountNameInputFragment.getUserInput();
+        AccountType accountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
+        String bankName = bankNameInputFragment.getUserInput();
         Amount startingAmount = amountInputFragment.getAmount();
 
-        CreditCardDetailsInputFragment creditCardDetailsInputFragment = binding.creditCardDetailsFragment.getFragment();
         CreditCardDetails creditCardDetails = creditCardDetailsInputFragment.getCreditCardDetails();
-
-        AmountInputFragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
         Amount creditCardLimit = creditCardLimitFragment.getAmount();
         creditCardDetails.setCreditLimit(creditCardLimit);
+
+        if (accountName == null || accountName.isEmpty()) {
+            Snackbar.make(binding.saveButton, R.string.form_not_completed, Snackbar.LENGTH_SHORT).show();
+            accountNameInputFragment.triggerError();
+        } else {
+
+        }
     }
 }

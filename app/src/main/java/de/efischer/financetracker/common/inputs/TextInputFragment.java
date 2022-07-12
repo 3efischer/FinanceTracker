@@ -47,7 +47,7 @@ public class TextInputFragment extends Fragment {
 
         this.binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                    
+
                 userInputString = String.valueOf(this.binding.userInput.getText());
 
                 if (this.isMandatory && userInputString.isEmpty()) {
@@ -63,6 +63,11 @@ public class TextInputFragment extends Fragment {
 
     public String getUserInput() {
         return this.userInputString;
+    }
+
+    public void triggerError() {
+        this.binding.textinputErrorLayout.setError(getResources().getString(R.string.field_not_optional));
+        this.binding.textinputErrorLayout.setErrorEnabled(true);
     }
 
     @Override
