@@ -14,7 +14,6 @@ import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 import de.efischer.financetracker.common.inputs.NumberInputFragment;
-import de.efischer.financetracker.common.inputs.TextInputFragment;
 import de.efischer.financetracker.databinding.FragmentCreditCardDetailsInputBinding;
 
 public class CreditCardDetailsInputFragment extends Fragment {
@@ -37,7 +36,6 @@ public class CreditCardDetailsInputFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setupCreditCardDropdown(view);
-        setupCreditCardIssuerField();
         setupCreditCardNumberField();
     }
 
@@ -53,17 +51,6 @@ public class CreditCardDetailsInputFragment extends Fragment {
 
         Spinner spinner = view.findViewById(R.id.credit_card_type_dropdown);
         spinner.setAdapter(new AccountDropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypesAsStrings, imageIdArray));
-    }
-
-    private void setupCreditCardIssuerField() {
-        Bundle args = new Bundle();
-        args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.credit_card_issuer);
-        args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.credit_card_issuer_description);
-
-        getChildFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.credit_card_issuer_input_fragment, TextInputFragment.class, args)
-                .commit();
     }
 
     private void setupCreditCardNumberField() {
@@ -84,9 +71,6 @@ public class CreditCardDetailsInputFragment extends Fragment {
 
         NumberInputFragment creditCardNumberFragment = this.binding.creditCardNumberInputFragment.getFragment();
         this.creditCardDetails.setCreditCardNumber(creditCardNumberFragment.getUserInput());
-
-        TextInputFragment creditCardIssuerFragment = this.binding.creditCardIssuerInputFragment.getFragment();
-        this.creditCardDetails.setIssuer(creditCardIssuerFragment.getUserInput());
 
         return this.creditCardDetails;
     }

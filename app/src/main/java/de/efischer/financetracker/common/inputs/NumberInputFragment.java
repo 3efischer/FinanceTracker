@@ -29,12 +29,6 @@ public class NumberInputFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentNumberInputBinding.inflate(inflater, container, false);
 
-        binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
-                userInput = String.valueOf(binding.userInput.getText());
-            }
-        });
-
         return binding.getRoot();
     }
 
@@ -45,10 +39,17 @@ public class NumberInputFragment extends Fragment {
 
         binding.descriptionField.setHint(textId);
         binding.userInput.setHint(hintId);
+        this.userInput = "";
 
         binding.userInput.setFilters(new InputFilter[]{
                 new InputFilter.LengthFilter(requireArguments().getInt(MAX_LENGTH_KEY)) {
                 }});
+
+        binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                this.userInput = String.valueOf(binding.userInput.getText());
+            }
+        });
     }
 
     public String getUserInput() {

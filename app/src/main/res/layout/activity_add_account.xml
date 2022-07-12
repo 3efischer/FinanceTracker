@@ -37,15 +37,6 @@
                     android:minHeight="48dp"
                     android:spinnerMode="dropdown" />
 
-                <!-- This block is only visible if the selected account type is either bank or savings account -->
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/bank_name_input_fragment"
-                    android:layout_gravity="end"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp" />
-                <!-- End of bank and savings block -->
-
                 <!-- This block is only visible if the selected account type is credit card -->
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/credit_card_details_fragment"
@@ -56,6 +47,15 @@
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp" />
                 <!-- End of credit card block -->
+
+                <!-- This bank name block is only visible if the selected account is not a cash account -->
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/bank_name_input_fragment"
+                    android:layout_gravity="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp" />
+                <!-- End of bank name block -->
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/account_name_input_fragment"

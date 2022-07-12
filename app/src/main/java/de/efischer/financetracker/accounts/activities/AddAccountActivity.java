@@ -69,29 +69,24 @@ public class AddAccountActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                AccountType[] accountTypes = AccountType.values();
 
                 Fragment creditCardDetailsFragment = binding.creditCardDetailsFragment.getFragment();
                 Fragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
                 Fragment bankNameFragment = binding.bankNameInputFragment.getFragment();
 
-                assert (creditCardDetailsFragment != null);
-                assert (creditCardLimitFragment != null);
-                assert (bankNameFragment != null);
+                AccountType selectedAccountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
 
-
-                if (accountTypes[position] == AccountType.CREDIT_CARD) {
-                    getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
-                    getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
-                } else {
-                    getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
-                    getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
-                }
-
-                if (accountTypes[position] == AccountType.BANK || accountTypes[position] == AccountType.SAVINGS) {
+                if (selectedAccountType != AccountType.CASH) {
                     getSupportFragmentManager().beginTransaction().show(bankNameFragment).commit();
+
+                    if (selectedAccountType == AccountType.CREDIT_CARD) {
+                        getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
+                        getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
+                    }
                 } else {
                     getSupportFragmentManager().beginTransaction().hide(bankNameFragment).commit();
+                    getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
+                    getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
                 }
             }
 
@@ -150,5 +145,9 @@ public class AddAccountActivity extends AppCompatActivity {
 
         CreditCardDetailsInputFragment creditCardDetailsInputFragment = binding.creditCardDetailsFragment.getFragment();
         CreditCardDetails creditCardDetails = creditCardDetailsInputFragment.getCreditCardDetails();
+
+        AmountInputFragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
+        Amount creditCardLimit = creditCardLimitFragment.getAmount();
+        creditCardDetails.setCreditLimit(creditCardLimit);
     }
 }
