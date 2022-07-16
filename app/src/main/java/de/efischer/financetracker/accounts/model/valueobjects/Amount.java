@@ -15,10 +15,13 @@ public class Amount implements Serializable {
     private final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;
 
     @ColumnInfo(name = "amount")
-    private final BigDecimal amount;
+    private BigDecimal amount;
 
     @ColumnInfo(name = "currency")
-    private final Currency currency;
+    private Currency currency;
+    
+    public Amount() {
+    }
 
     private Amount(BigDecimal amount, Currency currency) {
         this.amount = amount.setScale(currency.getDefaultFractionDigits(), DEFAULT_ROUNDING);
@@ -35,6 +38,14 @@ public class Amount implements Serializable {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public boolean isPositive() {

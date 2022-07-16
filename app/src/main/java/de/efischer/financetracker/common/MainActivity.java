@@ -14,6 +14,7 @@ import de.efischer.financetracker.accounts.activities.AddAccountActivity;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;

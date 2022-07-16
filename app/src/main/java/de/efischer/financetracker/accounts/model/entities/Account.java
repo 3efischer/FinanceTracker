@@ -43,6 +43,9 @@ public class Account implements Serializable {
     @ColumnInfo(name = "sort_order")
     private int sortOrder;
 
+    public Account() {
+    }
+
     public Account(String name, AccountType type, Amount initialBalance) {
         this.name = name;
         this.type = type;
@@ -57,6 +60,14 @@ public class Account implements Serializable {
 
     public Account(int id, String name, AccountType type, Amount initialBalance, String bankName) {
         this(name, type, initialBalance, bankName);
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
