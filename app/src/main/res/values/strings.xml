@@ -3,6 +3,7 @@
 
     <!-- Buttons -->
     <string name="save">Save</string>
+    <string name="abort">Abort</string>
 
     <!-- Top bar -->
     <string name="accounts">Accounts</string>
