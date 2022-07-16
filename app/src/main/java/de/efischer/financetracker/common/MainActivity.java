@@ -6,19 +6,24 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.activities.AddAccountActivity;
+import de.efischer.financetracker.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
     }
 
     public void addAccount(View view) {
         Intent intent = new Intent(this, AddAccountActivity.class);
         startActivity(intent);
+
     }
 }
