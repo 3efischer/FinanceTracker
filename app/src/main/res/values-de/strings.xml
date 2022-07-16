@@ -4,6 +4,8 @@
     <!-- Buttons -->
     <string name="save">Speichern</string>
     <string name="abort">Abbrechen</string>
+    <string name="add">Hinzufuegen</string>
+
 
     <!-- Top Bar -->
     <string name="accounts">Konten</string>

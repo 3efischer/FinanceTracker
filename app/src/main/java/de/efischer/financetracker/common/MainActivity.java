@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        binding.buttonAdd.setOnClickListener(this::addAccount);
     }
 
     public void addAccount(View view) {
