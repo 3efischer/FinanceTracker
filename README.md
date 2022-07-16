@@ -1,4 +1,4 @@
-![build](https://github.com/3fischer/FinanceTracker/actions/workflows/build.yml/badge.svg)
+![build](https://github.com/3efischer/FinanceTracker/actions/workflows/build.yml/badge.svg)
 
 # FinanceTracker
 
