@@ -1,8 +1,10 @@
 package de.efischer.financetracker.accounts.model.valueobjects;
 
+import java.io.Serializable;
+
 import de.efischer.financetracker.R;
 
-public enum AccountType{
+public enum AccountType implements Serializable {
 
     CASH(R.string.cash, R.drawable.ic_cash),
     BANK(R.string.bank_account, R.drawable.ic_bank),

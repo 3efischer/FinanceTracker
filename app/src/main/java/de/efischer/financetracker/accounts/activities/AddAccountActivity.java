@@ -1,5 +1,6 @@
 package de.efischer.financetracker.accounts.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
 import de.efischer.financetracker.accounts.fragments.creation.CreditCardDetailsInputFragment;
+import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
@@ -36,12 +38,13 @@ public class AddAccountActivity extends AppCompatActivity {
             setupNameField();
             setupBankNameField();
             setupCreditCardLimitField();
-            setupSaveButton();
+            setupButtons();
         }
     }
 
-    private void setupSaveButton() {
-        binding.saveButton.setOnClickListener(v -> onSaveButtonClicked());
+    private void setupButtons() {
+        binding.saveButton.setOnClickListener(onClick -> onSaveButtonClicked());
+        binding.abortButton.setOnClickListener(onClick -> onAbortButtonClicked());
     }
 
     private void setupNameField() {
@@ -135,25 +138,38 @@ public class AddAccountActivity extends AppCompatActivity {
 
     public void onSaveButtonClicked() {
         TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
-        TextInputFragment bankNameInputFragment = binding.bankNameInputFragment.getFragment();
-        AmountInputFragment amountInputFragment = binding.amountInputFragment.getFragment();
-        CreditCardDetailsInputFragment creditCardDetailsInputFragment = binding.creditCardDetailsFragment.getFragment();
-        AmountInputFragment creditCardLimitFragment = binding.creditCardLimitFragment.getFragment();
 
         String accountName = accountNameInputFragment.getUserInput();
         AccountType accountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
-        String bankName = bankNameInputFragment.getUserInput();
-        Amount startingAmount = amountInputFragment.getAmount();
+        Amount startingAmount = ((AmountInputFragment) binding.amountInputFragment.getFragment()).getAmount();
 
-        CreditCardDetails creditCardDetails = creditCardDetailsInputFragment.getCreditCardDetails();
-        Amount creditCardLimit = creditCardLimitFragment.getAmount();
+        String bankName = ((TextInputFragment) binding.bankNameInputFragment.getFragment()).getUserInput();
+
+        CreditCardDetails creditCardDetails = ((CreditCardDetailsInputFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
+        Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
         creditCardDetails.setCreditLimit(creditCardLimit);
+
+        Account account = new Account(accountName, accountType, startingAmount);
+
+        if (bankName != null) {
+            account.setBankName(bankName);
+        }
 
         if (accountName == null || accountName.isEmpty()) {
             Snackbar.make(binding.saveButton, R.string.form_not_completed, Snackbar.LENGTH_SHORT).show();
             accountNameInputFragment.triggerError();
         } else {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("account", account);
+            resultIntent.putExtra("creditCardDetails", creditCardDetails);
 
+            setResult(-1, resultIntent);
+            finish();
         }
+    }
+
+    public void onAbortButtonClicked() {
+        setResult(0);
+        finish();
     }
 }

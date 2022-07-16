@@ -7,10 +7,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
+import java.io.Serializable;
+
 import de.efischer.financetracker.accounts.model.entities.Account;
 
 @Entity(foreignKeys = @ForeignKey(entity = Account.class, parentColumns = "id", childColumns = "account_id", onDelete = CASCADE))
-public class CreditCardDetails {
+public class CreditCardDetails implements Serializable {
 
     @ColumnInfo(name = "account_id")
     private int accountId;

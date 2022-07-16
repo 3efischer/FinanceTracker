@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Ignore;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 
-public class Amount {
+public class Amount implements Serializable {
 
     @Ignore
     private final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;

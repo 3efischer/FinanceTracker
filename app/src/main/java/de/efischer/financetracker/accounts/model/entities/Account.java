@@ -5,6 +5,7 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ import de.efischer.financetracker.accounts.model.valueobjects.Amount;
  */
 
 @Entity
-public class Account {
+public class Account implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -58,7 +59,7 @@ public class Account {
         this(name, type, initialBalance, bankName);
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -73,6 +74,14 @@ public class Account {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
     public Amount getBalance() {
