@@ -20,6 +20,10 @@ android {
         }
     }
 
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,9 +42,10 @@ android {
 
 dependencies {
     // Room
-    annotationProcessor "androidx.room:room-compiler:2.4.2"
-    implementation "androidx.room:room-runtime:2.4.2"
+    annotationProcessor 'androidx.room:room-compiler:2.4.2'
+    implementation 'androidx.room:room-runtime:2.4.2'
     testImplementation 'androidx.room:room-testing:2.4.2'
+    implementation 'androidx.room:room-guava:2.4.2'
 
     // Hilt
     annotationProcessor 'com.google.dagger:hilt-compiler:2.42'
@@ -60,6 +65,7 @@ dependencies {
     implementation "androidx.fragment:fragment:1.5.0"
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation "com.google.guava:guava:28.1-android"
+    annotationProcessor 'androidx.databinding:databinding-compiler:7.2.1'
     implementation 'androidx.databinding:databinding-runtime:7.2.1'
     implementation 'com.google.android.gms:play-services-auth-blockstore:16.1.0'
 

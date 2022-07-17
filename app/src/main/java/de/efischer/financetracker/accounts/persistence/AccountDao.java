@@ -1,10 +1,13 @@
 package de.efischer.financetracker.accounts.persistence;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 
@@ -14,17 +17,17 @@ import de.efischer.financetracker.accounts.model.entities.Account;
 public interface AccountDao {
 
     @Insert
-    long insert(Account account);
+    ListenableFuture<Long> insert(Account account);
 
     @Update
-    int update(Account account);
+    ListenableFuture<Integer> update(Account account);
 
     @Delete
-    int delete(Account account);
+    ListenableFuture<Integer> delete(Account account);
 
     @Query("SELECT * FROM account")
-    List<Account> getAll();
+    LiveData<List<Account>> getAll();
 
     @Query("SELECT * FROM account ORDER BY sort_order ASC")
-    List<Account> getAllSorted();
+    LiveData<List<Account>> getAllSorted();
 }

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bb6cacf4653748b0908d0757cbaae3e2",
+    "identityHash": "84a6f7c487700d7ee9f5e9c320afeb07",
     "entities": [
       {
         "tableName": "Account",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `account_type` TEXT, `last_changed` INTEGER, `bank_name` TEXT, `sort_order` INTEGER NOT NULL, `amount` TEXT, `currency` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `account_type` TEXT NOT NULL, `last_changed` INTEGER NOT NULL, `bank_name` TEXT, `sort_order` INTEGER NOT NULL, `amount` TEXT, `currency` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,19 +18,19 @@
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "type",
             "columnName": "account_type",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "lastChanged",
             "columnName": "last_changed",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "bankName",
@@ -70,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bb6cacf4653748b0908d0757cbaae3e2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '84a6f7c487700d7ee9f5e9c320afeb07')"
     ]
   }
 }
