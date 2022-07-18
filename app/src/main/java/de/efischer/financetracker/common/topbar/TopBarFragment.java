@@ -8,36 +8,31 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.databinding.FragmentTopBarBinding;
 
 public class TopBarFragment extends Fragment {
 
-    private TopBarSwipeAdapter topBarSwipeAdapter;
-    private ViewPager2 viewPager;
+    private FragmentTopBarBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_top_bar, container, false);
+        this.binding = FragmentTopBarBinding.inflate(inflater, container, false);
+        return this.binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        topBarSwipeAdapter = new TopBarSwipeAdapter(this);
-        viewPager = view.findViewById(R.id.pager);
-        viewPager.setAdapter(topBarSwipeAdapter);
+        binding.contentContainer.setAdapter(new TopBarSwipeAdapter(this));
 
-        TabLayout tabLayout = view.findViewById(R.id.contentTabs);
+        new TabLayoutMediator(binding.contentTabs, binding.contentContainer, (tab, position) -> {
 
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-
-            switch(position) {
+            switch (position) {
                 case 0:
                     tab.setIcon(R.drawable.ic_wallet);
                     tab.setText(R.string.accounts);
