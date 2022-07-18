@@ -1,0 +1,26 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      
+      - name: Cache gradle and wrapper
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: cache-${{ runner.os }}-${{ matrix.jdk }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+        
+      - name: Validate wrapper
+        uses: gradle/wrapper-validation-action@v1
+        
+      - name: Run tests
+        run: ./gradlew test --stacktrace
