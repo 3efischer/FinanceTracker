@@ -20,7 +20,7 @@
     <string name="form_not_completed">Bitte alle Pflichtfelder ausfüllen.</string>
 
     <!-- Create new account -->
-    <string name="account_list_empty">Keine Konten verfügbar. Legen Sie eines an, indem Sie auf den Plus-Knopf unten links drücken.</string>
+    <string name="account_list_empty">Keine Konten verfügbar. Legen Sie eines an, indem Sie auf den Plus-Knopf drücken.</string>
     <string name="add_account">Konto anlegen</string>
     <string name="account_type">Typ</string>
     <string name="credit_card_type">Art der Karte</string>
