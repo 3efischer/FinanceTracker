@@ -1,4 +1,4 @@
-package de.efischer.financetracker.common;
+package de.efischer.financetracker.common.dependencyinjection;
 
 import android.content.Context;
 
@@ -11,6 +11,7 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
+import de.efischer.financetracker.common.ApplicationDatabase;
 
 @Module
 @InstallIn(SingletonComponent.class)

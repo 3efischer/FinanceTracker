@@ -1,7 +1,9 @@
-package de.efischer.financetracker.common.topbar;
+package de.efischer.financetracker.common;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import de.efischer.financetracker.accounts.fragments.overview.AccountOverviewFragment;
@@ -10,10 +12,10 @@ import de.efischer.financetracker.menu.MenuFragment;
 import de.efischer.financetracker.statistics.StatisticsFragment;
 import de.efischer.financetracker.transactions.TransactionOverviewFragment;
 
-public class TopBarSwipeAdapter extends FragmentStateAdapter {
+public class SwipeAdapter extends FragmentStateAdapter {
 
-    public TopBarSwipeAdapter(Fragment fragment) {
-        super(fragment);
+    public SwipeAdapter(FragmentManager fragmentManager, Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
     }
 
     @NonNull
