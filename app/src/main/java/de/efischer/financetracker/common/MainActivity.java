@@ -6,17 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.databinding.ActivityMainBinding;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
-
-    @Inject
-    ApplicationDatabase database;
 
     private ActivityMainBinding binding;
 
