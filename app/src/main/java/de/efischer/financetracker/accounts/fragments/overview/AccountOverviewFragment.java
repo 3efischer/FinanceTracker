@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -102,7 +106,10 @@ public class AccountOverviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Callback for AddAccount
+        setupAddButton();
+    }
+
+    private void setupAddButton() {
         this.addAccountResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -112,10 +119,21 @@ public class AccountOverviewFragment extends Fragment {
                         assert result.getData() != null;
                         Account account = (Account) result.getData().getSerializableExtra("account");
 
-                        database.accountDao().insert(account);
+                        ListenableFuture<Long> queryResult = database.accountDao().insert(account);
 
-                        this.accounts.add(account);
-                        binding.recyclerView.getAdapter().notifyItemInserted(accounts.size() - 1);
+                        Futures.addCallback(queryResult, new FutureCallback<>() {
+                            @Override
+                            public void onSuccess(@Nullable Long result) {
+                                Log.println(Log.INFO, null, String.format("Added account with id %d to database.", result));
+                                accounts.add(account);
+                                binding.recyclerView.getAdapter().notifyItemInserted(accounts.size() - 1);
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Throwable t) {
+                                Log.println(Log.ERROR, null, "Error: Could not write account to database.");
+                            }
+                        }, getContext().getMainExecutor());
 
 
                     } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
