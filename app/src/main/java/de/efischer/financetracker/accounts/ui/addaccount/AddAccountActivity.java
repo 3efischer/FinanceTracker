@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -13,9 +14,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
-import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
 import de.efischer.financetracker.common.inputs.AmountInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
 import de.efischer.financetracker.databinding.ActivityAddAccountBinding;
@@ -23,6 +24,7 @@ import de.efischer.financetracker.databinding.ActivityAddAccountBinding;
 public class AddAccountActivity extends AppCompatActivity {
 
     private ActivityAddAccountBinding binding;
+    private AccountDropdownAdapter accountDropdownAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +68,15 @@ public class AddAccountActivity extends AppCompatActivity {
             imageIdArray[i] = accountTypes[i].iconId;
         }
 
+        accountDropdownAdapter = new AccountDropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray);
         Spinner spinner = binding.accountTypeDropdown;
-        spinner.setAdapter(new AccountDropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray));
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setAdapter(accountDropdownAdapter);
+        spinner.setOnItemSelectedListener(createDropdownListener());
+    }
+
+    @NonNull
+    private AdapterView.OnItemSelectedListener createDropdownListener() {
+        return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -78,21 +86,30 @@ public class AddAccountActivity extends AppCompatActivity {
 
                 AccountType selectedAccountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
 
-                if (selectedAccountType != AccountType.CASH) {
-                    getSupportFragmentManager().beginTransaction()
-                            .show(bankNameFragment).commit();
-
-                    if (selectedAccountType == AccountType.CREDIT_CARD) {
-                        getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment)
+                switch (selectedAccountType) {
+                    case CREDIT_CARD:
+                        getSupportFragmentManager().beginTransaction()
+                                .show(bankNameFragment)
+                                .show(creditCardDetailsFragment)
                                 .show(creditCardLimitFragment)
                                 .commit();
-                    }
-                } else {
-
-                    getSupportFragmentManager().beginTransaction().hide(bankNameFragment)
-                            .hide(creditCardDetailsFragment)
-                            .hide(creditCardDetailsFragment)
-                            .commit();
+                        break;
+                    case BANK:
+                    case SAVINGS:
+                        getSupportFragmentManager().beginTransaction()
+                                .show(bankNameFragment)
+                                .hide(creditCardDetailsFragment)
+                                .hide(creditCardLimitFragment)
+                                .commit();
+                        break;
+                    case CASH:
+                    default:
+                        getSupportFragmentManager().beginTransaction()
+                                .hide(bankNameFragment)
+                                .hide(creditCardDetailsFragment)
+                                .hide(creditCardLimitFragment)
+                                .commit();
+                        break;
                 }
             }
 
@@ -100,7 +117,7 @@ public class AddAccountActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        };
     }
 
     private void setupAmountField() {
@@ -134,6 +151,28 @@ public class AddAccountActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable("accountDropdownAdapter", accountDropdownAdapter);
+        outState.putInt("selectedAccountIndex", binding.accountTypeDropdown.getSelectedItemPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        AccountDropdownAdapter accountDropdownAdapter = (AccountDropdownAdapter) savedInstanceState.getSerializable("accountDropdownAdapter");
+        binding.accountTypeDropdown.setAdapter(accountDropdownAdapter);
+        binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
+        this.accountDropdownAdapter = accountDropdownAdapter;
+
+        binding.accountTypeDropdown.setSelection(savedInstanceState.getInt("selectedAccountIndex"));
+
+        setupButtons();
+    }
+
     public void onSaveButtonClicked() {
         TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
 
@@ -145,6 +184,7 @@ public class AddAccountActivity extends AppCompatActivity {
 
         CreditCardDetails creditCardDetails = ((CreditCardDetailsInputFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
         Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
+
         creditCardDetails.setCreditLimit(creditCardLimit);
 
         Account account = new Account(accountName, accountType, startingAmount);

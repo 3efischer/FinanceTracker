@@ -143,6 +143,7 @@ public class AmountInputFragment extends Fragment {
         outState.putString("decimal", binding.decimalPartInput.getText().toString());
         outState.putString("integral", binding.integralPartInput.getText().toString());
     }
+    
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {

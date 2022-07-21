@@ -11,9 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.Serializable;
+
 import de.efischer.financetracker.R;
 
-public class AccountDropdownAdapter extends ArrayAdapter<String> {
+public class AccountDropdownAdapter extends ArrayAdapter<String> implements Serializable {
 
     private Context context;
     private String[] accountTypeStrings;
