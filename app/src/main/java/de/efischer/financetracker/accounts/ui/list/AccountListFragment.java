@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.fragments.overview;
+package de.efischer.financetracker.accounts.ui.list;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +28,7 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import de.efischer.financetracker.accounts.activities.AddAccountActivity;
+import de.efischer.financetracker.accounts.ui.addition.AddAccountActivity;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.common.ApplicationDatabase;
 import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
@@ -40,7 +40,7 @@ import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
  */
 
 @AndroidEntryPoint
-public class AccountOverviewFragment extends Fragment {
+public class AccountListFragment extends Fragment {
 
     @Inject
     ApplicationDatabase database;
@@ -67,7 +67,7 @@ public class AccountOverviewFragment extends Fragment {
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         // Create touch helper for drag and drop and attach to recyclerview
-        ItemTouchHelper.Callback callback = new AccountItemMovementTouchHelper(adapter);
+        ItemTouchHelper.Callback callback = new AccountItemMovementHelper(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(binding.recyclerView);
 

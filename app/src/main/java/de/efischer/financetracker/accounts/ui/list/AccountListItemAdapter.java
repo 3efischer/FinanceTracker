@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.fragments.overview;
+package de.efischer.financetracker.accounts.ui.list;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -53,6 +54,7 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
 
     public AccountListItemAdapter(List<Account> accounts) { this.accounts = accounts; }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext())

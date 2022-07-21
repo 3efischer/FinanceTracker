@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.fragments.overview;
+package de.efischer.financetracker.accounts.ui.list;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_DRAG;
 import static androidx.recyclerview.widget.ItemTouchHelper.UP;
@@ -8,11 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AccountItemMovementTouchHelper extends ItemTouchHelper.Callback {
+public class AccountItemMovementHelper extends ItemTouchHelper.Callback {
 
     AccountListItemAdapter adapter;
 
-    public AccountItemMovementTouchHelper(AccountListItemAdapter adapter) {
+    public AccountItemMovementHelper(AccountListItemAdapter adapter) {
         this.adapter = adapter;
     }
 

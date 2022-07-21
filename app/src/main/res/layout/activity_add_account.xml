@@ -42,7 +42,7 @@
                     android:id="@+id/credit_card_details_fragment"
                     android:layout_gravity="end"
                     android:layout_width="match_parent"
-                    android:name="de.efischer.financetracker.accounts.fragments.creation.CreditCardDetailsInputFragment"
+                    android:name="de.efischer.financetracker.accounts.ui.addition.CreditCardDetailsInputFragment"
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp" />

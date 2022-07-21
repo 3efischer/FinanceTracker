@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.activities;
+package de.efischer.financetracker.accounts.ui.addition;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.fragments.creation.AccountDropdownAdapter;
-import de.efischer.financetracker.accounts.fragments.creation.CreditCardDetailsInputFragment;
+import de.efischer.financetracker.accounts.ui.addition.AccountDropdownAdapter;
+import de.efischer.financetracker.accounts.ui.addition.CreditCardDetailsInputFragment;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
