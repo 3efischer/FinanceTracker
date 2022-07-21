@@ -17,9 +17,10 @@ import de.efischer.financetracker.accounts.model.entities.Account;
 
 /**
  * Defines a ViewHolder for Accounts and sets the visual for individual items.
+ *
  * @author Evelyn Fischer
  */
-public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItemAdapter.ViewHolder>{
+public class AccountListItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = "AccountListAdapter";
     private List<Account> accounts;
@@ -46,13 +47,27 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         public TextView getFirstLine() {
             return firstLine;
         }
-        public TextView getAccountName() { return accountName; }
-        public TextView getLastChangedDate() { return lastChangedDate; }
-        public TextView getAmount() { return amount; }
-        public ImageView getIcon() { return icon; }
+
+        public TextView getAccountName() {
+            return accountName;
+        }
+
+        public TextView getLastChangedDate() {
+            return lastChangedDate;
+        }
+
+        public TextView getAmount() {
+            return amount;
+        }
+
+        public ImageView getIcon() {
+            return icon;
+        }
     }
 
-    public AccountListItemAdapter(List<Account> accounts) { this.accounts = accounts; }
+    public AccountListItemAdapter(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     @NonNull
     @Override
@@ -63,12 +78,13 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Log.d(TAG, "Element " + position + " set.");
 
         // Replace textview texts with data
+        ViewHolder viewHolder = (ViewHolder) holder;
+
         Account account = accounts.get(position);
         viewHolder.getIcon().setBackgroundResource(account.getType().iconId);
         viewHolder.getFirstLine().setText(account.getType().name);
@@ -85,6 +101,7 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
         viewHolder.getAccountName().setText(account.getName());
     }
 
+
     @Override
     public int getItemCount() {
         return this.accounts.size();
@@ -97,5 +114,4 @@ public class AccountListItemAdapter extends RecyclerView.Adapter<AccountListItem
 
         notifyItemMoved(oldPosition, newPosition);
     }
-
 }
