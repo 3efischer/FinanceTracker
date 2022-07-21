@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.model.valueobjects.CreditCardDetails;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 import de.efischer.financetracker.common.inputs.NumberInputFragment;
 import de.efischer.financetracker.databinding.FragmentCreditCardDetailsInputBinding;

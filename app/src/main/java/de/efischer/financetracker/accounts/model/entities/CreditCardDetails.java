@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.model.valueobjects;
+package de.efischer.financetracker.accounts.model.entities;
 
 import static androidx.room.ForeignKey.CASCADE;
 
@@ -9,7 +9,8 @@ import androidx.room.ForeignKey;
 
 import java.io.Serializable;
 
-import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 
 @Entity(foreignKeys = @ForeignKey(entity = Account.class, parentColumns = "id", childColumns = "account_id", onDelete = CASCADE))
 public class CreditCardDetails implements Serializable {
