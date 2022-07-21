@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import de.efischer.financetracker.R;
@@ -78,6 +79,25 @@ public class TextInputFragment extends Fragment {
                 userInputString = s.toString();
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("userInput", binding.userInput.getText().toString());
+        outState.putBoolean("isMandatory", this.isMandatory);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            this.userInputString = savedInstanceState.getString("userInput");
+            binding.userInput.setText(savedInstanceState.getString("userInput"));
+            this.isMandatory = savedInstanceState.getBoolean("isMandatory");
+        }
     }
 
     public String getUserInput() {

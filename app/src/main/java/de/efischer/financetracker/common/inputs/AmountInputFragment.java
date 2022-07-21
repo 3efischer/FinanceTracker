@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Currency;
 import java.util.regex.Pattern;
 
@@ -32,7 +31,6 @@ public class AmountInputFragment extends Fragment {
 
     private int integral;
     private int decimal;
-    private BigInteger amount;
 
     private FragmentAmountInputBinding binding;
 
@@ -135,6 +133,26 @@ public class AmountInputFragment extends Fragment {
                 Log.println(Log.INFO, null, "AfterTextChanged");
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean("isPositive", binding.toggleImage.isChecked());
+        outState.putString("decimal", binding.decimalPartInput.getText().toString());
+        outState.putString("integral", binding.integralPartInput.getText().toString());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            this.binding.integralPartInput.setText(savedInstanceState.getString("integral"));
+            this.binding.decimalPartInput.setText(savedInstanceState.getString("decimal"));
+            this.binding.toggleImage.setChecked(savedInstanceState.getBoolean("isPositive"));
+        }
     }
 
     public Amount getAmount() {
