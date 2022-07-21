@@ -14,6 +14,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:paddingEnd="5dp"
+        android:paddingStart="0dp"
         android:contentDescription="@string/account_type"/>
 
     <View
@@ -37,7 +38,8 @@
         <TextView
             android:id="@+id/account_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/last_account_changed_date"
