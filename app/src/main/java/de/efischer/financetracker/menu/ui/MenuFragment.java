@@ -1,4 +1,4 @@
-package de.efischer.financetracker.budgets;
+package de.efischer.financetracker.menu.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,16 +10,15 @@ import androidx.fragment.app.Fragment;
 import de.efischer.financetracker.R;
 
 /**
- * Fragment that represents the overview over all budgets.
+ * Fragment that shows all settings for the app.
  * @author Evelyn Fischer
  */
-
-public class BudgetOverviewFragment extends Fragment {
+public class MenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_budget_overview, container, false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 }

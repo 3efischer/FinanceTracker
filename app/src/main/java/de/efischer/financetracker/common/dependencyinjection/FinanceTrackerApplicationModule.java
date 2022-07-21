@@ -21,6 +21,6 @@ public class FinanceTrackerApplicationModule {
     @Provides
     @Singleton
     public ApplicationDatabase database(@ApplicationContext Context context) {
-        return Room.databaseBuilder(context, ApplicationDatabase.class, "database").build();
+        return Room.databaseBuilder(context.getApplicationContext(), ApplicationDatabase.class, "database").build();
     }
 }

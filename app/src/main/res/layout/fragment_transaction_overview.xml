@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/custom_light_grey"
-    tools:context=".transactions.TransactionOverviewFragment">
+    tools:context=".transactions.ui.TransactionListFragment">
 </LinearLayout>
