@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.ui.addition;
+package de.efischer.financetracker.accounts.ui.addaccount;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,9 +20,9 @@ public class AccountDropdownAdapter extends ArrayAdapter<String> {
     private Integer[] imageIds;
 
     public AccountDropdownAdapter(Context context, int resource, String[] objects,
-                          Integer[] imageArray) {
+                                  Integer[] imageArray) {
 
-        super(context,  R.layout.account_type_dropdown_item, R.id.account_type_name, objects);
+        super(context, R.layout.account_type_dropdown_item, R.id.account_type_name, objects);
         this.context = context;
         this.accountTypeStrings = objects;
         this.imageIds = imageArray;
@@ -47,7 +47,7 @@ public class AccountDropdownAdapter extends ArrayAdapter<String> {
         accountTypeView.setText(accountTypeStrings[position]);
 
         ImageView accountIconView = item.findViewById(R.id.account_type_icon);
-        accountIconView.setBackgroundResource((int) imageIds[position]);
+        accountIconView.setBackgroundResource(imageIds[position]);
 
         return item;
     }

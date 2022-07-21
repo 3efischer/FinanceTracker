@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.ui.addition;
+package de.efischer.financetracker.accounts.ui.addaccount;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,7 +23,7 @@ public class CurrencyDropdownAdapter extends ArrayAdapter<String> {
 
     public CurrencyDropdownAdapter(Context context, int resource) {
 
-        super(context,  R.layout.currency_list_item, R.id.currency_name);
+        super(context, R.layout.currency_list_item, R.id.currency_name);
         this.context = context;
 
         currenciesToDisplay = new ArrayList<>();

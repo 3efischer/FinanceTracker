@@ -11,7 +11,7 @@
         android:name=".common.dependencyinjection.FinanceTrackerApplication"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".accounts.ui.addition.AddAccountActivity"
+            android:name=".accounts.ui.addaccount.AddAccountActivity"
             android:exported="false" />
         <activity
             android:name=".common.MainActivity"

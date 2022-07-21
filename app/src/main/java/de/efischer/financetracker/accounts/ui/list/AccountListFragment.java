@@ -28,8 +28,8 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import de.efischer.financetracker.accounts.ui.addition.AddAccountActivity;
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.ui.addaccount.AddAccountActivity;
 import de.efischer.financetracker.common.ApplicationDatabase;
 import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
 

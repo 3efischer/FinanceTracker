@@ -19,8 +19,8 @@ import java.util.Currency;
 import java.util.regex.Pattern;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.ui.addition.CurrencyDropdownAdapter;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.ui.addaccount.CurrencyDropdownAdapter;
 import de.efischer.financetracker.databinding.FragmentAmountInputBinding;
 
 

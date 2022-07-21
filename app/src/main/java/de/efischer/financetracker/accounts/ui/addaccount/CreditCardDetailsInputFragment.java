@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.ui.addition;
+package de.efischer.financetracker.accounts.ui.addaccount;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
