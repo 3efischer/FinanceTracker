@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.ui.addition;
+package de.efischer.financetracker.accounts.ui.addaccount;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.ui.addition.AccountDropdownAdapter;
-import de.efischer.financetracker.accounts.ui.addition.CreditCardDetailsInputFragment;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
@@ -54,7 +52,6 @@ public class AddAccountActivity extends AppCompatActivity {
         args.putBoolean(TextInputFragment.INPUT_IS_MANDATORY, true);
 
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .add(R.id.account_name_input_fragment, TextInputFragment.class, args)
                 .commit();
     }
@@ -82,16 +79,20 @@ public class AddAccountActivity extends AppCompatActivity {
                 AccountType selectedAccountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
 
                 if (selectedAccountType != AccountType.CASH) {
-                    getSupportFragmentManager().beginTransaction().show(bankNameFragment).commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .show(bankNameFragment).commit();
 
                     if (selectedAccountType == AccountType.CREDIT_CARD) {
-                        getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment).commit();
-                        getSupportFragmentManager().beginTransaction().show(creditCardLimitFragment).commit();
+                        getSupportFragmentManager().beginTransaction().show(creditCardDetailsFragment)
+                                .show(creditCardLimitFragment)
+                                .commit();
                     }
                 } else {
-                    getSupportFragmentManager().beginTransaction().hide(bankNameFragment).commit();
-                    getSupportFragmentManager().beginTransaction().hide(creditCardDetailsFragment).commit();
-                    getSupportFragmentManager().beginTransaction().hide(creditCardLimitFragment).commit();
+
+                    getSupportFragmentManager().beginTransaction().hide(bankNameFragment)
+                            .hide(creditCardDetailsFragment)
+                            .hide(creditCardDetailsFragment)
+                            .commit();
                 }
             }
 
@@ -109,7 +110,6 @@ public class AddAccountActivity extends AppCompatActivity {
         args.putBoolean(AmountInputFragment.SHOW_CURRENCY_LIST, true);
 
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .add(R.id.amount_input_fragment, AmountInputFragment.class, args)
                 .commit();
     }
@@ -120,7 +120,6 @@ public class AddAccountActivity extends AppCompatActivity {
         args.putBoolean(AmountInputFragment.IS_STARTING_POSITIVE, false);
 
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .add(R.id.credit_card_limit_fragment, AmountInputFragment.class, args)
                 .commit();
     }
@@ -131,7 +130,6 @@ public class AddAccountActivity extends AppCompatActivity {
         args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.bank_name);
 
         getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
                 .add(R.id.bank_name_input_fragment, TextInputFragment.class, args)
                 .commit();
     }
