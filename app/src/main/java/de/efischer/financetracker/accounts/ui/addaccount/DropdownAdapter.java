@@ -15,18 +15,18 @@ import java.io.Serializable;
 
 import de.efischer.financetracker.R;
 
-public class AccountDropdownAdapter extends ArrayAdapter<String> implements Serializable {
+public class DropdownAdapter extends ArrayAdapter<String> implements Serializable {
 
     private Context context;
-    private String[] accountTypeStrings;
+    private String[] entriesAsStrings;
     private Integer[] imageIds;
 
-    public AccountDropdownAdapter(Context context, int resource, String[] objects,
-                                  Integer[] imageArray) {
+    public DropdownAdapter(Context context, int resource, String[] objects,
+                           Integer[] imageArray) {
 
         super(context, R.layout.account_type_dropdown_item, R.id.account_type_name, objects);
         this.context = context;
-        this.accountTypeStrings = objects;
+        this.entriesAsStrings = objects;
         this.imageIds = imageArray;
     }
 
@@ -46,7 +46,7 @@ public class AccountDropdownAdapter extends ArrayAdapter<String> implements Seri
         View item = inflater.inflate(R.layout.account_type_dropdown_item, parent, false);
 
         TextView accountTypeView = item.findViewById(R.id.account_type_name);
-        accountTypeView.setText(accountTypeStrings[position]);
+        accountTypeView.setText(entriesAsStrings[position]);
 
         ImageView accountIconView = item.findViewById(R.id.account_type_icon);
         accountIconView.setBackgroundResource(imageIds[position]);

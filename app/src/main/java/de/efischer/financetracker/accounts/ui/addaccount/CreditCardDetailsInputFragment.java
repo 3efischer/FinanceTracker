@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,11 +34,11 @@ public class CreditCardDetailsInputFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setupCreditCardDropdown(view);
+        setupCreditCardDropdown();
         setupCreditCardNumberField();
     }
 
-    private void setupCreditCardDropdown(View view) {
+    private void setupCreditCardDropdown() {
         CreditCardType[] creditCardTypes = CreditCardType.values();
         String[] creditCardTypesAsStrings = new String[creditCardTypes.length];
         Integer[] imageIdArray = new Integer[creditCardTypes.length];
@@ -49,8 +48,7 @@ public class CreditCardDetailsInputFragment extends Fragment {
             imageIdArray[i] = creditCardTypes[i].iconId;
         }
 
-        Spinner spinner = view.findViewById(R.id.credit_card_type_dropdown);
-        spinner.setAdapter(new AccountDropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypesAsStrings, imageIdArray));
+        binding.creditCardTypeDropdown.setAdapter(new DropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypesAsStrings, imageIdArray));
     }
 
     private void setupCreditCardNumberField() {
@@ -75,5 +73,20 @@ public class CreditCardDetailsInputFragment extends Fragment {
         return this.creditCardDetails;
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        outState.putInt("selectedCreditCardTypeIndex", binding.creditCardTypeDropdown.getSelectedItemPosition());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            setupCreditCardDropdown();
+            binding.creditCardTypeDropdown.setSelection(savedInstanceState.getInt("selectedCreditCardTypeIndex"));
+        }
+    }
 }

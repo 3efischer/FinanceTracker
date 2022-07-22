@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,7 @@ import de.efischer.financetracker.databinding.ActivityAddAccountBinding;
 public class AddAccountActivity extends AppCompatActivity {
 
     private ActivityAddAccountBinding binding;
-    private AccountDropdownAdapter accountDropdownAdapter;
+    private DropdownAdapter dropdownAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +37,11 @@ public class AddAccountActivity extends AppCompatActivity {
             setupNameField();
             setupBankNameField();
             setupCreditCardLimitField();
-            setupButtons();
+            setupButtonListeners();
         }
     }
 
-    private void setupButtons() {
+    private void setupButtonListeners() {
         binding.saveButton.setOnClickListener(onClick -> onSaveButtonClicked());
         binding.abortButton.setOnClickListener(onClick -> onAbortButtonClicked());
     }
@@ -68,10 +67,8 @@ public class AddAccountActivity extends AppCompatActivity {
             imageIdArray[i] = accountTypes[i].iconId;
         }
 
-        accountDropdownAdapter = new AccountDropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray);
-        Spinner spinner = binding.accountTypeDropdown;
-        spinner.setAdapter(accountDropdownAdapter);
-        spinner.setOnItemSelectedListener(createDropdownListener());
+        binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray));
+        binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
     }
 
     @NonNull
@@ -155,22 +152,17 @@ public class AddAccountActivity extends AppCompatActivity {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putSerializable("accountDropdownAdapter", accountDropdownAdapter);
         outState.putInt("selectedAccountIndex", binding.accountTypeDropdown.getSelectedItemPosition());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
-        AccountDropdownAdapter accountDropdownAdapter = (AccountDropdownAdapter) savedInstanceState.getSerializable("accountDropdownAdapter");
-        binding.accountTypeDropdown.setAdapter(accountDropdownAdapter);
-        binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
-        this.accountDropdownAdapter = accountDropdownAdapter;
-
+        
+        setupAccountTypeChooser();
         binding.accountTypeDropdown.setSelection(savedInstanceState.getInt("selectedAccountIndex"));
 
-        setupButtons();
+        setupButtonListeners();
     }
 
     public void onSaveButtonClicked() {

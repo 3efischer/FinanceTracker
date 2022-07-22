@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +30,7 @@ public class AmountInputFragment extends Fragment {
 
     private int integral;
     private int decimal;
+    private boolean showCurrencyDropdown;
 
     private FragmentAmountInputBinding binding;
 
@@ -50,8 +50,10 @@ public class AmountInputFragment extends Fragment {
         binding.toggleImage.setChecked(isPositive);
         binding.toggleImage.setBackgroundResource(isPositive ? R.drawable.ic_plus : R.drawable.ic_minus);
 
-        setListeners();
+        showCurrencyDropdown = requireArguments().getBoolean(SHOW_CURRENCY_LIST);
         setupCurrencyChooser();
+
+        setListeners();
 
         return binding.getRoot();
     }
@@ -78,11 +80,9 @@ public class AmountInputFragment extends Fragment {
     }
 
     private void setupCurrencyChooser() {
-        Spinner spinner = binding.currencyDropdown;
-        spinner.setAdapter(new CurrencyDropdownAdapter(this.getContext(), R.layout.currency_list_item));
+        binding.currencyDropdown.setAdapter(new CurrencyDropdownAdapter(this.getContext(), R.layout.currency_list_item));
 
-        boolean showCurrencyList = requireArguments().getBoolean(SHOW_CURRENCY_LIST);
-        if (showCurrencyList) {
+        if (showCurrencyDropdown) {
             binding.currencyDropdown.setVisibility(View.VISIBLE);
             binding.currencyDescriptionText.setVisibility(View.VISIBLE);
         } else {
@@ -142,8 +142,11 @@ public class AmountInputFragment extends Fragment {
         outState.putBoolean("isPositive", binding.toggleImage.isChecked());
         outState.putString("decimal", binding.decimalPartInput.getText().toString());
         outState.putString("integral", binding.integralPartInput.getText().toString());
+
+        outState.putBoolean("showCurrencyDropdown", this.showCurrencyDropdown);
+        outState.putInt("selectedCurrencyIndex", binding.currencyDropdown.getSelectedItemPosition());
     }
-    
+
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
@@ -153,6 +156,11 @@ public class AmountInputFragment extends Fragment {
             this.binding.integralPartInput.setText(savedInstanceState.getString("integral"));
             this.binding.decimalPartInput.setText(savedInstanceState.getString("decimal"));
             this.binding.toggleImage.setChecked(savedInstanceState.getBoolean("isPositive"));
+
+            this.showCurrencyDropdown = savedInstanceState.getBoolean("showCurrencyDropdown");
+            setupCurrencyChooser();
+
+            binding.currencyDropdown.setSelection(savedInstanceState.getInt("selectedCurrencyIndex"));
         }
     }
 
