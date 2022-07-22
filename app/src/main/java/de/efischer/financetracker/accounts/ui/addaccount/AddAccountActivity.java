@@ -159,33 +159,35 @@ public class AddAccountActivity extends AppCompatActivity {
     }
 
     public void onSaveButtonClicked() {
-        TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
+        Intent resultIntent = new Intent();
 
+        TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
         String accountName = accountNameInputFragment.getUserInput();
         AccountType accountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
         Amount startingAmount = ((AmountInputFragment) binding.amountInputFragment.getFragment()).getAmount();
 
-        String bankName = ((TextInputFragment) binding.bankNameInputFragment.getFragment()).getUserInput();
-
-        CreditCardDetails creditCardDetails = ((CreditCardDetailsInputFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
-        Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
-
-        creditCardDetails.setCreditLimit(creditCardLimit);
-
         Account account = new Account(accountName, accountType, startingAmount);
 
-        if (bankName != null) {
+
+        if (accountType != AccountType.CASH) {
+            String bankName = ((TextInputFragment) binding.bankNameInputFragment.getFragment()).getUserInput();
             account.setBankName(bankName);
         }
+
+        if (accountType == AccountType.CREDIT_CARD) {
+            CreditCardDetails creditCardDetails = ((CreditCardDetailsInputFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
+            Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
+            creditCardDetails.setCreditLimit(creditCardLimit);
+            resultIntent.putExtra("creditCardDetails", creditCardDetails);
+        }
+
+        resultIntent.putExtra("account", account);
+
 
         if (accountName == null || accountName.isEmpty()) {
             Snackbar.make(binding.saveButton, R.string.form_not_completed, Snackbar.LENGTH_SHORT).show();
             accountNameInputFragment.triggerError();
         } else {
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("account", account);
-            resultIntent.putExtra("creditCardDetails", creditCardDetails);
-
             setResult(-1, resultIntent);
             finish();
         }
