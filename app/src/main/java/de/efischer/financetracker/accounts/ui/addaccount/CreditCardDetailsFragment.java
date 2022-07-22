@@ -15,7 +15,7 @@ import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 import de.efischer.financetracker.common.inputs.NumberInputFragment;
 import de.efischer.financetracker.databinding.FragmentCreditCardDetailsInputBinding;
 
-public class CreditCardDetailsInputFragment extends Fragment {
+public class CreditCardDetailsFragment extends Fragment {
 
     private CreditCardDetails creditCardDetails;
     private FragmentCreditCardDetailsInputBinding binding;
@@ -39,8 +39,7 @@ public class CreditCardDetailsInputFragment extends Fragment {
     }
 
     private void setupCreditCardDropdown() {
-        CreditCardType[] creditCardTypes = CreditCardType.values();
-        binding.creditCardTypeDropdown.setAdapter(new DropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypes));
+        binding.creditCardTypeDropdown.setAdapter(new DropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, CreditCardType.values()));
     }
 
     private void setupCreditCardNumberField() {

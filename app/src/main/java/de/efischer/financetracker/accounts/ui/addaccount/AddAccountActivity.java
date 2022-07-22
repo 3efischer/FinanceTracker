@@ -58,9 +58,7 @@ public class AddAccountActivity extends AppCompatActivity {
     }
 
     private void setupAccountTypeChooser() {
-        AccountType[] accountTypes = AccountType.values();
-
-        binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypes));
+        binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, AccountType.values()));
         binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
     }
 
@@ -168,21 +166,19 @@ public class AddAccountActivity extends AppCompatActivity {
 
         Account account = new Account(accountName, accountType, startingAmount);
 
-
         if (accountType != AccountType.CASH) {
             String bankName = ((TextInputFragment) binding.bankNameInputFragment.getFragment()).getUserInput();
             account.setBankName(bankName);
         }
 
         if (accountType == AccountType.CREDIT_CARD) {
-            CreditCardDetails creditCardDetails = ((CreditCardDetailsInputFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
+            CreditCardDetails creditCardDetails = ((CreditCardDetailsFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
             Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
             creditCardDetails.setCreditLimit(creditCardLimit);
             resultIntent.putExtra("creditCardDetails", creditCardDetails);
         }
 
         resultIntent.putExtra("account", account);
-
 
         if (accountName == null || accountName.isEmpty()) {
             Snackbar.make(binding.saveButton, R.string.form_not_completed, Snackbar.LENGTH_SHORT).show();
