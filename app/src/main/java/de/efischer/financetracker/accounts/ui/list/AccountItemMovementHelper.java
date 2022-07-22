@@ -1,8 +1,8 @@
 package de.efischer.financetracker.accounts.ui.list;
 
 import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_DRAG;
-import static androidx.recyclerview.widget.ItemTouchHelper.UP;
 import static androidx.recyclerview.widget.ItemTouchHelper.DOWN;
+import static androidx.recyclerview.widget.ItemTouchHelper.UP;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AccountItemMovementHelper extends ItemTouchHelper.Callback {
 
-    AccountListItemAdapter adapter;
+    AccountListAdapter adapter;
 
-    public AccountItemMovementHelper(AccountListItemAdapter adapter) {
+    public AccountItemMovementHelper(AccountListAdapter adapter) {
         this.adapter = adapter;
     }
 
@@ -24,7 +24,7 @@ public class AccountItemMovementHelper extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
-        adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        //adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         return true;
     }
 

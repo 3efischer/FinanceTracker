@@ -30,4 +30,10 @@ public interface AccountDao {
 
     @Query("SELECT * FROM account ORDER BY sort_order ASC")
     LiveData<List<Account>> getAllSorted();
+
+    @Query("SELECT * FROM account WHERE id=:id")
+    LiveData<Account> getAccount(int id);
+
+    @Query("DELETE FROM account")
+    void deleteAllEntries();
 }
