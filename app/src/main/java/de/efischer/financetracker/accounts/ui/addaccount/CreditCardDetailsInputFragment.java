@@ -40,15 +40,7 @@ public class CreditCardDetailsInputFragment extends Fragment {
 
     private void setupCreditCardDropdown() {
         CreditCardType[] creditCardTypes = CreditCardType.values();
-        String[] creditCardTypesAsStrings = new String[creditCardTypes.length];
-        Integer[] imageIdArray = new Integer[creditCardTypes.length];
-
-        for (int i = 0; i < creditCardTypes.length; i++) {
-            creditCardTypesAsStrings[i] = getResources().getString(creditCardTypes[i].nameId);
-            imageIdArray[i] = creditCardTypes[i].iconId;
-        }
-
-        binding.creditCardTypeDropdown.setAdapter(new DropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypesAsStrings, imageIdArray));
+        binding.creditCardTypeDropdown.setAdapter(new DropdownAdapter(this.getContext(), R.layout.account_type_dropdown_item, creditCardTypes));
     }
 
     private void setupCreditCardNumberField() {

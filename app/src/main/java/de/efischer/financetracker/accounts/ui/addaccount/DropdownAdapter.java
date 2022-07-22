@@ -11,23 +11,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.Serializable;
+import java.util.Arrays;
 
 import de.efischer.financetracker.R;
+import de.efischer.financetracker.accounts.model.valueobjects.ITypeAdapterHelper;
 
-public class DropdownAdapter extends ArrayAdapter<String> implements Serializable {
+public class DropdownAdapter extends ArrayAdapter<String> {
 
     private Context context;
     private String[] entriesAsStrings;
     private Integer[] imageIds;
 
-    public DropdownAdapter(Context context, int resource, String[] objects,
-                           Integer[] imageArray) {
+    public DropdownAdapter(Context context, int resource, ITypeAdapterHelper[] displayTypes) {
 
-        super(context, R.layout.account_type_dropdown_item, R.id.account_type_name, objects);
+        super(context, R.layout.account_type_dropdown_item, R.id.account_type_name);
         this.context = context;
-        this.entriesAsStrings = objects;
-        this.imageIds = imageArray;
+
+        entriesAsStrings = Arrays.stream(displayTypes)
+                .map(type -> context.getResources().getString(type.getEnumName()))
+                .toArray(String[]::new);
+
+        imageIds = Arrays.stream(displayTypes)
+                .map(ITypeAdapterHelper::getEnumIcon)
+                .toArray(Integer[]::new);
+
+        this.addAll(entriesAsStrings);
     }
 
     @Override

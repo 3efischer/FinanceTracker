@@ -59,15 +59,8 @@ public class AddAccountActivity extends AppCompatActivity {
 
     private void setupAccountTypeChooser() {
         AccountType[] accountTypes = AccountType.values();
-        String[] accountTypesAsStrings = new String[accountTypes.length];
-        Integer[] imageIdArray = new Integer[accountTypes.length];
 
-        for (int i = 0; i < accountTypes.length; i++) {
-            accountTypesAsStrings[i] = getResources().getString(accountTypes[i].name);
-            imageIdArray[i] = accountTypes[i].iconId;
-        }
-
-        binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypesAsStrings, imageIdArray));
+        binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, accountTypes));
         binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
     }
 
@@ -158,7 +151,7 @@ public class AddAccountActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        
+
         setupAccountTypeChooser();
         binding.accountTypeDropdown.setSelection(savedInstanceState.getInt("selectedAccountIndex"));
 
