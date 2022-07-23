@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Currency;
 import java.util.Date;
+import java.util.Objects;
 
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
@@ -145,5 +146,18 @@ public class Account implements Serializable {
 
     public void setSortOrder(int sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return id == account.id && sortOrder == account.sortOrder && name.equals(account.name) && type == account.type && balance.equals(account.balance) && lastChanged.equals(account.lastChanged) && Objects.equals(bankName, account.bankName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, balance, lastChanged, bankName, sortOrder);
     }
 }
