@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
-import de.efischer.financetracker.accounts.persistence.AccountConverters;
-import de.efischer.financetracker.accounts.persistence.AccountDao;
+import de.efischer.financetracker.accounts.persistence.dao.AccountConverters;
+import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 
 @Database(entities = {Account.class}, version = 1)
 @TypeConverters({AccountConverters.class})

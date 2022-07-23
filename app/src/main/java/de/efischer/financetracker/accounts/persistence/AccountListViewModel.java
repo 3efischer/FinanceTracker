@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.viewmodel;
+package de.efischer.financetracker.accounts.persistence;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,10 +15,10 @@ public class AccountListViewModel extends ViewModel {
 
     private final String TAG = AccountListViewModel.class.getSimpleName();
 
-    private AccountListRepository repository;
+    private AccountRepository repository;
 
     @Inject
-    public AccountListViewModel(AccountListRepository repository) {
+    public AccountListViewModel(AccountRepository repository) {
         this.repository = repository;
     }
 
@@ -30,7 +30,7 @@ public class AccountListViewModel extends ViewModel {
         repository.insert(account);
     }
 
-    public void moveItem(Account account, int newPosition) {
+    public void moveItem(int accountId, int newListPosition) {
 
     }
 

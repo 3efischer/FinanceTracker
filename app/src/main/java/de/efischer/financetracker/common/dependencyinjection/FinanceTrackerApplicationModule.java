@@ -11,8 +11,8 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
-import de.efischer.financetracker.accounts.persistence.AccountDao;
-import de.efischer.financetracker.accounts.viewmodel.AccountListRepository;
+import de.efischer.financetracker.accounts.persistence.AccountRepository;
+import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 import de.efischer.financetracker.common.ApplicationDatabase;
 
 @Module
@@ -28,8 +28,8 @@ public class FinanceTrackerApplicationModule {
 
     @Provides
     @Singleton
-    public AccountListRepository accountListRepository(ApplicationDatabase database) {
-        return new AccountListRepository(accountDao(database));
+    public AccountRepository accountListRepository(ApplicationDatabase database) {
+        return new AccountRepository(accountDao(database));
     }
 
     @Provides

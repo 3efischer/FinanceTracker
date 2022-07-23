@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.viewmodel;
+package de.efischer.financetracker.accounts.persistence;
 
 import android.util.Log;
 
@@ -10,17 +10,17 @@ import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
-import de.efischer.financetracker.accounts.persistence.AccountDao;
+import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 
-public class AccountListRepository {
+public class AccountRepository {
 
-    private final String TAG = AccountListRepository.class.getSimpleName();
+    private final String TAG = AccountRepository.class.getSimpleName();
 
     private AccountDao accountDao;
     private LiveData<List<Account>> accountList;
 
     @Inject
-    public AccountListRepository(AccountDao accountDao) {
+    public AccountRepository(AccountDao accountDao) {
         this.accountDao = accountDao;
         this.accountList = accountDao.getAll();
     }
@@ -32,6 +32,5 @@ public class AccountListRepository {
     public void insert(Account account) {
         Executors.newSingleThreadExecutor().execute(() -> accountDao.insert(account));
         Log.println(Log.DEBUG, TAG, "New account inserted in database.");
-        // AsyncTask.execute(() -> accountDao.getAll().getValue());
     }
 }

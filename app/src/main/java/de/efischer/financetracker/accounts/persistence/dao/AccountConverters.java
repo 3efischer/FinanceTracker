@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.persistence;
+package de.efischer.financetracker.accounts.persistence.dao;
 
 import androidx.room.TypeConverter;
 

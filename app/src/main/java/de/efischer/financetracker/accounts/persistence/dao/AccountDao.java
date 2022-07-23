@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.persistence;
+package de.efischer.financetracker.accounts.persistence.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -22,6 +22,9 @@ public interface AccountDao {
     @Update
     ListenableFuture<Integer> update(Account account);
 
+    @Update
+    void update(Account... accounts);
+
     @Delete
     ListenableFuture<Integer> delete(Account account);
 
@@ -36,4 +39,7 @@ public interface AccountDao {
 
     @Query("DELETE FROM account")
     void deleteAllEntries();
+
+    @Query("SELECT COUNT(id) FROM account")
+    LiveData<Integer> getAccountItemsCount();
 }
