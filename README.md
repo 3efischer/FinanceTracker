@@ -1,8 +1,9 @@
 ![build](https://github.com/3efischer/FinanceTracker/actions/workflows/build.yml/badge.svg)
+![test](https://github.com/3efischer/FinanceTracker/actions/workflows/test.yml/badge.svg)
 
 # FinanceTracker
 
-FinanceTracker is an open source personal finance tracking application for android devices. 
+FinanceTracker is an open source personal finance tracking application for android devices.
 
 ## (Planned) Features
 
@@ -13,4 +14,5 @@ FinanceTracker is an open source personal finance tracking application for andro
 
 ## Icon References
 
-All svg graphics used for this app are taken from SVG Repo (svgrepo.com) and World Vector Logo (worldvectorlogo.com).
+All svg graphics used for this app are taken from SVG Repo (svgrepo.com) and World Vector Logo (
+worldvectorlogo.com).
