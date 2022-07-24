@@ -10,7 +10,7 @@ import de.efischer.financetracker.accounts.persistence.dao.AccountConverters;
 import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 import de.efischer.financetracker.accounts.persistence.dao.CreditCardDetailsDao;
 
-@Database(entities = {Account.class, CreditCardDetails.class}, version = 3)
+@Database(entities = {Account.class, CreditCardDetails.class}, version = 4)
 @TypeConverters({AccountConverters.class})
 public abstract class ApplicationDatabase extends RoomDatabase {
 

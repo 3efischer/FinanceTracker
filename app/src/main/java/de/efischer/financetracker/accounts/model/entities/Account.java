@@ -22,7 +22,7 @@ import de.efischer.financetracker.accounts.model.valueobjects.Amount;
  * @author Evelyn Fischer
  */
 
-@Entity
+@Entity(tableName = "account")
 public class Account implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

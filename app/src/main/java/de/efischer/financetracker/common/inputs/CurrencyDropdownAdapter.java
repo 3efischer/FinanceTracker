@@ -1,4 +1,4 @@
-package de.efischer.financetracker.accounts.ui.addaccount;
+package de.efischer.financetracker.common.inputs;
 
 import android.content.Context;
 import android.view.LayoutInflater;

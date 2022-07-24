@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,9 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
         holder.getIcon().setBackgroundResource(account.getType().iconId);
         holder.getFirstLine().setText(account.getType().name);
 
-        holder.getAmount().setText(account.getBalance().toString());
+        String formattedAmount = NumberFormat.getCurrencyInstance()
+                .format(account.getBalance().getAmount());
+        holder.getAmount().setText(formattedAmount);
 
         int green = holder.getAmount().getContext().getResources().getColor(R.color.pos_green, null);
         int red = holder.getAmount().getContext().getResources().getColor(R.color.neg_red, null);
@@ -83,7 +86,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        
+
         private final TextView firstLine;
         private final TextView accountName;
         private final TextView lastChangedDate;
