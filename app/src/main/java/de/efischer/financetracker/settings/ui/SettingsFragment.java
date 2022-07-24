@@ -1,4 +1,4 @@
-package de.efischer.financetracker.menu.ui;
+package de.efischer.financetracker.settings.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +11,10 @@ import de.efischer.financetracker.R;
 
 /**
  * Fragment that shows all settings for the app.
+ *
  * @author Evelyn Fischer
  */
-public class MenuFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

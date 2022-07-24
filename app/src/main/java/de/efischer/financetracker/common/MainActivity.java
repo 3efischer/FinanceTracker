@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                     tab.setText(R.string.stats);
                     break;
                 case 4:
-                    tab.setIcon(R.drawable.ic_menu);
-                    tab.setText(R.string.menu);
+                    tab.setIcon(R.drawable.ic_settings);
+                    tab.setText(R.string.settings);
                     break;
             }
         }).attach();

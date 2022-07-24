@@ -12,7 +12,7 @@
     <string name="transactions">Umsätze</string>
     <string name="budgets">Budgets</string>
     <string name="stats">Statistik</string>
-    <string name="menu">Menü</string>
+    <string name="settings">Settings</string>
 
     <!-- Errors -->
     <string name="error_amount_necessary">Bitte geben Sie einen Betrag ein.</string>

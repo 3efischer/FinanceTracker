@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import de.efischer.financetracker.accounts.ui.list.AccountListFragment;
 import de.efischer.financetracker.budgets.ui.BudgetListFragment;
-import de.efischer.financetracker.menu.ui.MenuFragment;
+import de.efischer.financetracker.settings.ui.SettingsFragment;
 import de.efischer.financetracker.statistics.ui.StatisticsFragment;
 import de.efischer.financetracker.transactions.ui.TransactionListFragment;
 
@@ -38,7 +38,7 @@ public class SwipeAdapter extends FragmentStateAdapter {
                 selectedFragment = new StatisticsFragment();
                 break;
             case 4:
-                selectedFragment = new MenuFragment();
+                selectedFragment = new SettingsFragment();
                 break;
         }
 
