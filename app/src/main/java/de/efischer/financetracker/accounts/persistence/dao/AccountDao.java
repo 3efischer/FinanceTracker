@@ -14,12 +14,20 @@ import java.util.List;
 import java.util.Map;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
+import de.efischer.financetracker.common.ApplicationDatabase;
 
 @Dao
 public abstract class AccountDao {
 
+    private final CreditCardDetailsDao creditCardDetailsDao;
+
+    public AccountDao(ApplicationDatabase database) {
+        this.creditCardDetailsDao = database.creditCardDetailsDao();
+    }
+
     @Insert
-    public abstract void insert(Account account);
+    public abstract long insert(Account account);
 
     @Update
     public abstract int update(Account account);
@@ -49,10 +57,21 @@ public abstract class AccountDao {
     public abstract int getAccountItemsCount();
 
     @Query("UPDATE account SET list_position=:newListPosition WHERE id = :id")
-    public abstract void updateListPosition(int id, int newListPosition);
+    public abstract void updateListPosition(long id, int newListPosition);
 
     @Transaction
     public void updateListPositionForAccounts(Map<Account, Integer> accountsToUpdate) {
         accountsToUpdate.forEach((account, listPosition) -> updateListPosition(account.getId(), listPosition));
+    }
+
+    @Transaction
+    public void insertAccount(Account account, CreditCardDetails creditCardDetails) {
+        int listPosition = getAccountItemsCount();
+        account.setListPosition(listPosition);
+        long insertedAccountId = insert(account);
+        
+
+        creditCardDetails.setAccountId(insertedAccountId);
+        creditCardDetailsDao.insert(creditCardDetails);
     }
 }

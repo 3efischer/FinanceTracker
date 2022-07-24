@@ -3,19 +3,23 @@ package de.efischer.financetracker.accounts.persistence.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
 import androidx.room.Update;
 
 import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 
 @Dao
-public interface CreditCardDetailsDao {
+public abstract class CreditCardDetailsDao {
 
     @Insert
-    void insert(CreditCardDetails creditCardDetails);
+    public abstract void insert(CreditCardDetails creditCardDetails);
 
     @Update
-    int update(CreditCardDetails creditCardDetails);
+    public abstract int update(CreditCardDetails creditCardDetails);
 
     @Delete
-    int delete(CreditCardDetails creditCardDetails);
+    public abstract int delete(CreditCardDetails creditCardDetails);
+
+    @Query("SELECT * FROM credit_card_details WHERE account_id =:accountId")
+    public abstract CreditCardDetails getByAccountId(int accountId);
 }

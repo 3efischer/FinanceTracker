@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 import de.efischer.financetracker.accounts.persistence.AccountListViewModel;
 import de.efischer.financetracker.accounts.ui.addaccount.AddAccountActivity;
 import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
@@ -92,7 +93,13 @@ public class AccountListFragment extends Fragment {
 
                         assert result.getData() != null;
                         Account account = (Account) result.getData().getSerializableExtra("account");
-                        accountListViewModel.addAccount(account);
+                        CreditCardDetails creditCardDetails = (CreditCardDetails) result.getData().getSerializableExtra("creditCardDetails");
+
+                        if (creditCardDetails == null) {
+                            accountListViewModel.addAccount(account);
+                        } else {
+                            accountListViewModel.addAccount(account, creditCardDetails);
+                        }
 
                     } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
                         Log.println(Log.INFO, TAG, "Adding account aborted.");

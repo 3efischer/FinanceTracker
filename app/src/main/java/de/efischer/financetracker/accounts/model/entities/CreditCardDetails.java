@@ -4,19 +4,28 @@ import static androidx.room.ForeignKey.CASCADE;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
 import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 
-@Entity(foreignKeys = @ForeignKey(entity = Account.class, parentColumns = "id", childColumns = "account_id", onDelete = CASCADE))
+@Entity(tableName = "credit_card_details", foreignKeys = @ForeignKey(entity = Account.class,
+        parentColumns = "id", childColumns = "account_id", onDelete = CASCADE), indices = {
+        @Index(value = {"account_id"}, unique = true)
+})
 public class CreditCardDetails implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
     @ColumnInfo(name = "account_id")
-    private int accountId;
+    private long accountId;
 
     @ColumnInfo(name = "credit_card_number")
     private String creditCardNumber;
@@ -24,6 +33,7 @@ public class CreditCardDetails implements Serializable {
     @ColumnInfo(name = "credit_card_type")
     private CreditCardType creditCardType;
 
+    @Embedded
     private Amount creditLimit;
 
     public String getCreditCardNumber() {
@@ -32,6 +42,14 @@ public class CreditCardDetails implements Serializable {
 
     public void setCreditCardNumber(String creditCardNumber) {
         this.creditCardNumber = creditCardNumber;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public CreditCardType getCreditCardType() {
@@ -58,5 +76,13 @@ public class CreditCardDetails implements Serializable {
                 ", creditCardType=" + creditCardType +
                 ", creditLimit=" + creditLimit +
                 '}';
+    }
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
 }

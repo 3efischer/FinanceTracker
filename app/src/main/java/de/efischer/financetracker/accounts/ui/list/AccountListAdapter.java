@@ -38,7 +38,6 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Account account = getCurrentList().get(position);
-        holder.setAccountId(account.getId());
 
         holder.getIcon().setBackgroundResource(account.getType().iconId);
         holder.getFirstLine().setText(account.getType().name);
@@ -84,8 +83,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private int accountId;
+        
         private final TextView firstLine;
         private final TextView accountName;
         private final TextView lastChangedDate;
@@ -123,14 +121,6 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
 
         public ImageView getIcon() {
             return icon;
-        }
-
-        public int getAccountId() {
-            return accountId;
-        }
-
-        public void setAccountId(int id) {
-            accountId = id;
         }
     }
 }

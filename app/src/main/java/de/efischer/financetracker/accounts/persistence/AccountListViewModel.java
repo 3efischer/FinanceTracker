@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 
 @HiltViewModel
 public class AccountListViewModel extends ViewModel {
@@ -28,6 +29,10 @@ public class AccountListViewModel extends ViewModel {
 
     public void addAccount(Account account) {
         repository.insert(account);
+    }
+
+    public void addAccount(Account account, CreditCardDetails creditCardDetails) {
+        repository.insert(account, creditCardDetails);
     }
 
     public void refreshListOrder(List<Account> refreshedAccountList) {

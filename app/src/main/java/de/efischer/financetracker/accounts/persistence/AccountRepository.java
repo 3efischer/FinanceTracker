@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 
 public class AccountRepository {
@@ -43,10 +44,18 @@ public class AccountRepository {
         Log.println(Log.DEBUG, TAG, "New account inserted in database.");
     }
 
+    public void insert(Account account, CreditCardDetails creditCardDetails) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            accountDao.insertAccount(account, creditCardDetails);
+            Log.println(Log.DEBUG, TAG, "New account and credit card details inserted in database.");
+        });
+
+    }
+
     public void refreshAccountList(List<Account> refreshedAccountList) {
         Executors.newSingleThreadExecutor().execute(() -> {
 
-            refreshedAccountList.sort(Comparator.comparingInt(Account::getId));
+            refreshedAccountList.sort(Comparator.comparingLong(Account::getId));
             ArrayList<Account> accountsSortedById = new ArrayList<>(accountDao.getAllSortedById());
 
             Map<Account, Integer> accountsWithNewPosition = new HashMap<>();

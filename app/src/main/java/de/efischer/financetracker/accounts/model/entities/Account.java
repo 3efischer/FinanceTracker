@@ -27,7 +27,7 @@ public class Account implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private int id;
+    private long id;
 
     @NonNull
     @ColumnInfo(name = "name")
@@ -77,11 +77,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
