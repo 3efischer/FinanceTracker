@@ -50,6 +50,9 @@ public class AccountListFragment extends Fragment {
 
         this.binding = FragmentAccountOverviewBinding.inflate(inflater, container, false);
 
+        // This prevents some of the flickering when moving an item in the list
+        binding.recyclerView.getItemAnimator().setChangeDuration(0);
+
         AccountListAdapter accountListAdapter = new AccountListAdapter();
         binding.recyclerView.getItemAnimator().setChangeDuration(0);
         binding.recyclerView.setAdapter(accountListAdapter);

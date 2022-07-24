@@ -48,8 +48,8 @@ public class Account implements Serializable {
     @ColumnInfo(name = "bank_name")
     private String bankName;
 
-    @ColumnInfo(name = "sort_order")
-    private int sortOrder;
+    @ColumnInfo(name = "list_position")
+    private int listPosition;
 
 
     public Account() {
@@ -140,12 +140,12 @@ public class Account implements Serializable {
         return SimpleDateFormat.getTimeInstance().format(lastChanged);
     }
 
-    public int getSortOrder() {
-        return sortOrder;
+    public int getListPosition() {
+        return listPosition;
     }
 
-    public void setSortOrder(int sortOrder) {
-        this.sortOrder = sortOrder;
+    public void setListPosition(int listPosition) {
+        this.listPosition = listPosition;
     }
 
     @Override
@@ -153,11 +153,11 @@ public class Account implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return id == account.id && sortOrder == account.sortOrder && name.equals(account.name) && type == account.type && balance.equals(account.balance) && lastChanged.equals(account.lastChanged) && Objects.equals(bankName, account.bankName);
+        return id == account.id && listPosition == account.listPosition && name.equals(account.name) && type == account.type && balance.equals(account.balance) && lastChanged.equals(account.lastChanged) && Objects.equals(bankName, account.bankName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, type, balance, lastChanged, bankName, sortOrder);
+        return Objects.hash(id, name, type, balance, lastChanged, bankName, listPosition);
     }
 }

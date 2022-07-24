@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
@@ -34,7 +36,7 @@ public class AccountRepository {
     public void insert(Account account) {
         Executors.newSingleThreadExecutor().execute(() -> {
             int accountItemCount = accountDao.getAccountItemsCount();
-            account.setSortOrder(accountItemCount);
+            account.setListPosition(accountItemCount);
             accountDao.insert(account);
         });
 
@@ -43,19 +45,22 @@ public class AccountRepository {
 
     public void refreshAccountList(List<Account> refreshedAccountList) {
         Executors.newSingleThreadExecutor().execute(() -> {
-            refreshedAccountList.sort(Comparator.comparingInt(Account::getId));
 
+            refreshedAccountList.sort(Comparator.comparingInt(Account::getId));
             ArrayList<Account> accountsSortedById = new ArrayList<>(accountDao.getAllSortedById());
+
+            Map<Account, Integer> accountsWithNewPosition = new HashMap<>();
 
             for (int i = 0; i < accountsSortedById.size(); i++) {
                 Account accountFromDb = accountsSortedById.get(i);
-                int newSortOrder = refreshedAccountList.get(i).getSortOrder();
+                int newListPosition = refreshedAccountList.get(i).getListPosition();
 
-                if (accountFromDb.getSortOrder() != newSortOrder) {
-                    accountFromDb.setSortOrder(newSortOrder);
-                    accountDao.update(accountFromDb);
+                if (accountFromDb.getListPosition() != newListPosition) {
+                    accountsWithNewPosition.put(accountFromDb, newListPosition);
                 }
             }
+
+            accountDao.updateListPositionForAccounts(accountsWithNewPosition);
         });
     }
 }

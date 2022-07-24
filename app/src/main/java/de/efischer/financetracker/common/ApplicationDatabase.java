@@ -8,7 +8,7 @@ import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.persistence.dao.AccountConverters;
 import de.efischer.financetracker.accounts.persistence.dao.AccountDao;
 
-@Database(entities = {Account.class}, version = 1)
+@Database(entities = {Account.class}, version = 2)
 @TypeConverters({AccountConverters.class})
 public abstract class ApplicationDatabase extends RoomDatabase {
 

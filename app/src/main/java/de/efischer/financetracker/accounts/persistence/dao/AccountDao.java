@@ -5,44 +5,54 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
+import java.util.Map;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
 
 @Dao
-public interface AccountDao {
+public abstract class AccountDao {
 
     @Insert
-    void insert(Account account);
+    public abstract void insert(Account account);
 
     @Update
-    int update(Account account);
+    public abstract int update(Account account);
 
     @Update
-    void update(List<Account> accounts);
+    public abstract void update(List<Account> accounts);
 
     @Delete
-    ListenableFuture<Integer> delete(Account account);
+    public abstract ListenableFuture<Integer> delete(Account account);
 
     @Query("SELECT * FROM account")
-    LiveData<List<Account>> getAll();
+    public abstract LiveData<List<Account>> getAll();
 
-    @Query("SELECT * FROM account ORDER BY sort_order ASC")
-    LiveData<List<Account>> getAllSorted();
+    @Query("SELECT * FROM account ORDER BY list_position ASC")
+    public abstract LiveData<List<Account>> getAllSorted();
 
     @Query("SELECT * FROM account ORDER BY id ASC")
-    List<Account> getAllSortedById();
+    public abstract List<Account> getAllSortedById();
 
     @Query("SELECT * FROM account WHERE id=:id")
-    Account getAccount(int id);
+    public abstract Account getAccount(int id);
 
     @Query("DELETE FROM account")
-    void deleteAllEntries();
+    public abstract void deleteAllEntries();
 
     @Query("SELECT COUNT(id) FROM account")
-    int getAccountItemsCount();
+    public abstract int getAccountItemsCount();
+
+    @Query("UPDATE account SET list_position=:newListPosition WHERE id = :id")
+    public abstract void updateListPosition(int id, int newListPosition);
+
+    @Transaction
+    public void updateListPositionForAccounts(Map<Account, Integer> accountsToUpdate) {
+        accountsToUpdate.forEach((account, listPosition) -> updateListPosition(account.getId(), listPosition));
+    }
 }

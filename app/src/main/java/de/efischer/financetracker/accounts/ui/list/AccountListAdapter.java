@@ -79,7 +79,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     }
 
     public List<Account> getDragEndedResultList() {
-        tempAccountList.forEach(account -> account.setSortOrder(tempAccountList.indexOf(account)));
+        tempAccountList.forEach(account -> account.setListPosition(tempAccountList.indexOf(account)));
         return tempAccountList;
     }
 
