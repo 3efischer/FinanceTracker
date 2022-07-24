@@ -1,4 +1,4 @@
-package de.efischer.financetracker.common.dependencyinjection;
+package de.efischer.financetracker.common.configuration;
 
 import android.app.Application;
 

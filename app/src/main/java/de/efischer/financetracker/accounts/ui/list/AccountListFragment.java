@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import de.efischer.financetracker.accounts.model.entities.Account;
+import de.efischer.financetracker.accounts.persistence.AccountListViewModel;
 import de.efischer.financetracker.accounts.ui.addaccount.AddAccountActivity;
-import de.efischer.financetracker.accounts.viewmodel.AccountListViewModel;
 import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
 
 /**
@@ -49,8 +49,13 @@ public class AccountListFragment extends Fragment {
 
         this.binding = FragmentAccountOverviewBinding.inflate(inflater, container, false);
 
-        binding.recyclerView.setAdapter(new AccountListAdapter());
+        AccountListAdapter accountListAdapter = new AccountListAdapter();
+        binding.recyclerView.setAdapter(accountListAdapter);
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
+//        ItemTouchHelper.Callback itemTouchCallback = new AccountItemTouchCallback(accountListViewModel);
+//        ItemTouchHelper touchHelper = new ItemTouchHelper(itemTouchCallback);
+//        touchHelper.attachToRecyclerView(binding.recyclerView);
 
         return binding.getRoot();
     }

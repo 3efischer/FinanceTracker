@@ -41,5 +41,5 @@ public interface AccountDao {
     void deleteAllEntries();
 
     @Query("SELECT COUNT(id) FROM account")
-    LiveData<Integer> getAccountItemsCount();
+    int getAccountItemsCount();
 }

@@ -22,7 +22,7 @@ public class AccountRepository {
     @Inject
     public AccountRepository(AccountDao accountDao) {
         this.accountDao = accountDao;
-        this.accountList = accountDao.getAll();
+        this.accountList = accountDao.getAllSorted();
     }
 
     public LiveData<List<Account>> getAll() {
@@ -30,7 +30,12 @@ public class AccountRepository {
     }
 
     public void insert(Account account) {
-        Executors.newSingleThreadExecutor().execute(() -> accountDao.insert(account));
+        Executors.newSingleThreadExecutor().execute(() -> {
+            int accountItemCount = accountDao.getAccountItemsCount();
+            account.setSortOrder(accountItemCount);
+            accountDao.insert(account);
+        });
+
         Log.println(Log.DEBUG, TAG, "New account inserted in database.");
     }
 }

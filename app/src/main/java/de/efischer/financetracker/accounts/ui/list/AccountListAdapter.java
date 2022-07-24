@@ -34,6 +34,8 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Account account = getCurrentList().get(position);
+        holder.setAccountId(account.getId());
+
         holder.getIcon().setBackgroundResource(account.getType().iconId);
         holder.getFirstLine().setText(account.getType().name);
 
@@ -44,7 +46,6 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
 
         holder.getAmount().setTextColor(account.getBalance().isPositive() ? green : red);
 
-
         holder.getLastChangedDate().setText(account.getLastDayChanged());
         holder.getAccountName().setText(account.getName());
     }
@@ -52,19 +53,18 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
     public static final DiffUtil.ItemCallback<Account> accountItemCallback = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
-            //return oldItem.getSortOrder() == newItem.getSortOrder();
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {
-            //return oldItem.getSortOrder() == newItem.getSortOrder();
-            return oldItem.getId() == newItem.getId();
+            return oldItem.equals(newItem);
         }
     };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private int accountId;
         private final TextView firstLine;
         private final TextView accountName;
         private final TextView lastChangedDate;
@@ -76,6 +76,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
             super(v);
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener(v1 -> Log.d(TAG, "Element " + getAdapterPosition() + " clicked."));
+
             firstLine = v.findViewById(R.id.first_row_text);
             accountName = v.findViewById(R.id.account_title);
             lastChangedDate = v.findViewById(R.id.last_account_changed_date);
@@ -101,6 +102,14 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
 
         public ImageView getIcon() {
             return icon;
+        }
+
+        public int getAccountId() {
+            return accountId;
+        }
+
+        public void setAccountId(int id) {
+            accountId = id;
         }
     }
 }

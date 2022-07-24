@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AccountItemMovementHelper extends ItemTouchHelper.Callback {
+import de.efischer.financetracker.accounts.persistence.AccountListViewModel;
 
-    AccountListAdapter adapter;
+public class AccountItemTouchCallback extends ItemTouchHelper.Callback {
 
-    public AccountItemMovementHelper(AccountListAdapter adapter) {
-        this.adapter = adapter;
+    private AccountListViewModel accountListViewModel;
+
+    public AccountItemTouchCallback(AccountListViewModel accountListViewModel) {
+        this.accountListViewModel = accountListViewModel;
     }
 
     @Override
@@ -23,8 +25,9 @@ public class AccountItemMovementHelper extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+        AccountListAdapter.ViewHolder accountItemViewHolder = (AccountListAdapter.ViewHolder) viewHolder;
+        this.accountListViewModel.moveItem(accountItemViewHolder.getAccountId(), target.getAdapterPosition());
 
-        //adapter.moveItem(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         return true;
     }
 
