@@ -51,6 +51,7 @@ public class AccountListFragment extends Fragment {
         this.binding = FragmentAccountOverviewBinding.inflate(inflater, container, false);
 
         AccountListAdapter accountListAdapter = new AccountListAdapter();
+        binding.recyclerView.getItemAnimator().setChangeDuration(0);
         binding.recyclerView.setAdapter(accountListAdapter);
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 

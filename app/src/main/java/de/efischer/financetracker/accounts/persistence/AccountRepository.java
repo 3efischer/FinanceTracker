@@ -50,10 +50,12 @@ public class AccountRepository {
             for (int i = 0; i < accountsSortedById.size(); i++) {
                 Account accountFromDb = accountsSortedById.get(i);
                 int newSortOrder = refreshedAccountList.get(i).getSortOrder();
-                accountFromDb.setSortOrder(newSortOrder);
-            }
 
-            accountDao.update(accountsSortedById);
+                if (accountFromDb.getSortOrder() != newSortOrder) {
+                    accountFromDb.setSortOrder(newSortOrder);
+                    accountDao.update(accountFromDb);
+                }
+            }
         });
     }
 }
