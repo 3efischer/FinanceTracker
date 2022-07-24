@@ -57,6 +57,7 @@ dependencies {
 
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "androidx.lifecycle:lifecycle-runtime-testing:2.5.0"
+    implementation 'com.google.guava:guava:28.1-android' // For listenable futures
 
     // Hilt
     annotationProcessor 'com.google.dagger:hilt-compiler:2.42'
@@ -65,13 +66,29 @@ dependencies {
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.42'
     testImplementation 'com.google.dagger:hilt-android-testing:2.42'
 
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    // Material design
     implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Jetpack Compose + Material
+    implementation 'androidx.compose.ui:ui:1.1.1'
+    implementation 'androidx.compose.foundation:foundation:1.1.1'
+    implementation 'androidx.compose.material:material:1.1.1'
+    implementation 'androidx.compose.material:material-icons-core:1.1.1'
+    implementation 'androidx.compose.material:material-icons-extended:1.1.1'
+    implementation 'androidx.activity:activity-compose:1.5.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0'
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.1.1'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.1.1'
+    implementation 'androidx.compose.ui:ui-tooling:1.1.1'
+
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
+
+    // Misc
     implementation 'androidx.fragment:fragment:1.5.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'com.google.guava:guava:28.1-android'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Data binding
     annotationProcessor 'androidx.databinding:databinding-compiler:7.2.1'
