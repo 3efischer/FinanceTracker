@@ -22,5 +22,8 @@ jobs:
       - name: Validate wrapper
         uses: gradle/wrapper-validation-action@v1
         
+      - name: Grant permission
+        run: chmod +x
+        
       - name: Run tests
         run: ./gradlew test --stacktrace
