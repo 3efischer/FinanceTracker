@@ -12,7 +12,7 @@ import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
 public class AccountConverters {
 
     @TypeConverter
-    public static Date fromDate(Long value) {
+    public static Date timestampToDate(Long value) {
         return value == null ? null : new Date(value);
     }
 
@@ -22,7 +22,7 @@ public class AccountConverters {
     }
 
     @TypeConverter
-    public static AccountType fromAccountTypeString(String accountType) {
+    public static AccountType stringToAccountType(String accountType) {
         return AccountType.valueOf(accountType);
     }
 
@@ -32,7 +32,7 @@ public class AccountConverters {
     }
 
     @TypeConverter
-    public static CreditCardType fromCreditCardTypeString(String creditCardType) {
+    public static CreditCardType stringToCreditCardType(String creditCardType) {
         return CreditCardType.valueOf(creditCardType);
     }
 
@@ -47,7 +47,7 @@ public class AccountConverters {
     }
 
     @TypeConverter
-    public static Currency fromCurrencyString(String currency) {
+    public static Currency stringToCurrency(String currency) {
         return Currency.getInstance(currency);
     }
 
@@ -57,7 +57,7 @@ public class AccountConverters {
     }
 
     @TypeConverter
-    public static BigDecimal fromBigDecimalString(String bigDecimal) {
+    public static BigDecimal stringToBigDecimal(String bigDecimal) {
         boolean isEmptyString = bigDecimal.trim().isEmpty();
         BigDecimal result;
 
