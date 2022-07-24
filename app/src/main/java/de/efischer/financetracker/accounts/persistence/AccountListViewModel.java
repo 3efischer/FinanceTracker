@@ -30,8 +30,8 @@ public class AccountListViewModel extends ViewModel {
         repository.insert(account);
     }
 
-    public void moveItem(int accountId, int newListPosition) {
-
+    public void refreshListOrder(List<Account> refreshedAccountList) {
+        repository.refreshAccountList(refreshedAccountList);
     }
 
 }

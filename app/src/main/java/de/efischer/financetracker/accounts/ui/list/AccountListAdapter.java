@@ -12,14 +12,18 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
 
 public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.ViewHolder> {
 
+    private ArrayList<Account> tempAccountList;
+
     protected AccountListAdapter() {
         super(accountItemCallback);
-
     }
 
     @NonNull
@@ -61,6 +65,23 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListAdapter.
             return oldItem.equals(newItem);
         }
     };
+
+    public void notifyItemDragStarted() {
+        tempAccountList = new ArrayList<>(getCurrentList());
+    }
+
+    public void moveItem(int oldPosition, int newPosition) {
+        Account accountToMove = tempAccountList.get(oldPosition);
+        tempAccountList.remove(oldPosition);
+        tempAccountList.add(newPosition, accountToMove);
+
+        notifyItemMoved(oldPosition, newPosition);
+    }
+
+    public List<Account> getDragEndedResultList() {
+        tempAccountList.forEach(account -> account.setSortOrder(tempAccountList.indexOf(account)));
+        return tempAccountList;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

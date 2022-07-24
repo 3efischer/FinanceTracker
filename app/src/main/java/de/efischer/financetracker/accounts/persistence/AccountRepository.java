@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -37,5 +39,21 @@ public class AccountRepository {
         });
 
         Log.println(Log.DEBUG, TAG, "New account inserted in database.");
+    }
+
+    public void refreshAccountList(List<Account> refreshedAccountList) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            refreshedAccountList.sort(Comparator.comparingInt(Account::getId));
+
+            ArrayList<Account> accountsSortedById = new ArrayList<>(accountDao.getAllSortedById());
+
+            for (int i = 0; i < accountsSortedById.size(); i++) {
+                Account accountFromDb = accountsSortedById.get(i);
+                int newSortOrder = refreshedAccountList.get(i).getSortOrder();
+                accountFromDb.setSortOrder(newSortOrder);
+            }
+
+            accountDao.update(accountsSortedById);
+        });
     }
 }

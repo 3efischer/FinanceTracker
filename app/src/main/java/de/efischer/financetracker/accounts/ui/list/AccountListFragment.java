@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import de.efischer.financetracker.accounts.model.entities.Account;
@@ -53,9 +54,9 @@ public class AccountListFragment extends Fragment {
         binding.recyclerView.setAdapter(accountListAdapter);
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
-//        ItemTouchHelper.Callback itemTouchCallback = new AccountItemTouchCallback(accountListViewModel);
-//        ItemTouchHelper touchHelper = new ItemTouchHelper(itemTouchCallback);
-//        touchHelper.attachToRecyclerView(binding.recyclerView);
+        ItemTouchHelper.Callback itemTouchCallback = new AccountItemTouchCallback(accountListViewModel, accountListAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(itemTouchCallback);
+        touchHelper.attachToRecyclerView(binding.recyclerView);
 
         return binding.getRoot();
     }

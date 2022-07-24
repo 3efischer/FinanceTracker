@@ -17,13 +17,13 @@ import de.efischer.financetracker.accounts.model.entities.Account;
 public interface AccountDao {
 
     @Insert
-    ListenableFuture<Long> insert(Account account);
+    void insert(Account account);
 
     @Update
-    ListenableFuture<Integer> update(Account account);
+    int update(Account account);
 
     @Update
-    void update(Account... accounts);
+    void update(List<Account> accounts);
 
     @Delete
     ListenableFuture<Integer> delete(Account account);
@@ -34,8 +34,11 @@ public interface AccountDao {
     @Query("SELECT * FROM account ORDER BY sort_order ASC")
     LiveData<List<Account>> getAllSorted();
 
+    @Query("SELECT * FROM account ORDER BY id ASC")
+    List<Account> getAllSortedById();
+
     @Query("SELECT * FROM account WHERE id=:id")
-    LiveData<Account> getAccount(int id);
+    Account getAccount(int id);
 
     @Query("DELETE FROM account")
     void deleteAllEntries();
