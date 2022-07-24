@@ -79,11 +79,13 @@ public class AmountInputFragment extends Fragment {
     }
 
     private void setupCurrencyChooser() {
-        binding.currencyDropdown.setAdapter(new CurrencyDropdownAdapter(this.getContext(), R.layout.currency_list_item));
+        CurrencyDropdownAdapter dropdownAdapter = new CurrencyDropdownAdapter(this.getContext(), R.layout.currency_list_item);
+        binding.currencyDropdown.setAdapter(dropdownAdapter);
 
         if (showCurrencyDropdown) {
             binding.currencyDropdown.setVisibility(View.VISIBLE);
             binding.currencyDescriptionText.setVisibility(View.VISIBLE);
+            binding.currencyDropdown.setSelection(dropdownAdapter.getLocalCurrencyIndex());
         } else {
             binding.currencyDropdown.setVisibility(View.GONE);
             binding.currencyDescriptionText.setVisibility(View.GONE);

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 import de.efischer.financetracker.R;
 
@@ -20,6 +21,7 @@ public class CurrencyDropdownAdapter extends ArrayAdapter<String> {
 
     private Context context;
     private List<Currency> currenciesToDisplay;
+    private int indexOfLocalCurrency;
 
     public CurrencyDropdownAdapter(Context context, int resource) {
 
@@ -41,12 +43,25 @@ public class CurrencyDropdownAdapter extends ArrayAdapter<String> {
         return getCustomView(position, convertView, parent);
     }
 
+    public int getLocalCurrencyIndex() {
+        return this.indexOfLocalCurrency;
+    }
+
 
     private void setupCurrencies() {
         String[] countryCodes = context.getResources().getStringArray(R.array.country_codes);
 
-        for (String countryCode : countryCodes) {
-            currenciesToDisplay.add(Currency.getInstance(countryCode));
+        Locale locale = context.getResources().getConfiguration().getLocales().get(0);
+        Currency localCurrency = Currency.getInstance(locale);
+
+        for (int i = 0; i < countryCodes.length; i++) {
+            Currency currency = Currency.getInstance(countryCodes[i]);
+
+            if (currency == localCurrency) {
+                indexOfLocalCurrency = i;
+            }
+
+            currenciesToDisplay.add(currency);
         }
 
         super.addAll(countryCodes);
