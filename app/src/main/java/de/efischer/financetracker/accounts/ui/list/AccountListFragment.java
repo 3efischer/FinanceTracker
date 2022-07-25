@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
+import java.util.Objects;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
@@ -52,7 +54,7 @@ public class AccountListFragment extends Fragment {
         this.binding = FragmentAccountOverviewBinding.inflate(inflater, container, false);
 
         // This prevents some of the flickering when moving an item in the list
-        binding.recyclerView.getItemAnimator().setChangeDuration(0);
+        Objects.requireNonNull(binding.recyclerView.getItemAnimator()).setChangeDuration(0);
 
         AccountListAdapter accountListAdapter = new AccountListAdapter();
         binding.recyclerView.setAdapter(accountListAdapter);
@@ -69,7 +71,7 @@ public class AccountListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        accountListViewModel.getAccountList().observe(getActivity(), accounts -> {
+        accountListViewModel.getAccountList().observe(requireActivity(), accounts -> {
             if (accounts.isEmpty()) {
                 binding.recyclerView.setVisibility(View.GONE);
             } else {
@@ -77,6 +79,7 @@ public class AccountListFragment extends Fragment {
             }
 
             AccountListAdapter adapter = (AccountListAdapter) binding.recyclerView.getAdapter();
+            assert adapter != null;
             adapter.submitList(accounts);
         });
 
