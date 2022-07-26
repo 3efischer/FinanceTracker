@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private void createTabs() {
         binding.contentContainer.setAdapter(new SwipeAdapter(getSupportFragmentManager(), getLifecycle()));
 
+        // Uncomment this line to disable scrolling
+        // binding.contentContainer.setUserInputEnabled(false);
+
         new TabLayoutMediator(binding.contentTabs, binding.contentContainer, (tab, position) -> {
 
             switch (position) {
