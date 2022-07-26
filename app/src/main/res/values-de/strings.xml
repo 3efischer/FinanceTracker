@@ -48,4 +48,6 @@
     <string name="point_separator">.</string>
     <string name="comma_separator">,</string>
 
+    <string name="menu">Menü</string>
+
 </resources>
