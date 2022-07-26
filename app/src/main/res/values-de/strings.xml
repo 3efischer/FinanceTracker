@@ -49,5 +49,7 @@
     <string name="comma_separator">,</string>
 
     <string name="menu">Menü</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="delete">Löschen</string>
 
 </resources>

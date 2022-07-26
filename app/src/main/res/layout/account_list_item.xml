@@ -9,6 +9,12 @@
     android:paddingRight="12dp"
     android:paddingTop="5dp">
 
+    <TextView
+        android:id="@+id/fakeAnchor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/account_icon"
         android:layout_width="50dp"
@@ -55,11 +61,12 @@
         android:layout_gravity="end" />
 
     <ImageButton
+        android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="5dp"
         android:contentDescription="@string/menu"
         android:src="@drawable/ic_dot_menu" />
 </LinearLayout>
