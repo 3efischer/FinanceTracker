@@ -51,7 +51,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListItemView
         holder.getLastChangedDate().setText(account.getLastDayChanged());
         holder.getAccountName().setText(account.getName());
     }
-    
+
     public static final DiffUtil.ItemCallback<Account> accountItemCallback = new DiffUtil.ItemCallback<>() {
         @Override
         public boolean areItemsTheSame(@NonNull Account oldItem, @NonNull Account newItem) {

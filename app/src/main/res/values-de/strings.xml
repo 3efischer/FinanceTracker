@@ -52,4 +52,8 @@
     <string name="edit">Bearbeiten</string>
     <string name="delete">Löschen</string>
 
+    <string name="delete_alert_description">Möchten Sie dieses Konto wirklich löschen?</string>
+    <string name="decline">Abbruch</string>
+    <string name="accept">Löschen</string>
+
 </resources>

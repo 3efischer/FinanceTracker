@@ -41,8 +41,17 @@ public class AccountListItemViewHolder extends RecyclerView.ViewHolder {
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.option_edit) {
                 Log.println(Log.ERROR, null, "edit pressed");
+
             } else {
-                Log.println(Log.ERROR, null, "delete pressed");
+//                new MaterialAlertDialogBuilder(v.getContext(),
+//                        com.google.android.material.R.style.Theme_AppCompat_DayNight_Dialog_Alert)
+//                        .setMessage(v.getContext().getResources().getString(R.string.delete_alert_description))
+//                        .setNegativeButton(v.getContext().getString(R.string.decline), (dialog, which) -> {
+//                            dialog.cancel();
+//                        })
+//                        .setPositiveButton(v.getContext().getResources().getString(R.string.accept), (dialog, which) -> {
+//
+//                        }).show();
             }
             return true;
         });
