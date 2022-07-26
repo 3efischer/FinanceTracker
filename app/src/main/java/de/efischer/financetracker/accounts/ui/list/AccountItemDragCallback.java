@@ -14,12 +14,12 @@ import java.util.List;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.persistence.AccountListViewModel;
 
-public class AccountItemTouchCallback extends ItemTouchHelper.Callback {
+public class AccountItemDragCallback extends ItemTouchHelper.Callback {
 
     private AccountListViewModel accountListViewModel;
     private AccountListAdapter accountListAdapter;
 
-    public AccountItemTouchCallback(AccountListViewModel accountListViewModel, AccountListAdapter accountListAdapter) {
+    public AccountItemDragCallback(AccountListViewModel accountListViewModel, AccountListAdapter accountListAdapter) {
         this.accountListViewModel = accountListViewModel;
         this.accountListAdapter = accountListAdapter;
     }

@@ -4,7 +4,7 @@ import de.efischer.financetracker.R;
 
 public enum CreditCardType implements ITypeAdapterHelper {
 
-    VISA(R.string.visa, R.drawable.ic_visa2),
+    VISA(R.string.visa, R.drawable.ic_visa),
     MASTERCARD(R.string.mastercard, R.drawable.ic_mastercard);
 
     public final int nameId;

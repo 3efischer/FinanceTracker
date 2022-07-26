@@ -53,15 +53,15 @@ public class AccountListFragment extends Fragment {
 
         this.binding = FragmentAccountOverviewBinding.inflate(inflater, container, false);
 
-        // This prevents some of the flickering when moving an item in the list
+        // This prevents flickering when moving an item in the list
         Objects.requireNonNull(binding.recyclerView.getItemAnimator()).setChangeDuration(0);
 
         AccountListAdapter accountListAdapter = new AccountListAdapter();
         binding.recyclerView.setAdapter(accountListAdapter);
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(binding.recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
-        ItemTouchHelper.Callback itemTouchCallback = new AccountItemTouchCallback(accountListViewModel, accountListAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(itemTouchCallback);
+        ItemTouchHelper.Callback itemDragCallback = new AccountItemDragCallback(accountListViewModel, accountListAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(itemDragCallback);
         touchHelper.attachToRecyclerView(binding.recyclerView);
 
         return binding.getRoot();
