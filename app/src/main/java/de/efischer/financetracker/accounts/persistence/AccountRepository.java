@@ -49,7 +49,6 @@ public class AccountRepository {
             accountDao.insertAccount(account, creditCardDetails);
             Log.println(Log.DEBUG, TAG, "New account and credit card details inserted in database.");
         });
-
     }
 
     public void refreshAccountList(List<Account> refreshedAccountList) {
@@ -71,5 +70,13 @@ public class AccountRepository {
 
             accountDao.updateListPositionForAccounts(accountsWithNewPosition);
         });
+    }
+
+    public void deleteAccount(long accountId) {
+        Executors.newSingleThreadExecutor().execute(() -> accountDao.delete(accountId));
+    }
+
+    public void updateAccount(Account account) {
+        Executors.newSingleThreadExecutor().execute(() -> accountDao.update(account));
     }
 }

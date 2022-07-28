@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import de.efischer.financetracker.accounts.ui.list.AccountListFragment;
+import de.efischer.financetracker.accounts.ui.list.AccountListOverviewFragment;
 import de.efischer.financetracker.budgets.ui.BudgetListFragment;
 import de.efischer.financetracker.settings.ui.SettingsFragment;
 import de.efischer.financetracker.statistics.ui.StatisticsFragment;
@@ -26,7 +26,7 @@ public class SwipeAdapter extends FragmentStateAdapter {
         switch (position) {
             case 0:
             default:
-                selectedFragment = new AccountListFragment();
+                selectedFragment = new AccountListOverviewFragment();
                 break;
             case 1:
                 selectedFragment = new TransactionListFragment();

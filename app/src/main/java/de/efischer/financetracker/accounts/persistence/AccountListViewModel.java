@@ -39,4 +39,11 @@ public class AccountListViewModel extends ViewModel {
         repository.refreshAccountList(refreshedAccountList);
     }
 
+    public void deleteAccount(long accountId) {
+        repository.deleteAccount(accountId);
+    }
+
+    public void updateAccount(Account account) {
+        repository.updateAccount(account);
+    }
 }

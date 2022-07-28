@@ -33,14 +33,15 @@ import de.efischer.financetracker.databinding.FragmentAccountOverviewBinding;
  */
 
 @AndroidEntryPoint
-public class AccountListFragment extends Fragment {
+public class AccountListOverviewFragment extends Fragment implements IAccountListItemObserver {
 
     private FragmentAccountOverviewBinding binding;
     private AccountListViewModel accountListViewModel;
 
     private ActivityResultLauncher<Intent> addAccountResultLauncher;
 
-    private final String TAG = AccountListFragment.class.getSimpleName();
+    private final String TAG = AccountListOverviewFragment.class.getSimpleName();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,16 @@ public class AccountListFragment extends Fragment {
     public void addAccount() {
         Intent intent = new Intent(getActivity(), AddAccountActivity.class);
         this.addAccountResultLauncher.launch(intent);
+    }
+
+    @Override
+    public void notifyItemDeleteRequest(long accountId) {
+
+    }
+
+    @Override
+    public void notifyItemEditRequest(long accountId) {
+        this.accountListViewModel.deleteAccount(accountId);
     }
 }
 

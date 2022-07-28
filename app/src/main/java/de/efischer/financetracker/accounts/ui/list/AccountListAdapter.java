@@ -15,9 +15,10 @@ import java.util.List;
 import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
 
-public class AccountListAdapter extends ListAdapter<Account, AccountListItemViewHolder> {
+public class AccountListAdapter extends ListAdapter<Account, AccountListItemViewHolder> implements IAccountListItemObserver {
 
     private ArrayList<Account> tempAccountList;
+    private IAccountListItemObserver observer;
 
     protected AccountListAdapter() {
         super(accountItemCallback);
@@ -35,6 +36,7 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListItemView
     @Override
     public void onBindViewHolder(@NonNull AccountListItemViewHolder holder, int position) {
         Account account = getCurrentList().get(position);
+        holder.setAccountId(account.getId());
 
         holder.getIcon().setBackgroundResource(account.getType().iconId);
         holder.getFirstLine().setText(account.getType().name);
@@ -50,6 +52,8 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListItemView
 
         holder.getLastChangedDate().setText(account.getLastDayChanged());
         holder.getAccountName().setText(account.getName());
+
+        holder.addAccountListItemObserver(this);
     }
 
     public static final DiffUtil.ItemCallback<Account> accountItemCallback = new DiffUtil.ItemCallback<>() {
@@ -79,5 +83,19 @@ public class AccountListAdapter extends ListAdapter<Account, AccountListItemView
     public List<Account> getDragEndedResultList() {
         tempAccountList.forEach(account -> account.setListPosition(tempAccountList.indexOf(account)));
         return tempAccountList;
+    }
+
+    public void setObserver(IAccountListItemObserver observer) {
+        this.observer = observer;
+    }
+
+    @Override
+    public void notifyItemDeleteRequest(long accountId) {
+        observer.notifyItemDeleteRequest(accountId);
+    }
+
+    @Override
+    public void notifyItemEditRequest(long accountId) {
+        observer.notifyItemEditRequest(accountId);
     }
 }

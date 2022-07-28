@@ -14,6 +14,9 @@ import de.efischer.financetracker.R;
 
 public class AccountListItemViewHolder extends RecyclerView.ViewHolder {
 
+    private long accountId;
+    private IAccountListItemObserver observer;
+
     private final TextView firstLine;
     private final TextView accountName;
     private final TextView lastChangedDate;
@@ -42,7 +45,7 @@ public class AccountListItemViewHolder extends RecyclerView.ViewHolder {
             if (item.getItemId() == R.id.option_edit) {
                 Log.println(Log.ERROR, null, "edit pressed");
 
-            } else {
+            } else if (item.getItemId() == R.id.option_delete) {
 //                new MaterialAlertDialogBuilder(v.getContext(),
 //                        com.google.android.material.R.style.Theme_AppCompat_DayNight_Dialog_Alert)
 //                        .setMessage(v.getContext().getResources().getString(R.string.delete_alert_description))
@@ -57,6 +60,14 @@ public class AccountListItemViewHolder extends RecyclerView.ViewHolder {
         });
 
         popup.show();
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
+
+    public void addAccountListItemObserver(IAccountListItemObserver observer) {
+        this.observer = observer;
     }
 
     public TextView getFirstLine() {
