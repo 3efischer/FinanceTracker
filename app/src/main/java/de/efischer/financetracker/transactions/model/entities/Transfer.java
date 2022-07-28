@@ -1,20 +1,20 @@
 package de.efischer.financetracker.transactions.model.entities;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
 
 public class Transfer {
 
     private Account fromAccount;
     private Account toAccount;
-    private Amount amount;
+    private MonetaryAmount monetaryAmount;
     private Category category;
     private String note;
 
-    public Transfer(Account fromAccount, Account toAccount, Amount amount) {
+    public Transfer(Account fromAccount, Account toAccount, MonetaryAmount monetaryAmount) {
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
-        this.amount = amount;
+        this.monetaryAmount = monetaryAmount;
     }
 
     public Account getFromAccount() {
@@ -33,12 +33,12 @@ public class Transfer {
         this.toAccount = toAccount;
     }
 
-    public Amount getAmount() {
-        return amount;
+    public MonetaryAmount getAmount() {
+        return monetaryAmount;
     }
 
-    public void setAmount(Amount amount) {
-        this.amount = amount;
+    public void setAmount(MonetaryAmount monetaryAmount) {
+        this.monetaryAmount = monetaryAmount;
     }
 
     public Category getCategory() {

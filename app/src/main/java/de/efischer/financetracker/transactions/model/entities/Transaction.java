@@ -3,19 +3,19 @@ package de.efischer.financetracker.transactions.model.entities;
 import java.util.Date;
 
 import de.efischer.financetracker.accounts.model.entities.Account;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
 
 public class Transaction {
 
     private Account fromAccount;
-    private Amount amount;
+    private MonetaryAmount monetaryAmount;
     private Category category;
     private Date date;
     private String note;
 
-    public Transaction(Account fromAccount, Amount amount, Category category, Date date, String note) {
+    public Transaction(Account fromAccount, MonetaryAmount monetaryAmount, Category category, Date date, String note) {
         this.fromAccount = fromAccount;
-        this.amount = amount;
+        this.monetaryAmount = monetaryAmount;
         this.category = category;
         this.date = date;
         this.note = note;
@@ -29,12 +29,12 @@ public class Transaction {
         this.fromAccount = fromAccount;
     }
 
-    public Amount getAmount() {
-        return amount;
+    public MonetaryAmount getAmount() {
+        return monetaryAmount;
     }
 
-    public void setAmount(Amount amount) {
-        this.amount = amount;
+    public void setAmount(MonetaryAmount monetaryAmount) {
+        this.monetaryAmount = monetaryAmount;
     }
 
     public Category getCategory() {

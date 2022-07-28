@@ -15,8 +15,8 @@ import de.efischer.financetracker.R;
 import de.efischer.financetracker.accounts.model.entities.Account;
 import de.efischer.financetracker.accounts.model.entities.CreditCardDetails;
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
-import de.efischer.financetracker.common.inputs.AmountInputFragment;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
+import de.efischer.financetracker.common.inputs.MonetaryAmountInputFragment;
 import de.efischer.financetracker.common.inputs.TextInputFragment;
 import de.efischer.financetracker.databinding.ActivityAddAccountBinding;
 
@@ -110,22 +110,22 @@ public class AddAccountActivity extends AppCompatActivity {
 
     private void setupAmountField() {
         Bundle args = new Bundle();
-        args.putBoolean(AmountInputFragment.IS_STARTING_POSITIVE, true);
-        args.putInt(AmountInputFragment.AMOUNT_TYPE_TITLE, R.string.initial_account_balance);
-        args.putBoolean(AmountInputFragment.SHOW_CURRENCY_LIST, true);
+        args.putBoolean(MonetaryAmountInputFragment.IS_STARTING_POSITIVE, true);
+        args.putInt(MonetaryAmountInputFragment.AMOUNT_TYPE_TITLE, R.string.initial_account_balance);
+        args.putBoolean(MonetaryAmountInputFragment.SHOW_CURRENCY_LIST, true);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.amount_input_fragment, AmountInputFragment.class, args)
+                .add(R.id.amount_input_fragment, MonetaryAmountInputFragment.class, args)
                 .commit();
     }
 
     private void setupCreditCardLimitField() {
         Bundle args = new Bundle();
-        args.putInt(AmountInputFragment.AMOUNT_TYPE_TITLE, R.string.credit_card_limit);
-        args.putBoolean(AmountInputFragment.IS_STARTING_POSITIVE, false);
+        args.putInt(MonetaryAmountInputFragment.AMOUNT_TYPE_TITLE, R.string.credit_card_limit);
+        args.putBoolean(MonetaryAmountInputFragment.IS_STARTING_POSITIVE, false);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.credit_card_limit_fragment, AmountInputFragment.class, args)
+                .add(R.id.credit_card_limit_fragment, MonetaryAmountInputFragment.class, args)
                 .commit();
     }
 
@@ -162,9 +162,9 @@ public class AddAccountActivity extends AppCompatActivity {
         TextInputFragment accountNameInputFragment = binding.accountNameInputFragment.getFragment();
         String accountName = accountNameInputFragment.getUserInput();
         AccountType accountType = AccountType.values()[binding.accountTypeDropdown.getSelectedItemPosition()];
-        Amount startingAmount = ((AmountInputFragment) binding.amountInputFragment.getFragment()).getAmount();
+        MonetaryAmount startingMonetaryAmount = ((MonetaryAmountInputFragment) binding.amountInputFragment.getFragment()).getAmount();
 
-        Account account = new Account(accountName, accountType, startingAmount);
+        Account account = new Account(accountName, accountType, startingMonetaryAmount);
 
         if (accountType != AccountType.CASH) {
             String bankName = ((TextInputFragment) binding.bankNameInputFragment.getFragment()).getUserInput();
@@ -173,14 +173,14 @@ public class AddAccountActivity extends AppCompatActivity {
 
         if (accountType == AccountType.CREDIT_CARD) {
             CreditCardDetails creditCardDetails = ((CreditCardDetailsFragment) binding.creditCardDetailsFragment.getFragment()).getCreditCardDetails();
-            Amount creditCardLimit = ((AmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
+            MonetaryAmount creditCardLimit = ((MonetaryAmountInputFragment) binding.creditCardLimitFragment.getFragment()).getAmount();
             creditCardDetails.setCreditLimit(creditCardLimit);
             resultIntent.putExtra("creditCardDetails", creditCardDetails);
         }
 
         resultIntent.putExtra("account", account);
 
-        if (accountName == null || accountName.isEmpty()) {
+        if (accountName.trim().isEmpty()) {
             Snackbar.make(binding.saveButton, R.string.form_not_completed, Snackbar.LENGTH_SHORT).show();
             accountNameInputFragment.triggerError();
         } else {

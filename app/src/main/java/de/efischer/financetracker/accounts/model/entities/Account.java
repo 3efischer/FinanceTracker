@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import de.efischer.financetracker.accounts.model.valueobjects.AccountType;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
 
 /**
  * Model for accounts of all types
@@ -39,7 +39,7 @@ public class Account implements Serializable {
 
     @Embedded
     @NonNull
-    private Amount balance;
+    private MonetaryAmount balance;
 
     @ColumnInfo(name = "last_changed")
     @NonNull
@@ -55,24 +55,24 @@ public class Account implements Serializable {
     public Account() {
         this.name = "";
         this.type = AccountType.CASH;
-        this.balance = Amount.of(BigDecimal.ZERO, Currency.getInstance("EUR"));
+        this.balance = MonetaryAmount.of(BigDecimal.ZERO, Currency.getInstance("EUR"));
         this.lastChanged = new Date();
     }
 
 
-    public Account(@NonNull String name, @NonNull AccountType type, @NonNull Amount initialBalance) {
+    public Account(@NonNull String name, @NonNull AccountType type, @NonNull MonetaryAmount initialBalance) {
         this.name = name;
         this.type = type;
         this.balance = initialBalance;
         this.lastChanged = new Date();
     }
 
-    public Account(@NonNull String name, @NonNull AccountType type, @NonNull Amount initialBalance, @NonNull String bankName) {
+    public Account(@NonNull String name, @NonNull AccountType type, @NonNull MonetaryAmount initialBalance, @NonNull String bankName) {
         this(name, type, initialBalance);
         this.bankName = bankName;
     }
 
-    public Account(int id, @NonNull String name, @NonNull AccountType type, @NonNull Amount initialBalance, @NonNull String bankName) {
+    public Account(int id, @NonNull String name, @NonNull AccountType type, @NonNull MonetaryAmount initialBalance, @NonNull String bankName) {
         this(name, type, initialBalance, bankName);
         this.id = id;
     }
@@ -113,11 +113,11 @@ public class Account implements Serializable {
     }
 
     @NonNull
-    public Amount getBalance() {
+    public MonetaryAmount getBalance() {
         return balance;
     }
 
-    public void setBalance(@NonNull Amount balance) {
+    public void setBalance(@NonNull MonetaryAmount balance) {
         this.balance = balance;
     }
 

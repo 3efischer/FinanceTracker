@@ -12,8 +12,8 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
 import de.efischer.financetracker.accounts.model.valueobjects.CreditCardType;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
 
 @Entity(tableName = "credit_card_details", foreignKeys = @ForeignKey(entity = Account.class,
         parentColumns = "id", childColumns = "account_id", onDelete = CASCADE), indices = {
@@ -34,7 +34,7 @@ public class CreditCardDetails implements Serializable {
     private CreditCardType creditCardType;
 
     @Embedded
-    private Amount creditLimit;
+    private MonetaryAmount creditLimit;
 
     public String getCreditCardNumber() {
         return creditCardNumber;
@@ -60,11 +60,11 @@ public class CreditCardDetails implements Serializable {
         this.creditCardType = creditCardType;
     }
 
-    public Amount getCreditLimit() {
+    public MonetaryAmount getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(Amount creditLimit) {
+    public void setCreditLimit(MonetaryAmount creditLimit) {
         this.creditLimit = creditLimit;
     }
 

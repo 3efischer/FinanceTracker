@@ -38,7 +38,7 @@ public abstract class AccountDao {
     @Delete
     public abstract ListenableFuture<Integer> delete(Account account);
 
-    @Delete
+    @Query("DELETE FROM account WHERE id=:id")
     public abstract void delete(long id);
 
     @Query("SELECT * FROM account")
@@ -72,7 +72,7 @@ public abstract class AccountDao {
         int listPosition = getAccountItemsCount();
         account.setListPosition(listPosition);
         long insertedAccountId = insert(account);
-        
+
         creditCardDetails.setAccountId(insertedAccountId);
         creditCardDetailsDao.insert(creditCardDetails);
     }

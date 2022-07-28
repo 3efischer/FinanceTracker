@@ -17,11 +17,11 @@ import java.util.Currency;
 import java.util.regex.Pattern;
 
 import de.efischer.financetracker.R;
-import de.efischer.financetracker.accounts.model.valueobjects.Amount;
+import de.efischer.financetracker.accounts.model.valueobjects.MonetaryAmount;
 import de.efischer.financetracker.databinding.FragmentAmountInputBinding;
 
 
-public class AmountInputFragment extends Fragment {
+public class MonetaryAmountInputFragment extends Fragment {
 
     public static final String IS_STARTING_POSITIVE = "IS_STARTING_POSITIVE";
     public static final String AMOUNT_TYPE_TITLE = "AMOUNT_TYPE_TITLE";
@@ -33,7 +33,7 @@ public class AmountInputFragment extends Fragment {
 
     private FragmentAmountInputBinding binding;
 
-    public AmountInputFragment() {
+    public MonetaryAmountInputFragment() {
         // Required empty public constructor
     }
 
@@ -165,7 +165,7 @@ public class AmountInputFragment extends Fragment {
         }
     }
 
-    public Amount getAmount() {
+    public MonetaryAmount getAmount() {
         String currencyString = (String) binding.currencyDropdown.getSelectedItem();
         Currency selectedCurrency = Currency.getInstance(currencyString);
 
@@ -190,6 +190,6 @@ public class AmountInputFragment extends Fragment {
             amountAsBigDecimal = amountAsBigDecimal.negate();
         }
 
-        return Amount.of(amountAsBigDecimal, selectedCurrency);
+        return MonetaryAmount.of(amountAsBigDecimal, selectedCurrency);
     }
 }

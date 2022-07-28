@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 
-public class Amount implements Serializable {
+public class MonetaryAmount implements Serializable {
 
     @Ignore
     private final RoundingMode DEFAULT_ROUNDING = RoundingMode.HALF_EVEN;
@@ -19,17 +19,17 @@ public class Amount implements Serializable {
 
     @ColumnInfo(name = "currency")
     private Currency currency;
-    
-    public Amount() {
+
+    public MonetaryAmount() {
     }
 
-    private Amount(BigDecimal amount, Currency currency) {
+    private MonetaryAmount(BigDecimal amount, Currency currency) {
         this.amount = amount.setScale(currency.getDefaultFractionDigits(), DEFAULT_ROUNDING);
         this.currency = currency;
     }
 
-    public static Amount of(BigDecimal amount, Currency currency) {
-        return new Amount(amount, currency);
+    public static MonetaryAmount of(BigDecimal amount, Currency currency) {
+        return new MonetaryAmount(amount, currency);
     }
 
     public BigDecimal getAmount() {
