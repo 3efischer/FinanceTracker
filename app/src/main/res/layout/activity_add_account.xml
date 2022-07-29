@@ -10,13 +10,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_account"
-            android:textSize="@dimen/mini_action_bar_size"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:textSize="@dimen/add_account_title_font_size"
+            android:paddingStart="@dimen/title_bar_padding_horizontal"
+            android:paddingEnd="@dimen/title_bar_padding_horizontal"
+            android:paddingTop="@dimen/title_bar_padding_vertical"
+            android:paddingBottom="@dimen/title_bar_padding_vertical"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/white"
-            android:background="@color/custom_dark_grey" />
+            android:background="@color/titlebar_grey" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -41,8 +43,8 @@
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/credit_card_details_fragment"
                     android:layout_gravity="end"
-                    android:layout_width="match_parent"
                     android:name="de.efischer.financetracker.accounts.ui.addaccount.CreditCardDetailsFragment"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp" />

@@ -44,9 +44,9 @@ public class CreditCardDetailsFragment extends Fragment {
 
     private void setupCreditCardNumberField() {
         Bundle args = new Bundle();
-        args.putInt(NumberInputFragment.DESCRIPTION_TEXT_KEY, R.string.credit_card_number);
-        args.putInt(NumberInputFragment.TEXTFIELD_HINT_KEY, R.string.credit_card_number_description);
+        args.putInt(NumberInputFragment.TEXTFIELD_HINT_KEY, R.string.credit_card_number);
         args.putInt(NumberInputFragment.MAX_LENGTH_KEY, 4);
+        args.putInt(NumberInputFragment.TEXTFIELD_HELPER_TEXT_KEY, R.string.credit_card_number_helper_text);
 
         getChildFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)

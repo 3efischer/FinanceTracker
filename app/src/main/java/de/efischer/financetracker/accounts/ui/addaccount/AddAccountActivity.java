@@ -38,6 +38,7 @@ public class AddAccountActivity extends AppCompatActivity {
             setupBankNameField();
             setupCreditCardLimitField();
             setupButtonListeners();
+            binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
         }
     }
 
@@ -48,9 +49,8 @@ public class AddAccountActivity extends AppCompatActivity {
 
     private void setupNameField() {
         Bundle args = new Bundle();
-        args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.account_name);
         args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.account_name_description);
-        args.putBoolean(TextInputFragment.INPUT_IS_MANDATORY, true);
+        args.putInt(TextInputFragment.INPUT_IS_MANDATORY_DESCRIPTION, R.string.mandatory_field);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.account_name_input_fragment, TextInputFragment.class, args)
@@ -59,7 +59,6 @@ public class AddAccountActivity extends AppCompatActivity {
 
     private void setupAccountTypeChooser() {
         binding.accountTypeDropdown.setAdapter(new DropdownAdapter(this, R.layout.account_type_dropdown_item, AccountType.values()));
-        binding.accountTypeDropdown.setOnItemSelectedListener(createDropdownListener());
     }
 
     @NonNull
@@ -131,7 +130,6 @@ public class AddAccountActivity extends AppCompatActivity {
 
     private void setupBankNameField() {
         Bundle args = new Bundle();
-        args.putInt(TextInputFragment.DESCRIPTION_TEXT_KEY, R.string.bank_name);
         args.putInt(TextInputFragment.TEXTFIELD_HINT_KEY, R.string.bank_name);
 
         getSupportFragmentManager().beginTransaction()

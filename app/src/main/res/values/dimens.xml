@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mini_action_bar_size">15sp</dimen>
+    <dimen name="tab_font_size">10sp</dimen>
+    <dimen name="add_account_title_font_size">15sp</dimen>
+
+    <dimen name="title_bar_padding_horizontal">20dp</dimen>
+    <dimen name="title_bar_padding_vertical">5dp</dimen>
+
+    <dimen name="input_layout_margin_start">15dp</dimen>
+    <dimen name="input_layout_margin_end">25dp</dimen>
 </resources>

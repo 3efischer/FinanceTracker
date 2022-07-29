@@ -14,8 +14,8 @@ import de.efischer.financetracker.databinding.FragmentNumberInputBinding;
 
 public class NumberInputFragment extends Fragment {
 
-    public static final String DESCRIPTION_TEXT_KEY = "DESCRIPTION_TEXT";
     public static final String TEXTFIELD_HINT_KEY = "TEXTFIELD_HINT";
+    public static final String TEXTFIELD_HELPER_TEXT_KEY = "TEXTFIELD_HELPER_TEXT_KEY";
     public static final String MAX_LENGTH_KEY = "MAX_LENGTH_KEY";
 
     private String userInput;
@@ -35,11 +35,16 @@ public class NumberInputFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        int textId = requireArguments().getInt(DESCRIPTION_TEXT_KEY);
         int hintId = requireArguments().getInt(TEXTFIELD_HINT_KEY);
+        int optionalHelperTextId = requireArguments().getInt(TEXTFIELD_HELPER_TEXT_KEY);
 
-        binding.descriptionField.setHint(textId);
-        binding.userInput.setHint(hintId);
+        binding.numberInputLayout.setHint(hintId);
+
+        if (optionalHelperTextId != 0) {
+            binding.numberInputLayout.setHelperTextEnabled(true);
+            binding.numberInputLayout.setHelperText(getResources().getString(optionalHelperTextId));
+        }
+
         this.userInput = "";
 
         binding.userInput.setFilters(new InputFilter[]{
@@ -57,7 +62,9 @@ public class NumberInputFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("userInput", binding.userInput.getText().toString());
+        if (binding.userInput.getText() != null) {
+            outState.putString("userInput", binding.userInput.getText().toString());
+        }
     }
 
     @Override

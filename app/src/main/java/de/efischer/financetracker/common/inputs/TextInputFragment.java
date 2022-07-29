@@ -17,9 +17,8 @@ import de.efischer.financetracker.databinding.FragmentTextInputBinding;
 
 public class TextInputFragment extends Fragment {
 
-    public static final String DESCRIPTION_TEXT_KEY = "DESCRIPTION_TEXT";
     public static final String TEXTFIELD_HINT_KEY = "TEXTFIELD_HINT";
-    public static final String INPUT_IS_MANDATORY = "INPUT_IS_MANDATORY";
+    public static final String INPUT_IS_MANDATORY_DESCRIPTION = "INPUT_IS_MANDATORY_DESCRIPTION";
 
     private String userInputString;
     private FragmentTextInputBinding binding;
@@ -32,21 +31,23 @@ public class TextInputFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         this.binding = FragmentTextInputBinding.inflate(inflater, container, false);
         this.userInputString = "";
-
         return this.binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        int textId = requireArguments().getInt(DESCRIPTION_TEXT_KEY);
         int textFieldHint = requireArguments().getInt(TEXTFIELD_HINT_KEY);
-        boolean isMandatory = requireArguments().getBoolean(INPUT_IS_MANDATORY);
+        int isMandatoryDescription = requireArguments().getInt(INPUT_IS_MANDATORY_DESCRIPTION);
 
-        binding.userInput.setHint(textId);
-        binding.descriptionField.setHint(textFieldHint);
-        this.isMandatory = isMandatory;
+        binding.textInputLayout.setHint(textFieldHint);
+        this.isMandatory = isMandatoryDescription != 0;
+
+        if (isMandatory) {
+            this.binding.textInputLayout.setHelperText(getResources().getString(isMandatoryDescription));
+        }
 
         this.binding.userInput.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
@@ -54,11 +55,11 @@ public class TextInputFragment extends Fragment {
                 userInputString = String.valueOf(this.binding.userInput.getText());
 
                 if (this.isMandatory && userInputString.isEmpty()) {
-                    this.binding.textinputErrorLayout.setError(
+                    this.binding.textInputLayout.setError(
                             getResources().getString(R.string.field_not_optional));
-                    this.binding.textinputErrorLayout.setErrorEnabled(true);
+                    this.binding.textInputLayout.setErrorEnabled(true);
                 } else {
-                    this.binding.textinputErrorLayout.setErrorEnabled(false);
+                    this.binding.textInputLayout.setErrorEnabled(false);
                 }
             }
         });
@@ -85,7 +86,9 @@ public class TextInputFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("userInput", binding.userInput.getText().toString());
+        if (binding.userInput.getText() != null) {
+            outState.putString("userInput", binding.userInput.getText().toString());
+        }
         outState.putBoolean("isMandatory", this.isMandatory);
     }
 
@@ -105,8 +108,8 @@ public class TextInputFragment extends Fragment {
     }
 
     public void triggerError() {
-        this.binding.textinputErrorLayout.setError(getResources().getString(R.string.field_not_optional));
-        this.binding.textinputErrorLayout.setErrorEnabled(true);
+        this.binding.textInputLayout.setError(getResources().getString(R.string.field_not_optional));
+        this.binding.textInputLayout.setErrorEnabled(true);
     }
 
     @Override

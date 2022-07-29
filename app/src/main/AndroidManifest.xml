@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".common.configuration.FinanceTrackerApplication"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.FinanceTracker">
         <activity
             android:name=".accounts.ui.addaccount.AddAccountActivity"
             android:exported="false" />

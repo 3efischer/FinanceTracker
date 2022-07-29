@@ -89,6 +89,4 @@ public class AccountListItemViewHolder extends RecyclerView.ViewHolder {
     public ImageView getIcon() {
         return icon;
     }
-
-
 }

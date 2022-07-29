@@ -14,7 +14,8 @@
     <string name="settings">Settings</string>
 
     <!-- Errors -->
-    <string name="error_amount_necessary">You need to enter an monetaryAmount.</string>
+    <string name="mandatory_field">*Mandatory field</string>
+    <string name="error_amount_necessary">You need to enter a monetary amount.</string>
     <string name="field_not_optional">This field cannot be empty.</string>
     <string name="form_not_completed">Please fill out all necessary fields.</string>
 
@@ -26,9 +27,9 @@
     <string name="credit_card_issuer">Issuer</string>
     <string name="credit_card_issuer_description">Issuer of your credit card</string>
     <string name="credit_card_number">Credit card number</string>
-    <string name="credit_card_number_description">Last 4 digits of the card</string>
+    <string name="credit_card_number_helper_text">Last 4 digits of the card</string>
     <string name="account_name">Name</string>
-    <string name="account_name_description">Name of your account</string>
+    <string name="account_name_description">Name of your account*</string>
     <string name="initial_account_balance">Initial balance</string>
 
     <string name="cash">Cash</string>

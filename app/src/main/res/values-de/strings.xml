@@ -15,6 +15,7 @@
     <string name="settings">Settings</string>
 
     <!-- Errors -->
+    <string name="mandatory_field">*Pflichtfeld</string>
     <string name="error_amount_necessary">Bitte geben Sie einen Betrag ein.</string>
     <string name="field_not_optional">Dieses Feld darf nicht leer sein.</string>
     <string name="form_not_completed">Bitte alle Pflichtfelder ausfüllen.</string>
@@ -27,9 +28,9 @@
     <string name="credit_card_issuer">Herausgeber</string>
     <string name="credit_card_issuer_description">Herausgebende Bank</string>
     <string name="credit_card_number">Kreditkartennummer</string>
-    <string name="credit_card_number_description">Letzte 4 Ziffern</string>
+    <string name="credit_card_number_helper_text">Letzte 4 Ziffern</string>
     <string name="account_name">Name</string>
-    <string name="account_name_description">Name des Kontos</string>
+    <string name="account_name_description">Name des Kontos*</string>
     <string name="initial_account_balance">Startsaldo</string>
 
     <!-- Account Types -->
